@@ -205,21 +205,21 @@ function App() {
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(200,16,46,0.22),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(34,139,34,0.2),transparent_30%),linear-gradient(to_bottom,rgba(20,8,6,0.5),rgba(20,8,6,0.75))]" />
               </div>
 
-              <div className="relative z-10 mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-10 lg:py-16">
-                <div className="border border-white/25 bg-white/10 p-6 text-brand-cream backdrop-blur-xl sm:p-8">
+              <div className="relative z-10 mx-auto flex min-h-[70vh] max-w-7xl items-center px-4 py-8 sm:px-6 lg:px-10 lg:py-10">
+                <div className="w-full max-w-4xl border border-white/25 bg-white/10 p-6 text-brand-cream backdrop-blur-xl sm:p-8">
                   <div className="inline-flex items-center gap-2 border border-white/30 bg-black/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-brand-cream">
                     Parceria B2B em Jundiai-SP
                   </div>
 
-                  <h1 className="mt-5 text-balance font-display text-4xl leading-[0.96] text-white sm:text-5xl lg:text-6xl">
+                  <h1 className="mt-5 text-balance font-display text-4xl leading-[0.95] text-white sm:text-5xl lg:text-[4.2rem]">
                     Leve o Sabor Artesanal Autentico de Jundiai para sua Prateleira
                   </h1>
-                  <p className="mt-5 text-base leading-relaxed text-white/90 sm:text-lg">
+                  <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/90 sm:text-lg">
                     Molhos 100% naturais, 16 sabores, margem premium e giro garantido. Nao ter
                     Caseirices na prateleira = cliente insatisfeito e venda perdida.
                   </p>
 
-                  <div className="mt-7 flex flex-wrap gap-2">
+                  <div className="mt-6 flex flex-wrap gap-2">
                     {[
                       'Parceria comercial de longo prazo',
                       'Sem conservantes e com producao propria',
@@ -235,7 +235,7 @@ function App() {
                     ))}
                   </div>
 
-                  <div className="mt-8 flex flex-wrap gap-3">
+                  <div className="mt-7 flex flex-wrap gap-3">
                     <MotionAnchor
                       href={WHATSAPP_LINK}
                       target="_blank"
@@ -256,27 +256,27 @@ function App() {
                       Ver Instagram da Marca
                     </a>
                   </div>
-                </div>
 
-                <m.div
-                  initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
-                  animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-                  transition={shouldReduceMotion ? undefined : { duration: 0.65, ease: 'easeOut' }}
-                  className="grid content-end gap-3 sm:grid-cols-3 lg:grid-cols-1"
-                >
-                  <div className="border border-white/30 bg-black/25 p-4 text-center text-white backdrop-blur-xl">
-                    <p className="text-[10px] uppercase tracking-[0.14em] text-white/75">Sabores</p>
-                    <p className="mt-1 text-2xl font-bold">16</p>
-                  </div>
-                  <div className="border border-white/30 bg-black/25 p-4 text-center text-white backdrop-blur-xl">
-                    <p className="text-[10px] uppercase tracking-[0.14em] text-white/75">Natural</p>
-                    <p className="mt-1 text-2xl font-bold">100%</p>
-                  </div>
-                  <div className="border border-white/30 bg-black/25 p-4 text-center text-white backdrop-blur-xl">
-                    <p className="text-[10px] uppercase tracking-[0.14em] text-white/75">Desde</p>
-                    <p className="mt-1 text-2xl font-bold">2017</p>
-                  </div>
-                </m.div>
+                  <m.div
+                    initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+                    animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                    transition={shouldReduceMotion ? undefined : { duration: 0.55, ease: 'easeOut' }}
+                    className="mt-5 grid gap-2 sm:grid-cols-3"
+                  >
+                    <div className="border border-white/30 bg-black/25 p-3 text-center text-white backdrop-blur-xl">
+                      <p className="text-[10px] uppercase tracking-[0.14em] text-white/75">Sabores</p>
+                      <p className="mt-1 text-xl font-bold">16</p>
+                    </div>
+                    <div className="border border-white/30 bg-black/25 p-3 text-center text-white backdrop-blur-xl">
+                      <p className="text-[10px] uppercase tracking-[0.14em] text-white/75">Natural</p>
+                      <p className="mt-1 text-xl font-bold">100%</p>
+                    </div>
+                    <div className="border border-white/30 bg-black/25 p-3 text-center text-white backdrop-blur-xl">
+                      <p className="text-[10px] uppercase tracking-[0.14em] text-white/75">Desde</p>
+                      <p className="mt-1 text-xl font-bold">2017</p>
+                    </div>
+                  </m.div>
+                </div>
               </div>
             </SectionReveal>
 
