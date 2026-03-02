@@ -32,6 +32,32 @@ a {
   text-decoration: none;
 }
 
+.range-premium::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 18px;
+  width: 18px;
+  border: 2px solid #fff8f0;
+  border-radius: 9999px;
+  background: #c8102e;
+  box-shadow: 0 0 0 5px rgba(200, 16, 46, 0.22);
+}
+
+.range-premium::-moz-range-thumb {
+  height: 18px;
+  width: 18px;
+  border: 2px solid #fff8f0;
+  border-radius: 9999px;
+  background: #c8102e;
+  box-shadow: 0 0 0 5px rgba(200, 16, 46, 0.22);
+}
+
+.range-premium::-moz-range-track {
+  height: 8px;
+  background: rgba(255, 248, 240, 0.24);
+  border: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

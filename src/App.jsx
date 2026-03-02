@@ -12,6 +12,7 @@ import {
   Megaphone,
   PackageCheck,
   PhoneCall,
+  Sparkles,
   Store,
   TrendingUp,
 } from 'lucide-react'
@@ -26,40 +27,40 @@ const benefits = [
   {
     icon: BadgePercent,
     title: 'Margem de Lucro Alta',
-    text: 'Produtos premium com posicionamento de valor que sustenta precificacao forte na gôndola.',
+    text: 'Posicionamento premium com precificacao forte para aumentar rentabilidade por metro linear.',
   },
   {
     icon: TrendingUp,
-    title: 'Giro Rápido de Estoque',
-    text: 'Mix de 16 sabores com recompra recorrente e alta aceitacao entre consumidores exigentes.',
+    title: 'Giro Rapido de Estoque',
+    text: 'Linha autoral com recompra recorrente e alta saida em supermercados, emporios e food service.',
   },
   {
     icon: Leaf,
     title: 'Qualidade 100% Natural',
-    text: 'Sem conservantes, sabor caseiro premium e padrao de producao com controle rigoroso.',
+    text: 'Receitas artesanais sem conservantes, com sabor caseiro premium e consistencia de lote.',
   },
   {
     icon: Handshake,
     title: 'Producao em Jundiai + Suporte',
-    text: 'Atendimento direto com material comercial pronto para acelerar sell-out no PDV.',
+    text: 'Atendimento proximo, materiais de venda e estrategia para acelerar entrada e sell-out.',
   },
 ]
 
 const supportItems = [
   {
     icon: Store,
-    title: 'Kit PDV de conversao',
-    text: 'Wobblers, tags de gôndola e materiais de destaque para ponto quente.',
+    title: 'Kit PDV de Conversao',
+    text: 'Etiquetas, materiais de gôndola e visuais para aumentar destaque no ponto de venda.',
   },
   {
     icon: Megaphone,
-    title: 'Conteudo pronto para redes',
-    text: 'Pacotes de fotos e posts prontos para supermercados, emporios e restaurantes.',
+    title: 'Conteudo Pronto para Redes',
+    text: 'Fotos profissionais e criativos prontos para campanhas locais e ofertas semanais.',
   },
   {
     icon: PackageCheck,
-    title: 'Campanhas conjuntas',
-    text: 'Acoes promocionais para aumentar giro e fortalecer marca local premium.',
+    title: 'Campanhas Conjuntas',
+    text: 'Acoes comerciais coordenadas para gerar trafego, degustacao e recompra.',
   },
 ]
 
@@ -71,14 +72,57 @@ function formatMoney(value) {
   }).format(Number.isFinite(value) ? value : 0)
 }
 
+function BrandLockup() {
+  return (
+    <div className="inline-flex items-center gap-3">
+      <div className="relative">
+        <div className="absolute inset-0 bg-brand-red/25 blur-lg" />
+        <img
+          src="/assets/brand/caseirices-emblem.svg"
+          alt="Emblema da marca Caseirices"
+          className="relative h-12 w-12 border border-brand-earth/20 bg-brand-cream p-1"
+        />
+      </div>
+      <div>
+        <p className="font-display text-2xl leading-none text-brand-wine">Caseirices</p>
+        <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-earth/80">
+          Molhos Artesanais
+        </p>
+      </div>
+    </div>
+  )
+}
+
+function RangeControl({ label, value, onChange, min, max, step, suffix = '' }) {
+  return (
+    <label className="block">
+      <div className="mb-2 flex items-center justify-between text-sm font-medium text-brand-cream/90">
+        <span>{label}</span>
+        <span className="font-semibold text-brand-cream">
+          {value}
+          {suffix}
+        </span>
+      </div>
+      <input
+        type="range"
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        onChange={(event) => onChange(Number(event.target.value))}
+        className="range-premium h-2 w-full cursor-pointer appearance-none bg-brand-cream/20"
+      />
+    </label>
+  )
+}
+
 function App() {
   const shouldReduceMotion = useReducedMotion()
   const MotionAnchor = m.a
-  const MotionDiv = m.div
   const MotionArticle = m.article
-  const [boxesPerWeek, setBoxesPerWeek] = useState(10)
-  const [unitMargin, setUnitMargin] = useState(7)
-  const [firstOrder, setFirstOrder] = useState(2800)
+  const [boxesPerWeek, setBoxesPerWeek] = useState(12)
+  const [unitMargin, setUnitMargin] = useState(8)
+  const [firstOrder, setFirstOrder] = useState(3200)
 
   const metrics = useMemo(() => {
     const unitsPerBox = 12
@@ -96,317 +140,410 @@ function App() {
   return (
     <LazyMotion features={domAnimation}>
       <div className="min-h-screen bg-brand-cream text-brand-ink antialiased">
-      <main className="pb-28">
-        <SectionReveal className="relative overflow-hidden border-b border-brand-earth/20">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(178,34,34,0.12),transparent_55%)]" />
-          <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:py-16 lg:grid-cols-[1.05fr_0.95fr] lg:px-10 lg:py-20">
-            <div className="relative z-10">
-              <span className="mb-5 inline-flex items-center gap-2 border border-brand-green/40 bg-brand-green/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-brand-green">
-                Revenda B2B em Jundiai e Regiao
-              </span>
-              <h1 className="text-balance font-display text-3xl leading-tight text-brand-wine sm:text-4xl lg:text-5xl">
-                Leve o Sabor Artesanal Autentico de Jundiai para sua Prateleira
-              </h1>
-              <p className="mt-5 max-w-xl text-pretty text-base text-brand-ink/85 sm:text-lg">
-                Molhos 100% naturais, 16 sabores, margem premium e giro garantido. Nao ter
-                Caseirices na prateleira significa cliente insatisfeito e venda perdida para a
-                concorrencia.
+        <div className="relative overflow-hidden">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_10%,rgba(200,16,46,0.16),transparent_35%),radial-gradient(circle_at_85%_0%,rgba(34,139,34,0.14),transparent_32%),linear-gradient(to_bottom,#fff8f0_0%,#faf4e8_50%,#fff8f0_100%)]" />
+
+          <header className="relative z-10 mx-auto flex w-full max-w-7xl items-center justify-between px-4 pt-6 sm:px-6 lg:px-10 lg:pt-8">
+            <BrandLockup />
+            <MotionAnchor
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noreferrer"
+              whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
+              className="hidden items-center gap-2 border border-brand-red-dark bg-brand-red px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] text-white transition hover:bg-brand-red-dark sm:inline-flex"
+            >
+              Quero Revender
+              <ArrowRight className="h-3.5 w-3.5" />
+            </MotionAnchor>
+          </header>
+
+          <main className="relative z-10 pb-28">
+            <SectionReveal className="mx-auto grid max-w-7xl gap-8 px-4 pb-12 pt-10 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-10 lg:pb-16 lg:pt-14">
+              <div>
+                <span className="inline-flex items-center gap-2 border border-brand-green/35 bg-brand-green/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-brand-green">
+                  Parceria B2B em Jundiai-SP
+                </span>
+                <h1 className="mt-5 max-w-2xl text-balance font-display text-4xl leading-[1.03] text-brand-wine sm:text-5xl lg:text-6xl">
+                  Leve o Sabor Artesanal Autentico de Jundiai para sua Prateleira
+                </h1>
+                <p className="mt-5 max-w-2xl text-base leading-relaxed text-brand-ink/85 sm:text-lg">
+                  Molhos 100% naturais, 16 sabores, margem premium e giro garantido. Nao ter
+                  Caseirices na prateleira = cliente insatisfeito e venda perdida.
+                </p>
+
+                <div className="mt-7 flex flex-wrap gap-3">
+                  {[
+                    'Parceria comercial de longo prazo',
+                    'Sem conservantes e com producao propria',
+                    'Suporte de marketing para revendedores',
+                  ].map((item) => (
+                    <span
+                      key={item}
+                      className="inline-flex items-center gap-2 border border-brand-earth/25 bg-white/70 px-3 py-2 text-xs font-medium text-brand-ink/80 backdrop-blur"
+                    >
+                      <Sparkles className="h-3.5 w-3.5 text-brand-green" />
+                      {item}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <MotionAnchor
+                    href={WHATSAPP_LINK}
+                    target="_blank"
+                    rel="noreferrer"
+                    whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
+                    className="inline-flex w-full items-center justify-center gap-2 border border-brand-red-dark bg-brand-red px-5 py-4 text-center text-sm font-extrabold uppercase tracking-[0.07em] text-white shadow-[0_20px_45px_rgba(139,0,0,0.28)] transition hover:bg-brand-red-dark sm:w-auto"
+                  >
+                    QUERO TABELA DE ATACADO E CONDICOES DE REVENDA
+                    <ArrowRight className="h-4 w-4" />
+                  </MotionAnchor>
+                  <a
+                    href={INSTAGRAM_LINK}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex w-full items-center justify-center gap-2 border border-brand-earth/25 bg-white/75 px-5 py-4 text-sm font-semibold text-brand-ink transition hover:bg-white sm:w-auto"
+                  >
+                    <Instagram className="h-4 w-4 text-brand-green" />
+                    Ver Instagram da Marca
+                  </a>
+                </div>
+              </div>
+
+              <m.div
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
+                animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                transition={shouldReduceMotion ? undefined : { duration: 0.65, ease: 'easeOut' }}
+                className="relative overflow-hidden border border-brand-earth/30 bg-[#2f170f] p-2 shadow-[0_30px_65px_rgba(40,18,10,0.42)]"
+              >
+                <img
+                  src="/assets/products/real/linha-completa.jpg"
+                  alt="Linha premium de molhos Caseirices"
+                  className="aspect-[4/5] w-full object-cover"
+                  onError={(event) => {
+                    event.currentTarget.onerror = null
+                    event.currentTarget.src = '/assets/brand/hero-production.svg'
+                  }}
+                />
+                <div className="absolute inset-x-2 bottom-2 grid grid-cols-3 gap-2">
+                  <div className="border border-white/20 bg-black/40 p-3 text-center text-white backdrop-blur">
+                    <p className="text-[10px] uppercase tracking-[0.14em] text-white/75">Sabores</p>
+                    <p className="mt-1 text-xl font-bold">16</p>
+                  </div>
+                  <div className="border border-white/20 bg-black/40 p-3 text-center text-white backdrop-blur">
+                    <p className="text-[10px] uppercase tracking-[0.14em] text-white/75">Natural</p>
+                    <p className="mt-1 text-xl font-bold">100%</p>
+                  </div>
+                  <div className="border border-white/20 bg-black/40 p-3 text-center text-white backdrop-blur">
+                    <p className="text-[10px] uppercase tracking-[0.14em] text-white/75">Desde</p>
+                    <p className="mt-1 text-xl font-bold">2017</p>
+                  </div>
+                </div>
+              </m.div>
+            </SectionReveal>
+
+            <SectionReveal className="mx-auto max-w-7xl px-4 pb-10 pt-2 sm:px-6 lg:px-10 lg:pb-16">
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {benefits.map((item) => {
+                  const IconComponent = item.icon
+                  return (
+                    <article
+                      key={item.title}
+                      className="group relative overflow-hidden border border-brand-earth/25 bg-white/85 p-6 shadow-[0_16px_40px_rgba(55,27,16,0.08)]"
+                    >
+                      <div className="absolute -right-10 -top-10 h-24 w-24 bg-brand-green/10 blur-2xl transition group-hover:bg-brand-red/10" />
+                      <IconComponent className="relative h-6 w-6 text-brand-green" />
+                      <h3 className="relative mt-4 font-display text-2xl leading-tight text-brand-wine">
+                        {item.title}
+                      </h3>
+                      <p className="relative mt-2 text-sm leading-relaxed text-brand-ink/82">{item.text}</p>
+                    </article>
+                  )
+                })}
+              </div>
+            </SectionReveal>
+
+            <SectionReveal className="border-y border-brand-earth/18 bg-white/60 py-14 lg:py-20">
+              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+                <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+                  <div>
+                    <h2 className="font-display text-3xl text-brand-wine sm:text-4xl">Vitrine de Produtos</h2>
+                    <p className="mt-2 max-w-2xl text-sm text-brand-ink/82 sm:text-base">
+                      Nao e catalogo comum: e uma linha pensada para girar rapido e valorizar sua
+                      gôndola com linguagem visual premium.
+                    </p>
+                  </div>
+                  <span className="inline-flex items-center gap-2 border border-brand-earth/25 bg-brand-cream px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-brand-earth">
+                    Mix estrategico para revenda
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                  {flavors.map((item, index) => (
+                    <MotionArticle
+                      key={item.name}
+                      initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+                      whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.12 }}
+                      transition={
+                        shouldReduceMotion ? undefined : { duration: 0.38, delay: index * 0.02 }
+                      }
+                      whileHover={shouldReduceMotion ? undefined : { y: -6 }}
+                      className="group overflow-hidden border border-brand-earth/20 bg-white shadow-[0_10px_28px_rgba(49,24,12,0.09)]"
+                    >
+                      <div className="relative aspect-[1/1] overflow-hidden bg-brand-cream">
+                        <img
+                          src={item.image}
+                          alt={`Frasco do sabor ${item.name} da Caseirices`}
+                          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                          onError={(event) => {
+                            if (item.fallbackImage) {
+                              event.currentTarget.onerror = null
+                              event.currentTarget.src = item.fallbackImage
+                              event.currentTarget.className =
+                                'h-full w-full object-contain p-5 transition duration-500 group-hover:scale-105'
+                            }
+                          }}
+                        />
+                        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/55 to-transparent" />
+                        <p className="absolute bottom-3 left-3 right-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/90">
+                          Giro e margem premium
+                        </p>
+                      </div>
+                      <div className="p-3">
+                        <h3 className="text-sm font-bold text-brand-wine sm:text-base">{item.name}</h3>
+                        <p className="mt-1 text-xs text-brand-ink/75 sm:text-sm">{item.profile}</p>
+                      </div>
+                    </MotionArticle>
+                  ))}
+                </div>
+              </div>
+            </SectionReveal>
+
+            <SectionReveal className="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-10 lg:py-20">
+              <article className="border border-brand-earth/25 bg-white/85 p-7 shadow-[0_18px_40px_rgba(55,27,16,0.09)] lg:p-9">
+                <p className="text-xs font-semibold uppercase tracking-[0.15em] text-brand-green">
+                  Por que Caseirices?
+                </p>
+                <h2 className="mt-3 font-display text-3xl leading-tight text-brand-wine sm:text-4xl">
+                  Confiabilidade de fabrica local com padrao premium
+                </h2>
+                <p className="mt-4 text-sm leading-relaxed text-brand-ink/85 sm:text-base">
+                  Desde 2017, dois amigos transformaram receitas autorais em uma operacao solida com
+                  loja-fabrica propria em Jundiai. Isso garante controle de qualidade, agilidade de
+                  reposicao e relacao comercial proxima com cada revendedor.
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-brand-ink/85 sm:text-base">
+                  A proposta e simples: produto forte, margem alta e uma parceria de crescimento
+                  continuo para supermercados, emporios gourmet, restaurantes e hoteis.
+                </p>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {[
+                    ['Desde 2017', 'Historico de marca local'],
+                    ['Loja-fabrica', 'Producao propria e rastreavel'],
+                    ['Logistica agil', 'Reposicao com previsibilidade'],
+                    ['Suporte ativo', 'Apoio real ao sell-out'],
+                  ].map(([title, text]) => (
+                    <div key={title} className="border border-brand-earth/18 bg-brand-cream/75 p-3">
+                      <p className="text-sm font-bold text-brand-wine">{title}</p>
+                      <p className="mt-1 text-xs text-brand-ink/80">{text}</p>
+                    </div>
+                  ))}
+                </div>
+              </article>
+
+              <article className="relative overflow-hidden border border-brand-earth/35 bg-brand-wine p-7 text-brand-cream shadow-[0_20px_46px_rgba(55,27,16,0.28)] lg:p-9">
+                <div className="absolute -right-14 -top-14 h-44 w-44 rounded-full bg-brand-red/35 blur-2xl" />
+                <div className="absolute -bottom-16 -left-12 h-44 w-44 rounded-full bg-brand-green/22 blur-2xl" />
+                <div className="relative">
+                  <h2 className="font-display text-3xl sm:text-4xl">Simulador de Retorno</h2>
+                  <p className="mt-2 text-sm text-brand-cream/88 sm:text-base">
+                    Estime lucro mensal, payback e ROI com base no seu volume de compra.
+                  </p>
+
+                  <div className="mt-7 space-y-5">
+                    <RangeControl
+                      label="Caixas por semana"
+                      min={4}
+                      max={60}
+                      step={1}
+                      value={boxesPerWeek}
+                      onChange={setBoxesPerWeek}
+                    />
+                    <RangeControl
+                      label="Margem unitaria media"
+                      min={4}
+                      max={20}
+                      step={1}
+                      value={unitMargin}
+                      onChange={setUnitMargin}
+                      suffix=" R$"
+                    />
+                    <RangeControl
+                      label="Valor do 1o pedido"
+                      min={1200}
+                      max={14000}
+                      step={200}
+                      value={firstOrder}
+                      onChange={setFirstOrder}
+                      suffix=" R$"
+                    />
+                  </div>
+
+                  <div className="mt-8 grid gap-3 sm:grid-cols-3">
+                    <div className="border border-brand-cream/30 bg-black/20 p-4 backdrop-blur">
+                      <p className="text-[11px] uppercase tracking-[0.12em] text-brand-cream/75">
+                        Lucro mensal estimado
+                      </p>
+                      <p className="mt-1 font-display text-2xl text-brand-green">
+                        {formatMoney(metrics.monthlyProfit)}
+                      </p>
+                    </div>
+                    <div className="border border-brand-cream/30 bg-black/20 p-4 backdrop-blur">
+                      <p className="text-[11px] uppercase tracking-[0.12em] text-brand-cream/75">
+                        Payback
+                      </p>
+                      <p className="mt-1 font-display text-2xl text-brand-green">
+                        {metrics.paybackMonths.toFixed(1)} meses
+                      </p>
+                    </div>
+                    <div className="border border-brand-cream/30 bg-black/20 p-4 backdrop-blur">
+                      <p className="text-[11px] uppercase tracking-[0.12em] text-brand-cream/75">
+                        ROI anual
+                      </p>
+                      <p className="mt-1 font-display text-2xl text-brand-green">
+                        {metrics.annualRoi.toFixed(0)}%
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </SectionReveal>
+
+            <SectionReveal className="border-y border-brand-earth/18 bg-white/65 py-14 lg:py-20">
+              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+                <h2 className="font-display text-3xl text-brand-wine sm:text-4xl">
+                  Materiais de Apoio para Revendedores
+                </h2>
+                <p className="mt-2 max-w-3xl text-sm text-brand-ink/82 sm:text-base">
+                  Voce recebe estrutura comercial para vender mais desde a primeira semana.
+                </p>
+                <div className="mt-7 grid gap-4 md:grid-cols-3">
+                  {supportItems.map((item) => {
+                    const IconComponent = item.icon
+                    return (
+                      <article
+                        key={item.title}
+                        className="border border-brand-earth/20 bg-white p-5 shadow-[0_12px_28px_rgba(55,27,16,0.08)]"
+                      >
+                        <IconComponent className="h-6 w-6 text-brand-green" />
+                        <h3 className="mt-4 font-display text-2xl leading-tight text-brand-wine">
+                          {item.title}
+                        </h3>
+                        <p className="mt-2 text-sm text-brand-ink/85">{item.text}</p>
+                      </article>
+                    )
+                  })}
+                </div>
+              </div>
+            </SectionReveal>
+
+            <SectionReveal className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-10 lg:py-20">
+              <div className="flex flex-wrap items-end justify-between gap-3">
+                <div>
+                  <h2 className="font-display text-3xl text-brand-wine sm:text-4xl">Instagram da Marca</h2>
+                  <p className="mt-2 text-sm text-brand-ink/80 sm:text-base">
+                    Conteudo real da marca @caseiricesjundiai para apoiar credibilidade no PDV.
+                  </p>
+                </div>
+                <a
+                  href={INSTAGRAM_LINK}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 border border-brand-earth/20 bg-white px-3 py-2 text-sm font-semibold text-brand-green transition hover:text-brand-wine"
+                >
+                  <Instagram className="h-4 w-4" /> @caseiricesjundiai
+                </a>
+              </div>
+
+              <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                {instagramImages.map((image, index) => (
+                  <m.a
+                    key={image}
+                    href={INSTAGRAM_LINK}
+                    target="_blank"
+                    rel="noreferrer"
+                    initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+                    whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={shouldReduceMotion ? undefined : { duration: 0.35, delay: index * 0.04 }}
+                    className="group aspect-square overflow-hidden border border-brand-earth/22 bg-white"
+                  >
+                    <img
+                      src={image}
+                      alt={`Publicacao ${index + 1} do Instagram da Caseirices`}
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    />
+                  </m.a>
+                ))}
+              </div>
+            </SectionReveal>
+          </main>
+
+          <footer className="relative z-10 border-t border-brand-earth/25 bg-brand-wine px-4 py-8 text-brand-cream sm:px-6 lg:px-10">
+            <div className="mx-auto flex max-w-7xl flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+              <div>
+                <BrandLockup />
+                <p className="mt-4 text-sm leading-relaxed text-brand-cream/90">
+                  Rua Atilio Vianello, 409 - Vila Vianelo, Jundiai - SP, CEP 13207-130
+                </p>
+                <p className="mt-1 text-sm text-brand-cream/90">CNPJ: 28.150.452/0001-79</p>
+              </div>
+              <div className="flex flex-col gap-2 text-sm font-medium">
+                <a
+                  href={INSTAGRAM_LINK}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 transition hover:text-brand-green"
+                >
+                  <Instagram className="h-4 w-4" /> Instagram oficial
+                </a>
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 transition hover:text-brand-green"
+                >
+                  <PhoneCall className="h-4 w-4" /> WhatsApp comercial
+                </a>
+                <span className="inline-flex items-center gap-2 text-brand-cream/80">
+                  <MapPin className="h-4 w-4" /> Jundiai-SP
+                </span>
+              </div>
+            </div>
+          </footer>
+        </div>
+
+        <div className="pointer-events-none fixed inset-x-0 bottom-0 z-40 px-4 pb-4 sm:px-6 lg:px-10">
+          <div className="mx-auto max-w-7xl">
+            <div className="pointer-events-auto mx-auto w-full border border-brand-red-dark bg-brand-red px-3 py-3 shadow-[0_18px_40px_rgba(139,0,0,0.38)] lg:ml-auto lg:mr-0 lg:max-w-md">
+              <p className="text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-white/85">
+                Parceria comercial premium
               </p>
               <MotionAnchor
                 href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noreferrer"
-                whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
-                className="mt-7 inline-flex w-full items-center justify-center gap-2 border border-brand-red-dark bg-brand-red px-5 py-4 text-center text-sm font-bold uppercase tracking-[0.06em] text-white shadow-[0_12px_30px_rgba(139,0,0,0.28)] transition hover:bg-brand-red-dark sm:w-auto"
+                whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
+                className="mt-2 inline-flex w-full items-center justify-center gap-2 border border-white/35 bg-brand-red-dark px-4 py-3 text-sm font-bold uppercase tracking-[0.06em] text-white transition hover:bg-[#6c1010]"
               >
-                Quero Tabela de Atacado e Condicoes de Revenda
+                Quero tabela e condicoes
                 <ArrowRight className="h-4 w-4" />
               </MotionAnchor>
-              <div className="mt-7 flex flex-wrap gap-5 text-sm font-medium text-brand-ink/85">
-                <div className="inline-flex items-center gap-2">
-                  <Factory className="h-4 w-4 text-brand-green" />
-                  Producao propria desde 2017
-                </div>
-                <div className="inline-flex items-center gap-2">
-                  <Boxes className="h-4 w-4 text-brand-green" />
-                  Mix com 16 sabores
-                </div>
-              </div>
             </div>
-            <MotionDiv
-              initial={shouldReduceMotion ? false : { opacity: 0, x: 40 }}
-              animate={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
-              transition={shouldReduceMotion ? undefined : { duration: 0.7, ease: 'easeOut' }}
-              className="relative z-10 border border-brand-earth/40 bg-white p-3 shadow-[0_25px_50px_rgba(55,27,16,0.16)]"
-            >
-              <img
-                src="/assets/brand/hero-production.svg"
-                alt="Linha de frascos Caseirices em ambiente de producao artesanal"
-                className="h-full w-full object-cover"
-              />
-            </MotionDiv>
-          </div>
-        </SectionReveal>
-
-        <SectionReveal className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-10 lg:py-20">
-          <div className="mb-8 flex items-end justify-between gap-4">
-            <h2 className="font-display text-2xl text-brand-wine sm:text-3xl">Beneficios B2B</h2>
-            <span className="hidden text-sm font-semibold uppercase tracking-[0.14em] text-brand-green sm:block">
-              parceria que gera lucro
-            </span>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {benefits.map((item) => {
-              const IconComponent = item.icon
-
-              return (
-                <article
-                  key={item.title}
-                  className="border border-brand-earth/35 bg-white p-5 shadow-[0_10px_25px_rgba(55,27,16,0.08)]"
-                >
-                  <IconComponent className="h-6 w-6 text-brand-green" />
-                  <h3 className="mt-4 font-display text-xl text-brand-wine">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-brand-ink/85">{item.text}</p>
-                </article>
-              )
-            })}
-          </div>
-        </SectionReveal>
-
-        <SectionReveal className="border-y border-brand-earth/20 bg-white/70 py-14 lg:py-20">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
-            <h2 className="font-display text-2xl text-brand-wine sm:text-3xl">Vitrine de Produtos</h2>
-            <p className="mt-2 max-w-3xl text-sm text-brand-ink/80 sm:text-base">
-              Linha completa com 16 sabores para ampliar sortimento, elevar ticket medio e manter
-              consistencia visual premium no ponto de venda.
-            </p>
-            <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-              {flavors.map((item, index) => (
-                <MotionArticle
-                  key={item.name}
-                  initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
-                  whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={
-                    shouldReduceMotion
-                      ? undefined
-                      : { duration: 0.4, ease: 'easeOut', delay: index * 0.02 }
-                  }
-                  whileHover={shouldReduceMotion ? undefined : { y: -4 }}
-                  className="group border border-brand-earth/30 bg-brand-cream p-3 shadow-[0_8px_22px_rgba(55,27,16,0.06)]"
-                >
-                  <div className="aspect-[4/5] overflow-hidden border border-brand-earth/25 bg-white">
-                    <img
-                      src={item.image}
-                      alt={`Frasco do sabor ${item.name} da Caseirices`}
-                      className="h-full w-full object-contain transition duration-300 group-hover:scale-[1.02]"
-                      onError={(event) => {
-                        if (item.fallbackImage) {
-                          event.currentTarget.onerror = null
-                          event.currentTarget.src = item.fallbackImage
-                        }
-                      }}
-                    />
-                  </div>
-                  <h3 className="mt-3 text-sm font-bold text-brand-wine sm:text-base">{item.name}</h3>
-                  <p className="mt-1 text-xs text-brand-ink/80 sm:text-sm">{item.profile}</p>
-                </MotionArticle>
-              ))}
-            </div>
-          </div>
-        </SectionReveal>
-
-        <SectionReveal className="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:px-10 lg:py-20">
-          <article className="border border-brand-earth/35 bg-white p-6 shadow-[0_12px_30px_rgba(55,27,16,0.1)] sm:p-8">
-            <h2 className="font-display text-2xl text-brand-wine sm:text-3xl">Por que Caseirices?</h2>
-            <p className="mt-4 text-sm leading-relaxed text-brand-ink/85 sm:text-base">
-              Desde 2017, dois amigos transformaram receitas artesanais em uma operacao local
-              premium com loja-fabrica propria em Jundiai. Isso garante padrao, rastreabilidade e
-              velocidade para atender supermercados, emporios gourmet, restaurantes, hoteis e pontos
-              de venda especializados.
-            </p>
-            <p className="mt-4 text-sm leading-relaxed text-brand-ink/85 sm:text-base">
-              Com logistica eficiente e suporte comercial proximo, sua equipe recebe orientacao para
-              acelerar entrada, exposicao e recompra. Parceria de verdade: produto forte + estrategia
-              de sell-out.
-            </p>
-          </article>
-
-          <article className="border border-brand-earth/35 bg-brand-wine p-6 text-brand-cream shadow-[0_12px_30px_rgba(55,27,16,0.16)] sm:p-8">
-            <h2 className="font-display text-2xl sm:text-3xl">Simulador de Retorno</h2>
-            <p className="mt-3 text-sm text-brand-cream/90 sm:text-base">
-              Projete o potencial da sua operacao com revenda Caseirices.
-            </p>
-
-            <div className="mt-6 space-y-4">
-              <label className="block text-sm font-semibold">
-                Caixas por semana
-                <input
-                  type="number"
-                  min="1"
-                  value={boxesPerWeek}
-                  onChange={(event) => setBoxesPerWeek(Number(event.target.value) || 0)}
-                  className="mt-1 w-full border border-brand-cream/35 bg-brand-wine-dark px-3 py-2 text-brand-cream outline-none transition focus:border-brand-green"
-                />
-              </label>
-              <label className="block text-sm font-semibold">
-                Margem unitaria media (R$)
-                <input
-                  type="number"
-                  min="1"
-                  value={unitMargin}
-                  onChange={(event) => setUnitMargin(Number(event.target.value) || 0)}
-                  className="mt-1 w-full border border-brand-cream/35 bg-brand-wine-dark px-3 py-2 text-brand-cream outline-none transition focus:border-brand-green"
-                />
-              </label>
-              <label className="block text-sm font-semibold">
-                Valor do 1º pedido (R$)
-                <input
-                  type="number"
-                  min="1"
-                  value={firstOrder}
-                  onChange={(event) => setFirstOrder(Number(event.target.value) || 0)}
-                  className="mt-1 w-full border border-brand-cream/35 bg-brand-wine-dark px-3 py-2 text-brand-cream outline-none transition focus:border-brand-green"
-                />
-              </label>
-            </div>
-
-            <div className="mt-6 grid gap-3 sm:grid-cols-3">
-              <div className="border border-brand-cream/35 bg-brand-wine-dark p-3">
-                <p className="text-xs uppercase tracking-[0.08em] text-brand-cream/80">Lucro mensal</p>
-                <p className="mt-1 font-display text-xl text-brand-green">{formatMoney(metrics.monthlyProfit)}</p>
-              </div>
-              <div className="border border-brand-cream/35 bg-brand-wine-dark p-3">
-                <p className="text-xs uppercase tracking-[0.08em] text-brand-cream/80">Payback</p>
-                <p className="mt-1 font-display text-xl text-brand-green">
-                  {Number.isFinite(metrics.paybackMonths) ? `${metrics.paybackMonths.toFixed(1)} meses` : '-'}
-                </p>
-              </div>
-              <div className="border border-brand-cream/35 bg-brand-wine-dark p-3">
-                <p className="text-xs uppercase tracking-[0.08em] text-brand-cream/80">ROI anual</p>
-                <p className="mt-1 font-display text-xl text-brand-green">{metrics.annualRoi.toFixed(0)}%</p>
-              </div>
-            </div>
-          </article>
-        </SectionReveal>
-
-        <SectionReveal className="border-y border-brand-earth/20 bg-white/70 py-14 lg:py-20">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
-            <h2 className="font-display text-2xl text-brand-wine sm:text-3xl">
-              Materiais de Apoio para Revendedores
-            </h2>
-            <p className="mt-2 max-w-3xl text-sm text-brand-ink/80 sm:text-base">
-              Estrutura pronta para acelerar sua venda desde a primeira semana.
-            </p>
-            <div className="mt-7 grid gap-4 md:grid-cols-3">
-              {supportItems.map((item) => {
-                const IconComponent = item.icon
-
-                return (
-                  <article key={item.title} className="border border-brand-earth/35 bg-white p-5">
-                    <IconComponent className="h-6 w-6 text-brand-green" />
-                    <h3 className="mt-4 font-display text-xl text-brand-wine">{item.title}</h3>
-                    <p className="mt-2 text-sm text-brand-ink/85">{item.text}</p>
-                  </article>
-                )
-              })}
-            </div>
-          </div>
-        </SectionReveal>
-
-        <SectionReveal className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-10 lg:py-20">
-          <div className="flex flex-wrap items-end justify-between gap-3">
-            <div>
-              <h2 className="font-display text-2xl text-brand-wine sm:text-3xl">Instagram da Marca</h2>
-              <p className="mt-2 text-sm text-brand-ink/80 sm:text-base">
-                Conteudo visual da producao e dos produtos da @caseiricesjundiai.
-              </p>
-            </div>
-            <a
-              href={INSTAGRAM_LINK}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-brand-green transition hover:text-brand-wine"
-            >
-              <Instagram className="h-4 w-4" /> @caseiricesjundiai
-            </a>
-          </div>
-          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
-            {instagramImages.map((image, index) => (
-              <MotionAnchor
-                key={image}
-                href={INSTAGRAM_LINK}
-                target="_blank"
-                rel="noreferrer"
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-                whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={shouldReduceMotion ? undefined : { duration: 0.35, delay: index * 0.04 }}
-                className="aspect-square overflow-hidden border border-brand-earth/35 bg-white"
-              >
-                <img
-                  src={image}
-                  alt={`Publicacao ${index + 1} do Instagram da Caseirices`}
-                  className="h-full w-full object-cover"
-                />
-              </MotionAnchor>
-            ))}
-          </div>
-        </SectionReveal>
-      </main>
-
-      <footer className="border-t border-brand-earth/25 bg-brand-wine px-4 py-8 text-brand-cream sm:px-6 lg:px-10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <h3 className="font-display text-2xl">Caseirices Molhos Artesanais</h3>
-            <p className="mt-3 text-sm leading-relaxed text-brand-cream/90">
-              Rua Atilio Vianello, 409 - Vila Vianelo, Jundiai - SP, CEP 13207-130
-            </p>
-            <p className="mt-1 text-sm text-brand-cream/90">CNPJ: 28.150.452/0001-79</p>
-          </div>
-          <div className="flex flex-col gap-2 text-sm font-medium">
-            <a
-              href={INSTAGRAM_LINK}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 transition hover:text-brand-green"
-            >
-              <Instagram className="h-4 w-4" /> Instagram oficial
-            </a>
-            <a
-              href={WHATSAPP_LINK}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 transition hover:text-brand-green"
-            >
-              <PhoneCall className="h-4 w-4" /> WhatsApp comercial
-            </a>
-            <span className="inline-flex items-center gap-2 text-brand-cream/80">
-              <MapPin className="h-4 w-4" /> Jundiai-SP
-            </span>
           </div>
         </div>
-      </footer>
-
-      <div className="pointer-events-none fixed inset-x-0 bottom-0 z-40 px-4 pb-4 sm:px-6 lg:px-10">
-        <div className="mx-auto max-w-7xl">
-          <div className="pointer-events-auto mx-auto w-full border border-brand-red-dark bg-brand-red p-3 text-center text-white shadow-[0_16px_40px_rgba(139,0,0,0.4)] lg:ml-auto lg:mr-0 lg:max-w-md">
-            <p className="text-xs font-semibold uppercase tracking-[0.09em] text-white/85">
-              Revenda Caseirices
-            </p>
-            <MotionAnchor
-              href={WHATSAPP_LINK}
-              target="_blank"
-              rel="noreferrer"
-              whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
-              className="mt-2 inline-flex w-full items-center justify-center gap-2 border border-white/35 bg-brand-red-dark px-4 py-3 text-sm font-bold uppercase tracking-[0.06em] text-white transition hover:bg-[#6c1010]"
-            >
-              Quero tabela e condicoes
-              <ArrowRight className="h-4 w-4" />
-            </MotionAnchor>
-          </div>
-        </div>
-      </div>
       </div>
     </LazyMotion>
   )
