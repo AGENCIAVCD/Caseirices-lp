@@ -200,6 +200,12 @@ function App() {
                       src={item.image}
                       alt={`Frasco do sabor ${item.name} da Caseirices`}
                       className="h-full w-full object-contain transition duration-300 group-hover:scale-[1.02]"
+                      onError={(event) => {
+                        if (item.fallbackImage) {
+                          event.currentTarget.onerror = null
+                          event.currentTarget.src = item.fallbackImage
+                        }
+                      }}
                     />
                   </div>
                   <h3 className="mt-3 text-sm font-bold text-brand-wine sm:text-base">{item.name}</h3>
