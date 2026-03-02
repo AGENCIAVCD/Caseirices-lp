@@ -1,0 +1,30 @@
+export const flavors = [
+  { name: 'Alho Tradicional', profile: 'Versatilidade para carnes e lanches', image: '/assets/products/sabor-01.svg' },
+  { name: 'Pimenta Defumada', profile: 'Picancia equilibrada de alto giro', image: '/assets/products/sabor-02.svg' },
+  { name: 'Ervas Finas', profile: 'Ideal para emporios gourmet', image: '/assets/products/sabor-03.svg' },
+  { name: 'Tomate Seco', profile: 'Premium para pratos autorais', image: '/assets/products/sabor-04.svg' },
+  { name: 'Mostarda Artesanal', profile: 'Combo perfeito com frios', image: '/assets/products/sabor-05.svg' },
+  { name: 'Barbecue Caseiro', profile: 'Alto ticket medio em churrasco', image: '/assets/products/sabor-06.svg' },
+  { name: 'Chimichurri', profile: 'Perfil argentino muito procurado', image: '/assets/products/sabor-07.svg' },
+  { name: 'Cebola Caramelizada', profile: 'Up-sell para hamburguerias', image: '/assets/products/sabor-08.svg' },
+  { name: 'Alho Poro', profile: 'Sabor sofisticado para bistrôs', image: '/assets/products/sabor-09.svg' },
+  { name: 'Pimenta Verde', profile: 'Picancia fresca para food service', image: '/assets/products/sabor-10.svg' },
+  { name: 'Gengibre Citrus', profile: 'Aposta premium para peixes', image: '/assets/products/sabor-11.svg' },
+  { name: 'Mostarda e Mel', profile: 'Campeao em combos de salada', image: '/assets/products/sabor-12.svg' },
+  { name: 'Jalapeno', profile: 'Aumenta o mix para publico jovem', image: '/assets/products/sabor-13.svg' },
+  { name: 'Pesto da Casa', profile: 'Perfeito para massas e bruschettas', image: '/assets/products/sabor-14.svg' },
+  { name: 'Curry Suave', profile: 'Diferenciacao para lojas especiais', image: '/assets/products/sabor-15.svg' },
+  { name: 'Defumado Premium', profile: 'Margem alta em cortes nobres', image: '/assets/products/sabor-16.svg' },
+]
+
+export const instagramImages = [
+  '/assets/instagram/insta-01.svg',
+  '/assets/instagram/insta-02.svg',
+  '/assets/instagram/insta-03.svg',
+  '/assets/instagram/insta-04.svg',
+  '/assets/instagram/insta-05.svg',
+  '/assets/instagram/insta-06.svg',
+  '/assets/instagram/insta-07.svg',
+  '/assets/instagram/insta-08.svg',
+  '/assets/instagram/insta-09.svg',
+]

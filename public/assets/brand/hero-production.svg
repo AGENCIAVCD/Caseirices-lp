@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff8f0"/>
+      <stop offset="1" stop-color="#f0e3cd"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <rect x="80" y="100" width="1040" height="700" rx="18" fill="#d8c4a7" opacity=".3"/>
+  <rect x="200" y="220" width="220" height="430" rx="26" fill="#8B0000"/>
+  <rect x="220" y="190" width="180" height="50" rx="12" fill="#6f0000"/>
+  <rect x="230" y="380" width="160" height="160" rx="14" fill="#FAF4E8"/>
+  <rect x="490" y="180" width="220" height="470" rx="26" fill="#B22222"/>
+  <rect x="510" y="150" width="180" height="50" rx="12" fill="#7e1212"/>
+  <rect x="520" y="350" width="160" height="190" rx="14" fill="#FAF4E8"/>
+  <rect x="780" y="250" width="220" height="400" rx="26" fill="#228B22"/>
+  <rect x="800" y="220" width="180" height="50" rx="12" fill="#176f17"/>
+  <rect x="810" y="380" width="160" height="150" rx="14" fill="#FAF4E8"/>
+  <text x="230" y="470" font-family="Arial" font-size="34" fill="#8B0000" font-weight="700">Pimenta</text>
+  <text x="530" y="450" font-family="Arial" font-size="34" fill="#8B0000" font-weight="700">Alho</text>
+  <text x="815" y="460" font-family="Arial" font-size="34" fill="#228B22" font-weight="700">Ervas</text>
+</svg>

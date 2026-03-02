@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 720" fill="none">
+  <rect width="560" height="720" fill="#FFF8F0"/>
+  <rect x="120" y="40" width="320" height="76" rx="20" fill="#7a2020"/>
+  <rect x="100" y="96" width="360" height="560" rx="46" fill="#B22222"/>
+  <rect x="130" y="260" width="300" height="270" rx="20" fill="#FAF4E8"/>
+  <text x="280" y="340" font-family="Arial" font-size="28" fill="#8B0000" text-anchor="middle" font-weight="700">Caseirices</text>
+  <text x="280" y="390" font-family="Arial" font-size="22" fill="#228B22" text-anchor="middle" font-weight="600">Alho Tradicional</text>
+  <text x="280" y="440" font-family="Arial" font-size="20" fill="#8B0000" text-anchor="middle">Molho Artesanal</text>
+  <rect x="150" y="560" width="260" height="48" rx="14" fill="#228B22"/>
+  <text x="280" y="592" font-family="Arial" font-size="18" fill="#FAF4E8" text-anchor="middle" font-weight="700">100% Natural</text>
+</svg>

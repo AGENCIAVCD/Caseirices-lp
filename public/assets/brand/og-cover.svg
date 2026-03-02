@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#FAF4E8"/>
+  <rect x="64" y="64" width="1072" height="502" rx="20" fill="#8B0000"/>
+  <text x="120" y="230" font-family="Arial" font-size="70" fill="#FAF4E8" font-weight="700">Caseirices</text>
+  <text x="120" y="310" font-family="Arial" font-size="52" fill="#FAF4E8" font-weight="600">Molhos Artesanais</text>
+  <text x="120" y="390" font-family="Arial" font-size="40" fill="#9ae19a" font-weight="600">Revenda com margem alta e giro rápido</text>
+  <circle cx="1030" cy="140" r="44" fill="#228B22"/>
+  <circle cx="950" cy="460" r="32" fill="#B22222"/>
+</svg>
