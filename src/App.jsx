@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { LazyMotion, domAnimation, m, useReducedMotion } from 'framer-motion'
 import {
   ArrowRight,
@@ -15,6 +15,7 @@ import {
   Sparkles,
   Store,
   TrendingUp,
+  Video,
 } from 'lucide-react'
 import { SectionReveal } from './components/SectionReveal'
 import { flavors, instagramImages } from './data/flavors'
@@ -123,6 +124,37 @@ function App() {
   const [boxesPerWeek, setBoxesPerWeek] = useState(12)
   const [unitMargin, setUnitMargin] = useState(8)
   const [firstOrder, setFirstOrder] = useState(3200)
+  const [instagramFeed, setInstagramFeed] = useState(
+    instagramImages.map((image, index) => ({
+      id: `fallback-${index}`,
+      image,
+      permalink: INSTAGRAM_LINK,
+      isVideo: false,
+    })),
+  )
+
+  useEffect(() => {
+    let isMounted = true
+
+    async function loadInstagramFeed() {
+      try {
+        const response = await fetch('/api/instagram-feed?username=caseiricesjundiai&limit=9')
+        if (!response.ok) return
+
+        const data = await response.json()
+        if (!isMounted || !data?.ok || !Array.isArray(data.items) || data.items.length === 0) return
+
+        setInstagramFeed(data.items)
+      } catch {
+        // Keep local fallback feed when Instagram blocks the request
+      }
+    }
+
+    loadInstagramFeed()
+    return () => {
+      isMounted = false
+    }
+  }, [])
 
   const metrics = useMemo(() => {
     const unitsPerBox = 12
@@ -468,23 +500,29 @@ function App() {
               </div>
 
               <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
-                {instagramImages.map((image, index) => (
+                {instagramFeed.map((item, index) => (
                   <m.a
-                    key={image}
-                    href={INSTAGRAM_LINK}
+                    key={item.id}
+                    href={item.permalink}
                     target="_blank"
                     rel="noreferrer"
                     initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
                     whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.2 }}
                     transition={shouldReduceMotion ? undefined : { duration: 0.35, delay: index * 0.04 }}
-                    className="group aspect-square overflow-hidden border border-brand-earth/22 bg-white"
+                    className="group relative aspect-square overflow-hidden border border-brand-earth/22 bg-white"
                   >
                     <img
-                      src={image}
+                      src={item.image}
                       alt={`Publicacao ${index + 1} do Instagram da Caseirices`}
                       className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                     />
+                    {item.isVideo ? (
+                      <span className="absolute right-2 top-2 inline-flex items-center gap-1 border border-white/40 bg-black/55 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-white">
+                        <Video className="h-3 w-3" />
+                        Video
+                      </span>
+                    ) : null}
                   </m.a>
                 ))}
               </div>
