@@ -30,6 +30,8 @@ import { flavors, instagramImages } from './data/flavors'
 
 const WHATSAPP_LINK =
   'https://wa.me/5511974884319?text=Olá!+Vi+a+Landing+Page+da+Caseirices+e+gostaria+de+receber+a+tabela+de+preços+para+revenda.'
+const WHATSAPP_FLOAT_LINK =
+  'https://api.whatsapp.com/send?phone=5511974884319&text=Eu%20gostaria%20de%20ter%20produtos%20caseirices%20em%20meu%20ponto%20comercial'
 const INSTAGRAM_LINK = 'https://www.instagram.com/caseiricesjundiai/'
 
 const benefits = [
@@ -933,6 +935,16 @@ function App() {
             </div>
           </div>
         </div>
+
+        <a
+          href={WHATSAPP_FLOAT_LINK}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="WhatsApp fixo Caseirices"
+          className="fixed left-3 top-1/2 z-50 -translate-y-1/2 rounded-full border border-white/40 bg-[#25D366] p-3 text-white shadow-[0_16px_34px_rgba(12,74,36,0.38)] transition hover:scale-[1.05] hover:bg-[#1eb95a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#25D366]"
+        >
+          <PhoneCall className="h-5 w-5" />
+        </a>
       </div>
     </LazyMotion>
   )
