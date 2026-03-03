@@ -82,18 +82,12 @@ function formatMoney(value) {
 
 function BrandLockup() {
   return (
-    <div className="inline-flex items-center gap-3">
+    <div className="inline-flex items-center">
       <img
-        src="/assets/brand/caseirices-emblem.svg"
-        alt="Emblema da marca Caseirices"
-        className="h-11 w-11 rounded-[14px] border border-brand-earth/20 bg-brand-cream p-1"
+        src="/assets/brand/caseirices-logo.png"
+        alt="Logo da marca Caseirices"
+        className="h-14 w-auto sm:h-16"
       />
-      <div>
-        <p className="font-display text-2xl leading-none text-brand-wine">Caseirices</p>
-        <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-earth/80">
-          Molhos Artesanais
-        </p>
-      </div>
     </div>
   )
 }
