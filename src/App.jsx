@@ -270,29 +270,47 @@ function App() {
             </div>
 
             <div className="relative z-10 mx-auto grid h-[min(78vh,800px)] min-h-[620px] max-w-7xl items-center gap-6 px-4 py-9 sm:px-6 lg:grid-cols-[0.78fr_1.22fr] lg:px-10 lg:py-12">
-              <div className="w-full rounded-[24px] border border-white/24 bg-black/26 p-4 text-white shadow-[0_24px_56px_rgba(16,6,4,0.34)] backdrop-blur-xl sm:p-5 lg:max-w-[620px]">
-                <span className="inline-flex items-center gap-2 rounded-[10px] border border-white/32 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.15em]">
-                  Parceria B2B em Jundiai-SP
-                </span>
+              <div className="relative lg:pr-24">
+                <div className="w-full rounded-[24px] border border-white/24 bg-black/26 p-4 text-white shadow-[0_24px_56px_rgba(16,6,4,0.34)] backdrop-blur-xl sm:p-5 lg:max-w-[620px]">
+                  <span className="inline-flex items-center gap-2 rounded-[10px] border border-white/32 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.15em]">
+                    Parceria B2B em Jundiai-SP
+                  </span>
 
-                <h1 className="mt-4 max-w-xl text-balance font-display text-[2.1rem] leading-[0.94] text-white sm:text-[2.5rem] lg:text-[3rem]">
-                  Leve o sabor artesanal autentico de Jundiai para sua prateleira
-                </h1>
-                <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/92 sm:text-base">
-                  Molhos 100% naturais, 16 sabores, margem premium e giro garantido. Nao ter
-                  Caseirices na prateleira = cliente insatisfeito e venda perdida.
-                </p>
+                  <h1 className="mt-4 max-w-xl text-balance font-display text-[2.1rem] leading-[0.94] text-white sm:text-[2.5rem] lg:text-[3rem]">
+                    Leve o sabor artesanal autentico de Jundiai para sua prateleira
+                  </h1>
+                  <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/92 sm:text-base">
+                    Molhos 100% naturais, 16 sabores, margem premium e giro garantido. Nao ter
+                    Caseirices na prateleira = cliente insatisfeito e venda perdida.
+                  </p>
 
-                <div className="mt-5 flex flex-wrap gap-2.5">
-                  <PrimaryButton href={WHATSAPP_LINK} className="w-full sm:w-auto">
-                    Quero tabela de atacado e condicoes
-                    <ArrowRight className="h-4 w-4" />
-                  </PrimaryButton>
-                  <SecondaryButton href={INSTAGRAM_LINK} dark className="w-full sm:w-auto">
-                    <Instagram className="h-4 w-4 text-brand-green" />
-                    Ver Instagram da Marca
-                  </SecondaryButton>
+                  <div className="mt-5 flex flex-wrap gap-2.5">
+                    <PrimaryButton href={WHATSAPP_LINK} className="w-full sm:w-auto">
+                      Quero tabela de atacado e condicoes
+                      <ArrowRight className="h-4 w-4" />
+                    </PrimaryButton>
+                    <SecondaryButton href={INSTAGRAM_LINK} dark className="w-full sm:w-auto">
+                      <Instagram className="h-4 w-4 text-brand-green" />
+                      Ver Instagram da Marca
+                    </SecondaryButton>
+                  </div>
                 </div>
+
+                <m.div
+                  initial={shouldReduceMotion ? false : { opacity: 0, y: 16, scale: 0.96 }}
+                  animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
+                  transition={shouldReduceMotion ? undefined : { duration: 0.55, delay: 0.25 }}
+                  className="pointer-events-none absolute -bottom-8 right-2 hidden w-[185px] overflow-hidden rounded-[16px] border border-white/38 bg-white/16 shadow-[0_18px_36px_rgba(18,8,4,0.36)] backdrop-blur-lg lg:block"
+                >
+                  <img
+                    src="/assets/products/real/linha-completa.jpg"
+                    alt="Linha de produtos Caseirices"
+                    className="h-[130px] w-full object-cover"
+                  />
+                  <div className="border-t border-white/26 bg-black/38 px-2.5 py-1.5">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/92">Linha completa</p>
+                  </div>
+                </m.div>
               </div>
 
               <div className="mx-auto w-full max-w-[520px] lg:max-w-none">
