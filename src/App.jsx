@@ -274,53 +274,59 @@ function App() {
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(200,16,46,0.28),transparent_36%),radial-gradient(circle_at_84%_8%,rgba(34,139,34,0.22),transparent_34%),linear-gradient(to_bottom,rgba(22,10,8,0.54),rgba(22,10,8,0.78))]" />
             </div>
 
-            <div className="relative z-10 mx-auto flex h-[min(78vh,800px)] min-h-[620px] max-w-7xl items-center px-4 py-9 sm:px-6 lg:px-10 lg:py-12">
-              <div className="relative lg:pr-24">
-                <div className="w-full rounded-[24px] border border-white/24 bg-black/26 p-4 text-white shadow-[0_24px_56px_rgba(16,6,4,0.34)] backdrop-blur-xl sm:p-5 lg:max-w-[620px]">
-                  <img
-                    src="/assets/brand/caseirices-logo.png"
-                    alt="Logo Caseirices"
-                    className="h-20 w-auto sm:h-24"
-                  />
+            <div className="relative z-10 mx-auto flex h-[min(78vh,800px)] min-h-[620px] max-w-7xl items-center justify-center px-4 py-9 sm:px-6 lg:px-10 lg:py-12">
+              <div className="w-full max-w-4xl text-center text-white">
+                <m.img
+                  initial={shouldReduceMotion ? false : { opacity: 0, y: -12 }}
+                  animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                  transition={shouldReduceMotion ? undefined : { duration: 0.55 }}
+                  src="/assets/brand/caseirices-logo-hero.png"
+                  alt="Logo Caseirices sem fundo"
+                  className="mx-auto h-28 w-auto drop-shadow-[0_10px_22px_rgba(0,0,0,0.45)] sm:h-32 lg:h-36"
+                />
 
-                  <span className="inline-flex items-center gap-2 rounded-[10px] border border-white/32 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.15em]">
-                    O verdadeiro molho de tomate caseiro
-                  </span>
+                <m.span
+                  initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}
+                  animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                  transition={shouldReduceMotion ? undefined : { duration: 0.45, delay: 0.08 }}
+                  className="mt-5 inline-flex items-center justify-center rounded-[999px] border border-white/38 bg-black/28 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em]"
+                >
+                  O verdadeiro molho de tomate caseiro
+                </m.span>
 
-                  <h1 className="mt-4 max-w-xl text-balance font-display text-[2.1rem] leading-[0.94] text-white sm:text-[2.5rem] lg:text-[3rem]">
-                    Leve o sabor artesanal autêntico de Jundiai para sua prateleira
-                  </h1>
-                  <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/92 sm:text-base">
-                    Molhos 100% naturais, 16 sabores, margem premium e giro garantido. Nao ter
-                    Caseirices na prateleira = cliente insatisfeito e venda perdida.
-                  </p>
+                <m.h1
+                  initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
+                  animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                  transition={shouldReduceMotion ? undefined : { duration: 0.5, delay: 0.16 }}
+                  className="mx-auto mt-5 max-w-3xl text-balance font-display text-4xl leading-[0.95] text-white sm:text-5xl lg:text-[4.2rem]"
+                >
+                  Leve o sabor artesanal autêntico de Jundiai para sua prateleira
+                </m.h1>
 
-                  <div className="mt-5 flex flex-wrap gap-2.5">
-                    <PrimaryButton href={WHATSAPP_LINK} className="w-full sm:w-auto">
-                      Quero tabela de atacado e condicoes
-                      <ArrowRight className="h-4 w-4" />
-                    </PrimaryButton>
-                    <SecondaryButton href={INSTAGRAM_LINK} dark className="w-full sm:w-auto">
-                      <Instagram className="h-4 w-4 text-brand-green" />
-                      Ver Instagram da Marca
-                    </SecondaryButton>
-                  </div>
-                </div>
+                <m.p
+                  initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
+                  animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                  transition={shouldReduceMotion ? undefined : { duration: 0.45, delay: 0.24 }}
+                  className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-white/90 sm:text-lg"
+                >
+                  Molhos 100% naturais, 16 sabores, margem premium e giro garantido. Nao ter
+                  Caseirices na prateleira = cliente insatisfeito e venda perdida.
+                </m.p>
 
                 <m.div
-                  initial={shouldReduceMotion ? false : { opacity: 0, y: 16, scale: 0.96 }}
-                  animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
-                  transition={shouldReduceMotion ? undefined : { duration: 0.55, delay: 0.25 }}
-                  className="pointer-events-none absolute -bottom-10 right-0 hidden w-[300px] overflow-hidden rounded-[16px] border border-white/38 bg-[#1f0d09]/72 shadow-[0_18px_36px_rgba(18,8,4,0.36)] backdrop-blur-lg lg:block"
+                  initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
+                  animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                  transition={shouldReduceMotion ? undefined : { duration: 0.45, delay: 0.3 }}
+                  className="mt-7 flex flex-wrap justify-center gap-3"
                 >
-                  <img
-                    src="/assets/hero/fundador-caseirices.jpg"
-                    alt="Fundador da Caseirices"
-                    className="h-[300px] w-full object-contain"
-                  />
-                  <div className="border-t border-white/26 bg-black/38 px-2.5 py-1.5">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/92">Fundador Caseirices</p>
-                  </div>
+                  <PrimaryButton href={WHATSAPP_LINK} className="w-full sm:w-auto">
+                    Quero tabela de atacado e condicoes
+                    <ArrowRight className="h-4 w-4" />
+                  </PrimaryButton>
+                  <SecondaryButton href={INSTAGRAM_LINK} dark className="w-full sm:w-auto">
+                    <Instagram className="h-4 w-4 text-brand-green" />
+                    Ver Instagram da Marca
+                  </SecondaryButton>
                 </m.div>
               </div>
             </div>
