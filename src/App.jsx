@@ -347,18 +347,22 @@ function App() {
                 >
                   <a
                     href="#quem-somos"
-                    className="inline-flex items-center gap-2 rounded-[999px] border border-white/28 bg-white/10 px-3 py-1.5 text-xs font-medium text-white/78 backdrop-blur-md transition hover:bg-white/14 hover:text-white"
+                    className="relative inline-flex h-40 w-14 flex-col items-center justify-end rounded-[999px] border border-white/28 bg-white/10 px-2 pb-3 pt-8 text-xs font-semibold uppercase tracking-[0.08em] text-white/85 backdrop-blur-md transition hover:bg-white/14 hover:text-white"
                     aria-label="Rolar para seção Quem Somos"
                   >
                     <m.span
                       animate={shouldReduceMotion ? undefined : { y: [0, -2, 0] }}
                       transition={shouldReduceMotion ? undefined : { duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
-                      className="relative inline-flex h-4 w-4 items-center justify-center"
+                      className="absolute top-3 inline-flex h-5 w-5 items-center justify-center"
                     >
-                      <span className="h-3 w-3 rounded-full bg-brand-red/85 shadow-[inset_0_-1px_0_rgba(0,0,0,0.2)]" />
-                      <span className="absolute -top-0.5 h-1 w-1.5 rounded-b-full rounded-t-[2px] bg-brand-green/85" />
+                      <span className="h-4 w-4 rounded-full bg-brand-red/85 shadow-[inset_0_-1px_0_rgba(0,0,0,0.2)]" />
+                      <span className="absolute -top-0.5 h-1.5 w-2 rounded-b-full rounded-t-[2px] bg-brand-green/85" />
                     </m.span>
-                    Deslize
+                    <span className="flex flex-col items-center leading-none">
+                      {['d', 'e', 's', 'l', 'i', 'z', 'e'].map((char) => (
+                        <span key={char}>{char}</span>
+                      ))}
+                    </span>
                   </a>
                 </m.div>
               </div>
