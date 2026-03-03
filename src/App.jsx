@@ -299,7 +299,7 @@ function App() {
           <SectionReveal className="relative overflow-hidden border-b border-brand-earth/14">
             <div className="absolute inset-0">
               <video
-                className="h-full w-full scale-110 object-cover blur-[4px] saturate-[1.12] brightness-[0.5]"
+                className="h-full w-full scale-105 object-cover blur-[1.5px] saturate-[1.08] brightness-[0.72]"
                 autoPlay={!shouldReduceMotion}
                 muted
                 loop
@@ -309,7 +309,7 @@ function App() {
               >
                 <source src={heroVideo} type="video/mp4" />
               </video>
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(200,16,46,0.28),transparent_36%),radial-gradient(circle_at_84%_8%,rgba(34,139,34,0.22),transparent_34%),linear-gradient(to_bottom,rgba(22,10,8,0.54),rgba(22,10,8,0.78))]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(200,16,46,0.18),transparent_38%),radial-gradient(circle_at_84%_8%,rgba(34,139,34,0.14),transparent_36%),linear-gradient(to_bottom,rgba(22,10,8,0.34),rgba(22,10,8,0.52))]" />
             </div>
 
             <div className="relative z-10 mx-auto flex h-[min(78vh,800px)] min-h-[620px] max-w-7xl items-center justify-center px-4 py-9 sm:px-6 lg:px-10 lg:py-12">
