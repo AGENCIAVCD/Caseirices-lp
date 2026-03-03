@@ -946,7 +946,7 @@ function App() {
           target="_blank"
           rel="noreferrer"
           aria-label="WhatsApp fixo Caseirices"
-          className="fixed left-3 top-1/2 z-50 -translate-y-1/2 rounded-full border border-white/40 bg-[#25D366] p-3 text-white shadow-[0_16px_34px_rgba(12,74,36,0.38)] transition hover:scale-[1.05] hover:bg-[#1eb95a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#25D366]"
+          className="fixed bottom-5 left-4 z-50 rounded-full border border-white/40 bg-[#25D366] p-3 text-white shadow-[0_16px_34px_rgba(12,74,36,0.38)] transition hover:scale-[1.05] hover:bg-[#1eb95a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#25D366] sm:bottom-6 sm:left-5"
         >
           <PhoneCall className="h-5 w-5" />
         </a>
