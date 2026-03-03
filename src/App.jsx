@@ -338,6 +338,63 @@ function App() {
                 </m.div>
               </div>
             </div>
+
+            <div className="pointer-events-none absolute inset-x-0 -bottom-7 z-20 flex justify-center">
+              <a
+                href="#quem-somos"
+                className="pointer-events-auto inline-flex flex-col items-center gap-1 rounded-full border border-brand-earth/18 bg-brand-cream/95 px-4 py-2 shadow-[0_12px_24px_rgba(35,12,8,0.15)]"
+                aria-label="Rolar para seção Quem Somos"
+              >
+                <m.span
+                  animate={shouldReduceMotion ? undefined : { y: [0, -3, 0] }}
+                  transition={shouldReduceMotion ? undefined : { duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+                  className="relative inline-flex h-6 w-6 items-center justify-center"
+                >
+                  <span className="h-4 w-4 rounded-full bg-brand-red shadow-[inset_0_-2px_0_rgba(0,0,0,0.2)]" />
+                  <span className="absolute -top-0.5 h-1.5 w-2 rounded-b-full rounded-t-[2px] bg-brand-green" />
+                </m.span>
+                <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-brand-earth">Role</span>
+              </a>
+            </div>
+          </SectionReveal>
+
+          <SectionReveal id="quem-somos" className="mx-auto max-w-7xl px-4 pb-14 pt-16 sm:px-6 lg:px-10 lg:pb-20">
+            <div className="grid gap-5 rounded-[24px] border border-brand-earth/16 bg-white/88 p-5 shadow-[0_18px_38px_rgba(55,27,16,0.10)] md:grid-cols-[0.95fr_1.05fr] sm:p-7">
+              <div className="overflow-hidden rounded-[18px] border border-brand-earth/14">
+                <img
+                  src="/assets/hero/fundador-caseirices.jpg"
+                  alt="Fundador da Caseirices ao lado da linha de molhos"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+
+              <div className="flex flex-col justify-center">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-green">Quem Somos Nós</p>
+                <h2 className="mt-3 font-display text-3xl leading-tight text-brand-wine sm:text-4xl">
+                  Produção própria em Jundiaí com sabor caseiro de verdade
+                </h2>
+                <p className="mt-4 text-sm leading-relaxed text-brand-ink/85 sm:text-base">
+                  A Caseirices nasceu da amizade de dois apaixonados por gastronomia artesanal. Desde
+                  2017, nossa missão é levar para mercados, empórios e restaurantes um molho com sabor
+                  autêntico, qualidade constante e proposta comercial que gira rápido na prateleira.
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-brand-ink/85 sm:text-base">
+                  Hoje operamos com loja de fábrica em Jundiaí, produção própria sem conservantes e
+                  suporte ativo para revendedores que querem margem alta com produto premium local.
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {['Desde 2017', 'Produção própria', 'Sem conservantes', 'Parceria B2B local'].map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-[10px] border border-brand-earth/18 bg-brand-cream px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.08em] text-brand-earth"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </SectionReveal>
 
           <SectionReveal className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10">

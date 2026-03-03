@@ -1,6 +1,6 @@
 import { m, useReducedMotion } from 'framer-motion'
 
-export function SectionReveal({ as = 'section', className = '', delay = 0, children }) {
+export function SectionReveal({ as = 'section', className = '', delay = 0, children, ...props }) {
   const shouldReduceMotion = useReducedMotion()
   const MotionTag = m[as] ?? m.section
 
@@ -29,6 +29,7 @@ export function SectionReveal({ as = 'section', className = '', delay = 0, child
       whileInView="visible"
       viewport={{ amount: 0.15, once: true }}
       variants={variants}
+      {...props}
     >
       {children}
     </MotionTag>
