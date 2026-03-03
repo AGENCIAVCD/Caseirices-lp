@@ -81,18 +81,21 @@ const placeholderTestimonials = [
     quote:
       'Comprei para testar e virou o molho oficial aqui de casa. Sabor muito caseiro, encorpado e sem aquele gosto artificial.',
     person: 'Cliente verificada',
+    rating: 5,
   },
   {
     business: 'Carlos M. - Itupeva/SP',
     quote:
       'O de Alho Tradicional é sensacional. Usei na massa e no sanduíche, e todo mundo elogiou. Qualidade acima da média.',
     person: 'Cliente recorrente',
+    rating: 5,
   },
   {
     business: 'Patrícia R. - Louveira/SP',
     quote:
       'Sou fã do Chimichurri e do Defumado. Dá para sentir que é artesanal mesmo, com ingredientes de verdade e muito sabor.',
     person: 'Cliente fã da marca',
+    rating: 5,
   },
 ]
 
@@ -630,11 +633,22 @@ function App() {
           </SectionReveal>
 
           <SectionReveal className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
-            <div className="rounded-[24px] border border-brand-earth/16 bg-white/88 p-5 shadow-[0_16px_34px_rgba(55,27,16,0.09)] sm:p-7">
-              <h2 className="font-display text-3xl text-brand-wine sm:text-4xl">
+            <div className="rounded-[24px] border border-brand-red-dark/60 bg-[linear-gradient(160deg,#8B0000_0%,#A30F21_48%,#6A0914_100%)] p-5 text-white shadow-[0_20px_44px_rgba(72,7,10,0.35)] sm:p-7">
+              <div className="mb-4 inline-flex items-center gap-3 rounded-[12px] border border-white/25 bg-white/10 px-3 py-2">
+                <span className="text-xl font-bold leading-none text-[#FFD76A]">4,9</span>
+                <span className="flex items-center gap-1" aria-label="Nota média 4,9 de 5 estrelas">
+                  {[...Array(5)].map((_, index) => (
+                    <Star key={index} className="h-4 w-4 fill-[#FFD76A] text-[#FFD76A]" />
+                  ))}
+                </span>
+                <span className="text-xs font-semibold uppercase tracking-[0.11em] text-white/85">
+                  Avaliação dos clientes
+                </span>
+              </div>
+              <h2 className="font-display text-3xl text-white sm:text-4xl">
                 Clientes que compraram e amaram
               </h2>
-              <p className="mt-2 text-sm text-brand-ink/82 sm:text-base">
+              <p className="mt-2 text-sm text-white/88 sm:text-base">
                 Prova social real de quem já levou Caseirices para casa e virou cliente recorrente.
               </p>
 
@@ -642,13 +656,18 @@ function App() {
                 {placeholderTestimonials.map((item) => (
                   <article
                     key={item.business}
-                    className="rounded-[18px] border border-brand-earth/14 bg-brand-cream/55 p-4"
+                    className="rounded-[18px] border border-white/24 bg-white/10 p-4 backdrop-blur-sm"
                   >
-                    <p className="text-sm leading-relaxed text-brand-ink/88">"{item.quote}"</p>
-                    <p className="mt-4 text-xs font-semibold uppercase tracking-[0.1em] text-brand-wine">
+                    <div className="mb-3 flex items-center gap-1">
+                      {[...Array(item.rating ?? 5)].map((_, index) => (
+                        <Star key={`${item.business}-${index}`} className="h-4 w-4 fill-[#FFD76A] text-[#FFD76A]" />
+                      ))}
+                    </div>
+                    <p className="text-sm leading-relaxed text-white/92">"{item.quote}"</p>
+                    <p className="mt-4 text-xs font-semibold uppercase tracking-[0.1em] text-[#FFD1D9]">
                       {item.person}
                     </p>
-                    <p className="mt-1 text-sm font-semibold text-brand-earth">{item.business}</p>
+                    <p className="mt-1 text-sm font-semibold text-white">{item.business}</p>
                   </article>
                 ))}
               </div>
