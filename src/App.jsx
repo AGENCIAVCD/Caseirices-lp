@@ -365,29 +365,6 @@ function App() {
 
               </div>
 
-              <m.div
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}
-                animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-                transition={shouldReduceMotion ? undefined : { duration: 0.45, delay: 0.38 }}
-                className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2"
-                aria-hidden="true"
-              >
-                <div className="relative inline-flex h-32 w-12 flex-col items-center justify-end rounded-[999px] border border-white/28 bg-white/10 px-2 pb-2 pt-7 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/85 backdrop-blur-md">
-                  <m.span
-                    animate={shouldReduceMotion ? undefined : { y: [0, -2, 0] }}
-                    transition={shouldReduceMotion ? undefined : { duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
-                    className="absolute top-2.5 inline-flex h-5 w-5 items-center justify-center"
-                  >
-                    <span className="h-4 w-4 rounded-full bg-brand-red/85 shadow-[inset_0_-1px_0_rgba(0,0,0,0.2)]" />
-                    <span className="absolute -top-0.5 h-1.5 w-2 rounded-b-full rounded-t-[2px] bg-brand-green/85" />
-                  </m.span>
-                  <span className="flex flex-col items-center leading-none">
-                    {['d', 'e', 's', 'l', 'i', 'z', 'e'].map((char) => (
-                      <span key={char}>{char}</span>
-                    ))}
-                  </span>
-                </div>
-              </m.div>
             </div>
           </SectionReveal>
 
@@ -969,6 +946,30 @@ function App() {
             </div>
           </div>
         </footer>
+
+        <m.div
+          initial={shouldReduceMotion ? false : { opacity: 0, x: 8 }}
+          animate={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
+          transition={shouldReduceMotion ? undefined : { duration: 0.4, delay: 0.2 }}
+          className="pointer-events-none fixed right-4 top-1/2 z-40 hidden -translate-y-1/2 lg:block"
+          aria-hidden="true"
+        >
+          <div className="relative inline-flex h-32 w-12 flex-col items-center justify-end rounded-[999px] border border-white/28 bg-black/18 px-2 pb-2 pt-7 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/85 backdrop-blur-md">
+            <m.span
+              animate={shouldReduceMotion ? undefined : { y: [0, -2, 0] }}
+              transition={shouldReduceMotion ? undefined : { duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute top-2.5 inline-flex h-5 w-5 items-center justify-center"
+            >
+              <span className="h-4 w-4 rounded-full bg-brand-red/85 shadow-[inset_0_-1px_0_rgba(0,0,0,0.2)]" />
+              <span className="absolute -top-0.5 h-1.5 w-2 rounded-b-full rounded-t-[2px] bg-brand-green/85" />
+            </m.span>
+            <span className="flex flex-col items-center leading-none">
+              {['d', 'e', 's', 'l', 'i', 'z', 'e'].map((char) => (
+                <span key={char}>{char}</span>
+              ))}
+            </span>
+          </div>
+        </m.div>
 
         <div className="pointer-events-none fixed inset-x-0 bottom-0 z-50 px-4 pb-4 sm:px-6 lg:px-10">
           <div className="mx-auto max-w-7xl">
