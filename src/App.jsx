@@ -241,7 +241,7 @@ function App() {
 
   return (
     <LazyMotion features={domAnimation}>
-      <div className="min-h-screen bg-brand-cream text-brand-ink antialiased">
+      <div className="min-h-screen overflow-x-clip bg-brand-cream text-brand-ink antialiased">
         <header className="sticky top-0 z-40 border-b border-brand-earth/20 bg-brand-cream shadow-[0_8px_24px_rgba(42,19,12,0.10)]">
           <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-10">
             <BrandLockup />
@@ -254,88 +254,71 @@ function App() {
 
         <main className="pb-28">
           <SectionReveal className="relative overflow-hidden border-b border-brand-earth/14">
-            <div className="absolute inset-0 bg-[linear-gradient(118deg,#7D0012_0%,#C8102E_34%,#D86A34_58%,#F6B24C_73%,#1F8B56_100%)]" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_18%,rgba(255,255,255,0.38),transparent_36%),radial-gradient(circle_at_84%_12%,rgba(255,255,255,0.32),transparent_35%),radial-gradient(circle_at_62%_88%,rgba(255,255,255,0.2),transparent_34%)]" />
-            <div className="absolute -left-28 top-28 h-72 w-72 rounded-full bg-white/22 blur-[82px]" />
-            <div className="absolute -right-24 top-12 h-64 w-64 rounded-full bg-[#C8102E]/34 blur-[68px]" />
-            <div className="absolute inset-x-0 bottom-0 h-[22%] bg-brand-cream [clip-path:polygon(0_44%,100%_0,100%_100%,0_100%)]" />
+            <div className="absolute inset-0">
+              <video
+                className="h-full w-full scale-110 object-cover blur-[6px] saturate-[1.14] brightness-[0.42]"
+                autoPlay={!shouldReduceMotion}
+                muted
+                loop
+                playsInline
+                poster="/assets/products/real/linha-completa.jpg"
+                aria-hidden="true"
+              >
+                <source src="/assets/hero/hero-farmer.mp4" type="video/mp4" />
+              </video>
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(200,16,46,0.28),transparent_36%),radial-gradient(circle_at_84%_8%,rgba(34,139,34,0.22),transparent_34%),linear-gradient(to_bottom,rgba(22,10,8,0.54),rgba(22,10,8,0.78))]" />
+            </div>
 
-            <div className="relative z-10 mx-auto grid h-[min(74vh,800px)] min-h-[600px] max-w-7xl items-center gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:px-10 lg:py-12">
-              <div className="pb-8 lg:pb-24">
-                <span className="inline-flex items-center gap-2 rounded-[999px] border border-white/40 bg-white/18 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-xl">
+            <div className="relative z-10 mx-auto grid h-[min(78vh,800px)] min-h-[620px] max-w-7xl items-center gap-6 px-4 py-9 sm:px-6 lg:grid-cols-[1.06fr_0.94fr] lg:px-10 lg:py-12">
+              <div className="rounded-[28px] border border-white/24 bg-black/26 p-6 text-white shadow-[0_24px_56px_rgba(16,6,4,0.34)] backdrop-blur-xl sm:p-8">
+                <span className="inline-flex items-center gap-2 rounded-[10px] border border-white/32 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.15em]">
                   Parceria B2B em Jundiai-SP
                 </span>
 
-                <h1 className="mt-6 max-w-2xl text-balance font-display text-[2.6rem] leading-[0.92] text-[#23080F] drop-shadow-[0_1px_0_rgba(255,255,255,0.25)] sm:text-[3.6rem] lg:text-[5.05rem]">
-                  Sabor artesanal premium para acelerar seu faturamento
+                <h1 className="mt-5 max-w-2xl text-balance font-display text-4xl leading-[0.95] text-white sm:text-5xl lg:text-[4.25rem]">
+                  Leve o sabor artesanal autentico de Jundiai para sua prateleira
                 </h1>
-                <p className="mt-5 max-w-2xl text-base leading-relaxed text-[#2d120f]/84 sm:text-[1.1rem]">
-                  Molhos 100% naturais, 16 sabores, margem alta e giro rapido. Nao ter Caseirices na
-                  prateleira significa cliente insatisfeito e venda perdida.
+                <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/92 sm:text-lg">
+                  Molhos 100% naturais, 16 sabores, margem premium e giro garantido. Nao ter
+                  Caseirices na prateleira = cliente insatisfeito e venda perdida.
                 </p>
 
-                <div className="mt-7 flex flex-wrap gap-3">
+                <div className="mt-6 flex flex-wrap gap-3">
                   <PrimaryButton href={WHATSAPP_LINK} className="w-full sm:w-auto">
                     Quero tabela de atacado e condicoes
                     <ArrowRight className="h-4 w-4" />
                   </PrimaryButton>
-                  <SecondaryButton
-                    href={INSTAGRAM_LINK}
-                    className="w-full border-white/45 bg-white/28 text-[#23080F] hover:bg-white/38 sm:w-auto"
-                  >
+                  <SecondaryButton href={INSTAGRAM_LINK} dark className="w-full sm:w-auto">
                     <Instagram className="h-4 w-4 text-brand-green" />
                     Ver Instagram da Marca
                   </SecondaryButton>
                 </div>
               </div>
 
-              <div className="hidden lg:block">
-                <div className="relative mx-auto w-full max-w-[460px]">
-                  <div className="absolute -left-6 top-9 h-28 w-28 rounded-[26px] border border-white/45 bg-white/26 p-4 shadow-[0_16px_42px_rgba(20,7,3,0.23)] backdrop-blur-xl">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#2d120f]/70">SKU ativos</p>
-                    <p className="mt-1 font-display text-4xl leading-none text-brand-wine">16</p>
-                    <p className="mt-1 text-xs text-[#2d120f]/70">Giro semanal</p>
+              <div className="mx-auto w-full max-w-[520px] lg:max-w-none">
+                <div className="overflow-hidden rounded-[26px] border border-white/26 bg-white/12 shadow-[0_24px_58px_rgba(18,7,4,0.34)] backdrop-blur-xl">
+                  <div className="flex items-center justify-between border-b border-white/24 px-4 py-3 text-white/90">
+                    <p className="text-xs font-semibold uppercase tracking-[0.13em]">Linha completa Caseirices</p>
+                    <span className="rounded-[999px] border border-white/32 bg-white/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.1em]">
+                      16 sabores
+                    </span>
                   </div>
-
-                  <div className="relative overflow-hidden rounded-[34px] border border-white/46 bg-white/24 p-6 shadow-[0_34px_66px_rgba(20,7,3,0.24)] backdrop-blur-2xl">
-                    <div className="flex items-center justify-between">
-                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#2d120f]/65">Painel comercial</p>
-                      <span className="rounded-[999px] bg-brand-green/20 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-brand-green">
-                        Local Premium
-                      </span>
-                    </div>
-
-                    <div className="mt-5 grid gap-3">
-                      {[
-                        { label: 'Margem media', value: '42%', icon: <TrendingUp className="h-4 w-4 text-brand-green" /> },
-                        { label: 'Sell-out em 30 dias', value: '3.4x', icon: <Boxes className="h-4 w-4 text-brand-green" /> },
-                        {
-                          label: 'Producao propria',
-                          value: 'Desde 2017',
-                          icon: <Factory className="h-4 w-4 text-brand-green" />,
-                        },
-                      ].map((item) => (
-                        <div key={item.label} className="rounded-[18px] border border-white/40 bg-white/35 p-4">
-                          <div className="flex items-center justify-between">
-                            <p className="text-xs text-[#2d120f]/70">{item.label}</p>
-                            {item.icon}
-                          </div>
-                          <p className="mt-2 font-display text-[2rem] leading-none text-brand-wine">{item.value}</p>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="mt-4 rounded-[16px] border border-white/40 bg-[#23080f]/72 p-3">
-                      <p className="text-[11px] uppercase tracking-[0.12em] text-white/78">Mensagem central</p>
-                      <p className="mt-1 text-sm font-semibold text-white">
-                        Sem Caseirices na gondola = cliente insatisfeito e venda perdida.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="absolute -right-4 bottom-10 rounded-[16px] border border-white/42 bg-white/30 px-3 py-2 backdrop-blur-xl">
-                    <p className="text-[10px] uppercase tracking-[0.1em] text-[#2d120f]/70">Sem conservantes</p>
-                    <p className="text-sm font-semibold text-brand-wine">100% natural</p>
+                  <img
+                    src="/assets/products/real/linha-completa.jpg"
+                    alt="Linha completa de molhos artesanais Caseirices"
+                    className="h-[250px] w-full object-cover sm:h-[300px] lg:h-[330px]"
+                  />
+                  <div className="grid grid-cols-3 gap-2 border-t border-white/24 bg-black/24 p-3">
+                    {[
+                      ['Margem media', '42%'],
+                      ['Sell-out', '3.4x'],
+                      ['Sem conservantes', '100% natural'],
+                    ].map(([label, value]) => (
+                      <div key={label} className="rounded-[12px] border border-white/24 bg-white/10 p-2 text-center">
+                        <p className="text-[10px] uppercase tracking-[0.1em] text-white/72">{label}</p>
+                        <p className="mt-1 text-sm font-bold text-white">{value}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
