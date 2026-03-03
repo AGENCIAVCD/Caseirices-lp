@@ -3,16 +3,24 @@ import { LazyMotion, domAnimation, m, useReducedMotion } from 'framer-motion'
 import {
   ArrowRight,
   BadgePercent,
+  BusFront,
+  Car,
+  Clock3,
   Boxes,
+  ExternalLink,
   Factory,
+  Globe,
   Handshake,
   Instagram,
   Leaf,
   MapPin,
   Megaphone,
+  Navigation,
   PackageCheck,
   PhoneCall,
+  Share2,
   Sparkles,
+  Star,
   Store,
   TrendingUp,
   Video,
@@ -743,34 +751,114 @@ function App() {
         </main>
 
         <footer className="border-t border-brand-earth/20 bg-brand-wine px-4 py-8 text-brand-cream sm:px-6 lg:px-10">
-          <div className="mx-auto flex max-w-7xl flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <div>
-              <BrandLockup />
-              <p className="mt-4 text-sm leading-relaxed text-brand-cream/90">
-                Rua Atilio Vianello, 409 - Vila Vianelo, Jundiai - SP, CEP 13207-130
-              </p>
-              <p className="mt-1 text-sm text-brand-cream/90">CNPJ: 28.150.452/0001-79</p>
-            </div>
-            <div className="flex flex-col gap-2 text-sm font-medium">
-              <a
-                href={INSTAGRAM_LINK}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 transition hover:text-brand-green"
-              >
-                <Instagram className="h-4 w-4" /> Instagram oficial
-              </a>
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 transition hover:text-brand-green"
-              >
-                <PhoneCall className="h-4 w-4" /> WhatsApp comercial
-              </a>
-              <span className="inline-flex items-center gap-2 text-brand-cream/80">
-                <MapPin className="h-4 w-4" /> Jundiai-SP
-              </span>
+          <div className="mx-auto max-w-7xl">
+            <div className="rounded-[22px] border border-white/20 bg-[#5a0a0a]/55 p-5 shadow-[0_18px_40px_rgba(0,0,0,0.22)] sm:p-7">
+              <div className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+                <div>
+                  <BrandLockup />
+                  <h3 className="mt-3 font-display text-3xl leading-tight text-white sm:text-4xl">
+                    Caseirices Molhos Artesanais - Loja de Fábrica e Empório Artesanal
+                  </h3>
+                  <p className="mt-2 text-sm text-brand-cream/88 sm:text-base">Jundiai - SP</p>
+
+                  <div className="mt-4 inline-flex items-center gap-2 rounded-[12px] border border-white/25 bg-white/10 px-3 py-2">
+                    <span className="inline-flex items-center gap-1 text-[#F8D66D]">
+                      <Star className="h-4 w-4 fill-current" />
+                      <Star className="h-4 w-4 fill-current" />
+                      <Star className="h-4 w-4 fill-current" />
+                      <Star className="h-4 w-4 fill-current" />
+                      <Star className="h-4 w-4 fill-current" />
+                    </span>
+                    <span className="text-sm font-semibold text-white">5,0</span>
+                    <span className="text-sm text-brand-cream/90">4 avaliações no Google</span>
+                  </div>
+
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <a
+                      href="https://caseirices.com.br"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 rounded-[12px] border border-white/24 bg-white/10 px-3 py-2 text-sm font-medium transition hover:bg-white/18"
+                    >
+                      <Globe className="h-4 w-4" />
+                      Site
+                    </a>
+                    <a
+                      href="https://maps.google.com/?q=Rua+Atilio+Vianello,+409,+Jundiai+-+SP,+13207-130"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 rounded-[12px] border border-white/24 bg-white/10 px-3 py-2 text-sm font-medium transition hover:bg-white/18"
+                    >
+                      <Navigation className="h-4 w-4" />
+                      Rotas
+                    </a>
+                    <a
+                      href="tel:+5511974884319"
+                      className="inline-flex items-center gap-2 rounded-[12px] border border-white/24 bg-white/10 px-3 py-2 text-sm font-medium transition hover:bg-white/18"
+                    >
+                      <PhoneCall className="h-4 w-4" />
+                      Ligar
+                    </a>
+                    <a
+                      href={WHATSAPP_LINK}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 rounded-[12px] border border-white/24 bg-white/10 px-3 py-2 text-sm font-medium transition hover:bg-white/18"
+                    >
+                      <Share2 className="h-4 w-4" />
+                      WhatsApp
+                    </a>
+                  </div>
+                </div>
+
+                <div className="rounded-[16px] border border-white/18 bg-black/20 p-4 sm:p-5">
+                  <ul className="space-y-3 text-sm sm:text-base">
+                    <li className="inline-flex w-full items-start gap-2">
+                      <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
+                      <span>Rua Atilio Vianello, 409 - Vila Vianelo, Jundiai - SP, CEP 13207-130</span>
+                    </li>
+                    <li className="inline-flex w-full items-start gap-2">
+                      <PhoneCall className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
+                      <span>(11) 97488-4319</span>
+                    </li>
+                    <li className="inline-flex w-full items-start gap-2">
+                      <Clock3 className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
+                      <span>Horário de funcionamento: Aberto - Fecha 16:45</span>
+                    </li>
+                    <li className="inline-flex w-full items-start gap-2">
+                      <BusFront className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
+                      <span>Chegue em: 34 min (ônibus)</span>
+                    </li>
+                    <li className="inline-flex w-full items-start gap-2">
+                      <Car className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
+                      <span>Chegue em: 18 min (carro)</span>
+                    </li>
+                    <li className="inline-flex w-full items-start gap-2">
+                      <ExternalLink className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
+                      <span>CNPJ: 28.150.452/0001-79</span>
+                    </li>
+                  </ul>
+
+                  <div className="mt-5 flex flex-wrap gap-3 text-sm font-medium">
+                    <a
+                      href={INSTAGRAM_LINK}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 transition hover:text-brand-green"
+                    >
+                      <Instagram className="h-4 w-4" /> Instagram oficial
+                    </a>
+                    <a
+                      href={WHATSAPP_LINK}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 transition hover:text-brand-green"
+                    >
+                      <PhoneCall className="h-4 w-4" /> WhatsApp comercial
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </footer>
