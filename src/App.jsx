@@ -236,16 +236,6 @@ function App() {
   return (
     <LazyMotion features={domAnimation}>
       <div className="min-h-screen overflow-x-clip bg-brand-cream text-brand-ink antialiased">
-        <header className="sticky top-0 z-40 border-b border-brand-earth/20 bg-brand-cream shadow-[0_8px_24px_rgba(42,19,12,0.10)]">
-          <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-10">
-            <BrandLockup />
-            <PrimaryButton href={WHATSAPP_LINK} className="hidden sm:inline-flex">
-              Quero Revender
-              <ArrowRight className="h-4 w-4" />
-            </PrimaryButton>
-          </div>
-        </header>
-
         <main className="pb-28">
           <SectionReveal className="relative overflow-hidden border-b border-brand-earth/14">
             <div className="absolute inset-0">
@@ -266,6 +256,12 @@ function App() {
             <div className="relative z-10 mx-auto flex h-[min(78vh,800px)] min-h-[620px] max-w-7xl items-center px-4 py-9 sm:px-6 lg:px-10 lg:py-12">
               <div className="relative lg:pr-24">
                 <div className="w-full rounded-[24px] border border-white/24 bg-black/26 p-4 text-white shadow-[0_24px_56px_rgba(16,6,4,0.34)] backdrop-blur-xl sm:p-5 lg:max-w-[620px]">
+                  <img
+                    src="/assets/brand/caseirices-logo.png"
+                    alt="Logo Caseirices"
+                    className="h-20 w-auto sm:h-24"
+                  />
+
                   <span className="inline-flex items-center gap-2 rounded-[10px] border border-white/32 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.15em]">
                     O verdadeiro molho de tomate caseiro
                   </span>
