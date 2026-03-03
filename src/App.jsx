@@ -267,7 +267,7 @@ function App() {
                   </span>
 
                   <h1 className="mt-4 max-w-xl text-balance font-display text-[2.1rem] leading-[0.94] text-white sm:text-[2.5rem] lg:text-[3rem]">
-                    Leve o sabor artesanal autentico de Jundiai para sua prateleira
+                    Leve o sabor artesanal autêntico de Jundiai para sua prateleira
                   </h1>
                   <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/92 sm:text-base">
                     Molhos 100% naturais, 16 sabores, margem premium e giro garantido. Nao ter
