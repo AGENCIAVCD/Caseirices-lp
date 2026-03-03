@@ -114,13 +114,13 @@ export const flavors = [
 ]
 
 export const instagramImages = [
-  '/assets/instagram/insta-01.svg',
-  '/assets/instagram/insta-02.svg',
-  '/assets/instagram/insta-03.svg',
-  '/assets/instagram/insta-04.svg',
-  '/assets/instagram/insta-05.svg',
-  '/assets/instagram/insta-06.svg',
-  '/assets/instagram/insta-07.svg',
-  '/assets/instagram/insta-08.svg',
-  '/assets/instagram/insta-09.svg',
+  '/assets/products/real/linha-completa.jpg',
+  '/assets/products/real/alho.jpg',
+  '/assets/products/real/defumado.jpg',
+  '/assets/products/real/sugo-basilico.jpg',
+  '/assets/products/real/funghi-secchi.jpg',
+  '/assets/products/real/mostarda-artesanal.jpg',
+  '/assets/products/real/barbecue-caseiro.jpg',
+  '/assets/products/real/cebola-caramelizada.jpg',
+  '/assets/products/real/arrabiata.jpg',
 ]

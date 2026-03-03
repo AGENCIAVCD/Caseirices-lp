@@ -182,7 +182,7 @@ function App() {
       const timeoutId = setTimeout(() => controller.abort(), 4800)
 
       try {
-        const response = await fetch('/api/instagram-feed?username=caseiricesjundiai&limit=9', {
+        const response = await fetch('/api/instagram-feed?username=caseiricesjundiai&limit=12', {
           signal: controller.signal,
         })
         if (!response.ok) throw new Error('feed-offline')
@@ -548,7 +548,8 @@ function App() {
           </SectionReveal>
 
           <SectionReveal className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
-            <div className="flex flex-wrap items-end justify-between gap-3">
+            <div className="max-h-[800px] overflow-hidden rounded-[24px] border border-brand-earth/14 bg-white/55 p-4 sm:p-5">
+              <div className="flex flex-wrap items-end justify-between gap-3">
               <div>
                 <h2 className="font-display text-3xl text-brand-wine sm:text-4xl">Instagram da Marca</h2>
                 <p className="mt-2 text-sm text-brand-ink/80 sm:text-base">
@@ -559,19 +560,19 @@ function App() {
                 <Instagram className="h-4 w-4 text-brand-green" />
                 @caseiricesjundiai
               </SecondaryButton>
-            </div>
+              </div>
 
-            <div className="mt-6 max-h-[800px] overflow-hidden rounded-[28px] border border-brand-earth/16 bg-white/90 p-3 shadow-[0_20px_50px_rgba(55,27,16,0.11)] sm:p-4">
+            <div className="mt-4 max-h-[680px] overflow-hidden rounded-[22px] border border-brand-earth/16 bg-white/90 p-2.5 shadow-[0_16px_38px_rgba(55,27,16,0.09)] sm:p-3">
               <div className="md:hidden">
-                <div className="mx-auto max-w-md overflow-hidden rounded-[30px] border border-brand-earth/18 bg-white shadow-[0_20px_46px_rgba(44,21,13,0.16)]">
-                  <div className="flex items-center justify-between border-b border-brand-earth/12 px-4 py-3">
+                <div className="mx-auto max-w-md overflow-hidden rounded-[24px] border border-brand-earth/16 bg-white shadow-[0_16px_36px_rgba(44,21,13,0.14)]">
+                  <div className="flex items-center justify-between border-b border-brand-earth/12 px-3 py-2.5">
                     <span className="text-sm font-semibold text-brand-ink">Instagram</span>
                     <span className="text-xs font-semibold uppercase tracking-[0.12em] text-brand-green">
                       {instagramStatus === 'live' ? 'Ao vivo' : instagramStatus === 'loading' ? 'Carregando' : 'Feed local'}
                     </span>
                   </div>
 
-                  <div className="flex gap-3 overflow-x-auto border-b border-brand-earth/12 px-4 py-3">
+                  <div className="flex gap-2 overflow-x-auto border-b border-brand-earth/12 px-3 py-2.5">
                     {instagramFeed.slice(0, 8).map((item, index) => (
                       <a
                         key={`story-${item.id}`}
@@ -585,7 +586,7 @@ function App() {
                           <img
                             src={item.image}
                             alt=""
-                            className="h-14 w-14 rounded-full border border-white object-cover"
+                            className="h-11 w-11 rounded-full border border-white object-cover"
                             onError={(event) => {
                               const fallbackImage = instagramImages[index % instagramImages.length]
                               if (!event.currentTarget.src.endsWith(fallbackImage)) {
@@ -598,8 +599,8 @@ function App() {
                     ))}
                   </div>
 
-                  <div className="max-h-[570px] overflow-y-auto p-3">
-                    <div className="grid grid-cols-2 gap-3">
+                  <div className="max-h-[500px] overflow-y-auto p-2.5">
+                    <div className="grid grid-cols-2 gap-2">
                       {instagramFeed.map((item, index) => (
                         <m.a
                           key={`mobile-${item.id}`}
@@ -610,7 +611,7 @@ function App() {
                           whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
                           viewport={{ once: true, amount: 0.2 }}
                           transition={shouldReduceMotion ? undefined : { duration: 0.3, delay: index * 0.03 }}
-                          className="group relative aspect-square overflow-hidden rounded-[14px] border border-brand-earth/16 bg-brand-cream"
+                          className="group relative aspect-square overflow-hidden rounded-[12px] border border-brand-earth/14 bg-brand-cream"
                         >
                           <img
                             src={item.image}
@@ -635,14 +636,14 @@ function App() {
                 </div>
               </div>
 
-              <div className="hidden gap-4 md:grid md:grid-cols-[280px_1fr]">
-                <aside className="rounded-[22px] border border-brand-earth/14 bg-brand-cream/70 p-4">
+              <div className="hidden gap-3 md:grid md:grid-cols-[230px_1fr]">
+                <aside className="rounded-[18px] border border-brand-earth/14 bg-brand-cream/70 p-3">
                   <div className="flex items-center gap-3">
                     <span className="rounded-[12px] border border-brand-earth/20 bg-white px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.11em] text-brand-earth">
                       @caseiricesjundiai
                     </span>
                   </div>
-                  <p className="mt-4 text-sm leading-relaxed text-brand-ink/80">
+                  <p className="mt-3 text-sm leading-relaxed text-brand-ink/80">
                     {instagramStatus === 'live'
                       ? 'Feed sincronizado com as ultimas publicacoes da marca.'
                       : 'Instagram bloqueou a leitura publica; exibindo galeria local oficial para manter prova social ativa.'}
@@ -651,15 +652,15 @@ function App() {
                     href={INSTAGRAM_LINK}
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-5 inline-flex items-center gap-2 rounded-[12px] border border-brand-earth/18 bg-white px-3 py-2 text-sm font-semibold text-brand-wine transition hover:bg-brand-cream"
+                    className="mt-4 inline-flex items-center gap-2 rounded-[10px] border border-brand-earth/18 bg-white px-3 py-2 text-sm font-semibold text-brand-wine transition hover:bg-brand-cream"
                   >
                     Abrir perfil oficial
                     <ArrowRight className="h-4 w-4" />
                   </a>
                 </aside>
 
-                <div className="max-h-[735px] overflow-y-auto pr-1">
-                  <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
+                <div className="max-h-[610px] overflow-y-auto pr-1">
+                  <div className="grid grid-cols-3 gap-2 lg:grid-cols-4">
                     {instagramFeed.map((item, index) => (
                       <m.a
                         key={item.id}
@@ -670,7 +671,7 @@ function App() {
                         whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.2 }}
                         transition={shouldReduceMotion ? undefined : { duration: 0.35, delay: index * 0.04 }}
-                        className="group relative aspect-square overflow-hidden rounded-[18px] border border-brand-earth/16 bg-white"
+                        className="group relative aspect-square overflow-hidden rounded-[12px] border border-brand-earth/14 bg-white"
                       >
                         <img
                           src={item.image}
@@ -693,6 +694,7 @@ function App() {
                   </div>
                 </div>
               </div>
+            </div>
             </div>
           </SectionReveal>
         </main>
