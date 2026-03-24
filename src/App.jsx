@@ -2,81 +2,120 @@ import { useEffect, useMemo, useState } from 'react'
 import { LazyMotion, domAnimation, m, useReducedMotion } from 'framer-motion'
 import {
   ArrowRight,
-  BadgePercent,
-  BusFront,
-  Car,
+  ChevronDown,
   Clock3,
-  Boxes,
   ExternalLink,
-  Factory,
   Globe,
-  Handshake,
   Instagram,
   Leaf,
   MapPin,
-  Megaphone,
   Navigation,
-  PackageCheck,
   PhoneCall,
   Share2,
+  ShieldCheck,
   Sparkles,
   Star,
   Store,
-  TrendingUp,
   Video,
 } from 'lucide-react'
 import { SectionReveal } from './components/SectionReveal'
+import { SequenceScroll } from './components/SequenceScroll'
 import { flavors, instagramImages } from './data/flavors'
-import heroVideo from './assets/caseirices-hero video.mp4'
 
-const WHATSAPP_LINK =
+const SITE_LINK = 'https://caseirices.com.br'
+const WHATSAPP_RESELLER_LINK =
   'https://wa.me/5511974884319?text=Olá!+Vi+a+Landing+Page+da+Caseirices+e+gostaria+de+receber+a+tabela+de+preços+para+revenda.'
-const WHATSAPP_FLOAT_LINK =
-  'https://api.whatsapp.com/send?phone=5511974884319&text=Eu%20gostaria%20de%20ter%20produtos%20caseirices%20em%20meu%20ponto%20comercial'
+const WHATSAPP_DISCOVERY_LINK =
+  'https://api.whatsapp.com/send?phone=5511974884319&text=Eu%20gostaria%20de%20conhecer%20os%20produtos%20Caseirices'
 const INSTAGRAM_LINK = 'https://www.instagram.com/caseiricesjundiai/'
+const HERO_VIDEO_SRC = '/assets/hero/caseirices-hero-complete.mp4'
 
-const benefits = [
-  {
-    icon: BadgePercent,
-    title: 'Margem de Lucro Alta',
-    text: 'Posicionamento premium com precificação forte para elevar rentabilidade por metro linear.',
-  },
-  {
-    icon: TrendingUp,
-    title: 'Giro Rápido de Estoque',
-    text: 'Linha autoral com recompra recorrente e alta saída em supermercados e food service.',
-  },
+const brandPillars = [
   {
     icon: Leaf,
-    title: 'Qualidade 100% Natural',
-    text: 'Receitas artesanais sem conservantes, com sabor caseiro premium e consistência de lote.',
+    eyebrow: 'Ingredientes naturais',
+    title: 'O molho que nasce do ingrediente, não do discurso.',
+    text: 'Tomates maduros, colhidos pelas mãos da agricultura familiar, entram numa receita sem corantes, sem conservantes e sem gordura.',
   },
   {
-    icon: Handshake,
-    title: 'Suporte Comercial Ativo',
-    text: 'Atendimento próximo, materiais de venda e estratégia para acelerar entrada e sell-out.',
+    icon: Sparkles,
+    eyebrow: 'Cozinha afetiva',
+    title: 'Tradição em cada colher.',
+    text: 'Produtos artesanais inspirados na cozinha tradicional, com o sabor caseiro de verdade e a praticidade de um molho pronto para a mesa.',
+  },
+  {
+    icon: Clock3,
+    eyebrow: 'Assinatura artesanal',
+    title: 'Porque o melhor leva tempo.',
+    text: 'Camadas de sabor construídas com fogo controlado, produção autoral e cuidado gastronômico em toda a cadeia.',
   },
 ]
 
-const supportItems = [
+const essentialItems = [
   {
-    icon: Store,
-    title: 'Kit PDV de Conversão',
-    text: 'Materiais de gôndola e destaque para gerar decisão de compra no ponto de venda.',
+    eyebrow: 'Só o Essencial',
+    title: 'Tomate no auge',
+    text: 'Tomate 100% natural, com sabor do próprio fruto e acidez equilibrada para um molho que nasce do ingrediente real.',
   },
   {
-    icon: Megaphone,
-    title: 'Conteúdo Pronto',
-    text: 'Fotos e criativos prontos para campanhas locais e promoções semanais.',
+    eyebrow: 'Só o Essencial',
+    title: 'Manjericão fresco',
+    text: 'Um bouquet perfumado, verde e limpo, que levanta o molho sem roubar a cena do tomate.',
   },
   {
-    icon: PackageCheck,
-    title: 'Campanhas Conjuntas',
-    text: 'Ações coordenadas para ampliar giro, ticket médio e recorrência.',
+    eyebrow: 'Só o Essencial',
+    title: 'Amor e tempo',
+    text: 'Sabores construídos devagar, com memória de receita de família e respeito ao ponto certo de cada ingrediente.',
+  },
+  {
+    eyebrow: 'Só o Essencial',
+    title: 'Leveza e pureza',
+    text: 'Receita sem óleo, com textura natural, sabor equilibrado e ingredientes frescos para uma escolha mais saudável.',
   },
 ]
 
-const placeholderTestimonials = [
+const experienceMoments = [
+  {
+    title: 'Sabor que transforma qualquer receita',
+    text: 'Das massas secas às recheadas, puro ou como base para diferentes preparos, Caseirices vai bem com tudo.',
+  },
+  {
+    title: 'A cozinha de casa com toques de restaurante',
+    text: 'Um molho pronto que sustenta pratos simples com presença, profundidade e textura natural.',
+  },
+  {
+    title: 'Pronto para momentos especiais',
+    text: 'Receber, cozinhar e servir fica mais fácil quando o ingrediente principal entrega verdade no paladar.',
+  },
+]
+
+const greenSectionPoints = [
+  {
+    icon: Leaf,
+    title: 'Tomate maduro e ingrediente real',
+    text: 'Sabor do próprio fruto, acidez equilibrada e uma receita que começa na escolha certa do tomate.',
+  },
+  {
+    icon: Sparkles,
+    title: 'Sem excesso, sem artifício',
+    text: 'Sem corantes. Sem conservantes. Sem gordura. Só o essencial para o molho ter identidade de verdade.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Produção autoral com controle',
+    text: 'Cozinha real, cuidado gastronômico e segurança alimentar para sustentar um produto premium.',
+  },
+]
+
+const commercialArguments = [
+  'Um produto incrível e exclusivo para sua prateleira.',
+  'Diferente de qualquer outro tipo de molho de tomate.',
+  'O produto que realmente faz a diferença para o consumidor exigente.',
+  'Molho artesanal com história, qualidade e verdade.',
+  '16 sabores, dos clássicos aos criativos.',
+]
+
+const customerTestimonials = [
   {
     business: 'Mariana T. - Jundiaí/SP',
     quote:
@@ -87,65 +126,40 @@ const placeholderTestimonials = [
   {
     business: 'Carlos M. - Itupeva/SP',
     quote:
-      'O de Alho Tradicional é sensacional. Usei na massa e no sanduíche, e todo mundo elogiou. Qualidade acima da média.',
+      'O de alho virou coringa na minha cozinha. Traz aquele sabor de molho bem feito, com cara de receita de família.',
     person: 'Cliente recorrente',
     rating: 5,
   },
   {
     business: 'Patrícia R. - Louveira/SP',
     quote:
-      'Sou fã do Chimichurri e do Defumado. Dá para sentir que é artesanal mesmo, com ingredientes de verdade e muito sabor.',
-    person: 'Cliente fã da marca',
+      'Dá para sentir que é artesanal mesmo. Tem aroma fresco, textura natural e muda completamente a experiência do prato.',
+    person: 'Cliente da marca',
     rating: 5,
   },
 ]
 
-const retailerTestimonials = [
-  {
-    business: 'Empório Sabor da Serra - Jundiaí/SP',
-    quote:
-      'A Caseirices aumentou o ticket médio do setor gourmet. Produto com excelente saída e recompra constante.',
-    person: 'Fernanda Lima',
-    role: 'Proprietária',
-  },
-  {
-    business: 'Supermercado Nova Opção - Itupeva/SP',
-    quote:
-      'Entrou como teste e virou item fixo. A margem é boa e o cliente percebe valor no artesanal sem conservantes.',
-    person: 'Rafael Mendes',
-    role: 'Gerente de Compras',
-  },
-  {
-    business: 'Bistrô Vila Gourmet - Louveira/SP',
-    quote:
-      'Usamos na operação e também vendemos no empório do restaurante. Qualidade consistente e ótima aceitação.',
-    person: 'Camila Rocha',
-    role: 'Sócia-diretora',
-  },
+const originFacts = [
+  'Fornecedores exclusivos em todos os itens, do tomate à embalagem.',
+  'Produzido no interior de São Paulo, em Jundiaí.',
+  'Cozinha e showroom abertos para visitas.',
+  'Processos e normas exigidos pela vigilância sanitária para máxima excelência e segurança alimentar.',
 ]
 
 const flavorFilters = [
   { id: 'all', label: 'Todos' },
   { id: 'classicos', label: 'Clássicos' },
-  { id: 'premium', label: 'Premium' },
-  { id: 'picantes', label: 'Picantes' },
+  { id: 'premium', label: 'Criativos' },
+  { id: 'picantes', label: 'Intensos' },
 ]
-
-function formatMoney(value) {
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-    maximumFractionDigits: 0,
-  }).format(Number.isFinite(value) ? value : 0)
-}
 
 function BrandLockup() {
   return (
-    <div className="inline-flex items-center">
+    <div className="relative inline-flex h-[114px] w-[114px] items-center justify-center rounded-full border border-[#eacfb0] bg-[#fdedd3] p-4 shadow-[0_18px_36px_rgba(24,13,9,0.24)] sm:h-[130px] sm:w-[130px]">
       <img
-        src="/assets/brand/caseirices-logo.png"
+        src="/assets/brand/caseirices-logo-hero.png"
         alt="Logo da marca Caseirices"
-        className="h-14 w-auto sm:h-16"
+        className="h-auto w-[82%] scale-110 drop-shadow-[0_6px_14px_rgba(60,26,18,0.22)]"
       />
     </div>
   )
@@ -153,8 +167,9 @@ function BrandLockup() {
 
 function PrimaryButton({ href, children, className = '' }) {
   const shouldReduceMotion = useReducedMotion()
+  const MotionLink = m.a
   return (
-    <m.a
+    <MotionLink
       href={href}
       target="_blank"
       rel="noreferrer"
@@ -162,18 +177,19 @@ function PrimaryButton({ href, children, className = '' }) {
       className={`inline-flex items-center justify-center gap-2 rounded-[14px] border border-brand-red-dark bg-brand-red px-5 py-3 text-sm font-bold uppercase tracking-[0.06em] text-white shadow-[0_16px_36px_rgba(139,0,0,0.28)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-red-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cream focus-visible:ring-offset-2 focus-visible:ring-offset-brand-red ${className}`}
     >
       {children}
-    </m.a>
+    </MotionLink>
   )
 }
 
 function SecondaryButton({ href, children, dark = false, className = '' }) {
   const shouldReduceMotion = useReducedMotion()
+  const MotionLink = m.a
   const base = dark
     ? 'border-white/35 bg-white/12 text-white hover:bg-white/20 focus-visible:ring-white/80 focus-visible:ring-offset-[#2A130C]'
     : 'border-brand-earth/20 bg-white/85 text-brand-ink hover:bg-white focus-visible:ring-brand-wine/55 focus-visible:ring-offset-brand-cream'
 
   return (
-    <m.a
+    <MotionLink
       href={href}
       target="_blank"
       rel="noreferrer"
@@ -181,42 +197,20 @@ function SecondaryButton({ href, children, dark = false, className = '' }) {
       className={`inline-flex items-center justify-center gap-2 rounded-[14px] border px-5 py-3 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${base} ${className}`}
     >
       {children}
-    </m.a>
+    </MotionLink>
   )
 }
 
-function RangeControl({ label, value, onChange, min, max, step, suffix = '' }) {
-  return (
-    <label className="block">
-      <div className="mb-2 flex items-center justify-between text-sm font-medium text-brand-cream/92">
-        <span>{label}</span>
-        <span className="font-semibold text-brand-cream">
-          {value}
-          {suffix}
-        </span>
-      </div>
-      <input
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={(event) => onChange(Number(event.target.value))}
-        className="range-premium h-2 w-full cursor-pointer appearance-none rounded-full bg-brand-cream/20"
-      />
-    </label>
-  )
-}
 
 function App() {
   const shouldReduceMotion = useReducedMotion()
+  const MotionImage = m.img
+  const MotionDiv = m.div
   const MotionArticle = m.article
-  const [boxesPerWeek, setBoxesPerWeek] = useState(12)
-  const [unitMargin, setUnitMargin] = useState(8)
-  const [firstOrder, setFirstOrder] = useState(3200)
+  const MotionLink = m.a
   const [activeFlavorFilter, setActiveFlavorFilter] = useState('all')
   const [showAllFlavors, setShowAllFlavors] = useState(false)
-  const [instagramFeed, setInstagramFeed] = useState(
+  const [instagramFeed, setInstagramFeed] = useState(() =>
     instagramImages.map((image, index) => ({
       id: `fallback-${index}`,
       image,
@@ -226,6 +220,7 @@ function App() {
     })),
   )
   const [instagramStatus, setInstagramStatus] = useState('loading')
+  const [heroVideoFailed, setHeroVideoFailed] = useState(false)
 
   useEffect(() => {
     let active = true
@@ -274,98 +269,108 @@ function App() {
     }
   }, [])
 
-  const metrics = useMemo(() => {
-    const unitsPerBox = 12
-    const monthlyProfit = boxesPerWeek * unitsPerBox * unitMargin * 4.33
-    const paybackMonths = firstOrder > 0 ? firstOrder / monthlyProfit : 0
-    const annualRoi = firstOrder > 0 ? ((monthlyProfit * 12 - firstOrder) / firstOrder) * 100 : 0
-
-    return { monthlyProfit, paybackMonths, annualRoi }
-  }, [boxesPerWeek, unitMargin, firstOrder])
-
   const filteredFlavors = useMemo(() => {
     if (activeFlavorFilter === 'all') return flavors
     return flavors.filter((item) => item.group === activeFlavorFilter)
   }, [activeFlavorFilter])
 
   const visibleFlavors = useMemo(() => {
-    return showAllFlavors ? filteredFlavors : filteredFlavors.slice(0, 8)
+    if (showAllFlavors) return filteredFlavors
+    if (activeFlavorFilter === 'all') return filteredFlavors.filter((item) => item.isReal)
+    return filteredFlavors.slice(0, 8)
   }, [filteredFlavors, showAllFlavors])
 
   return (
     <LazyMotion features={domAnimation}>
       <div className="min-h-screen overflow-x-clip bg-brand-cream text-brand-ink antialiased">
-        <main className="pb-28">
-          <SectionReveal className="relative overflow-hidden border-b border-brand-earth/14">
-            <div className="absolute inset-0">
+        <main className="pb-24">
+          <SectionReveal className="relative h-[100dvh] min-h-[100dvh] overflow-hidden border-b border-brand-earth/14 bg-black">
+            <div className="absolute inset-0 bg-black">
+              <img
+                src="/assets/hero/fundador-caseirices.jpg"
+                alt=""
+                aria-hidden="true"
+                className="absolute inset-0 h-full w-full scale-[1.22] object-cover object-center sm:scale-100"
+              />
               <video
-                className="h-full w-full scale-105 object-cover blur-[1.5px] saturate-[1.08] brightness-[0.72]"
+                className={`h-full w-full scale-[1.22] object-cover object-center saturate-[1.05] brightness-[0.96] sm:scale-100 ${
+                  heroVideoFailed ? 'opacity-0' : 'opacity-100'
+                }`}
                 autoPlay
                 muted
                 loop
                 playsInline
                 preload="auto"
-                poster="/assets/hero/fundador-dono.png"
+                poster="/assets/hero/fundador-caseirices.jpg"
+                onError={() => setHeroVideoFailed(true)}
                 aria-hidden="true"
               >
-                <source src={heroVideo} type="video/mp4" />
+                <source src={HERO_VIDEO_SRC} type="video/mp4" />
               </video>
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(200,16,46,0.18),transparent_38%),radial-gradient(circle_at_84%_8%,rgba(34,139,34,0.14),transparent_36%),linear-gradient(to_bottom,rgba(22,10,8,0.34),rgba(22,10,8,0.52))]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_12%,rgba(200,16,46,0.08),transparent_34%),radial-gradient(circle_at_85%_14%,rgba(255,204,102,0.06),transparent_32%),linear-gradient(to_bottom,rgba(17,7,6,0.2),rgba(17,7,6,0.34))]" />
             </div>
 
-            <div className="relative z-10 mx-auto flex h-[min(78vh,800px)] min-h-[620px] max-w-7xl items-center justify-center px-4 py-9 sm:px-6 lg:px-10 lg:py-12">
-              <div className="w-full max-w-4xl text-center text-white">
-                <m.img
-                  initial={shouldReduceMotion ? false : { opacity: 0, y: -12 }}
-                  animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-                  transition={shouldReduceMotion ? undefined : { duration: 0.55 }}
-                  src="/assets/brand/caseirices-logo-hero.png"
-                  alt="Logo Caseirices sem fundo"
-                  className="mx-auto h-20 w-auto drop-shadow-[0_10px_22px_rgba(0,0,0,0.45)] sm:h-24 lg:h-28"
-                />
+            <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col px-4 py-6 sm:px-6 lg:px-10 lg:py-8">
+              <div className="mb-4 flex flex-col items-center gap-3 lg:mb-5">
+                <BrandLockup />
+                <span className="inline-flex items-center rounded-[14px] border border-[#ffd9a0]/55 bg-[linear-gradient(135deg,rgba(180,19,34,0.9),rgba(110,13,24,0.9))] px-5 py-2.5 text-[12px] font-extrabold uppercase tracking-[0.16em] text-[#fff5e7] shadow-[0_14px_28px_rgba(85,7,15,0.36)]">
+                  Molhos de Tomate Caseirices
+                </span>
+              </div>
 
-                <m.span
-                  initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}
-                  animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-                  transition={shouldReduceMotion ? undefined : { duration: 0.45, delay: 0.08 }}
-                  className="mt-5 inline-flex items-center justify-center rounded-[999px] border border-white/38 bg-black/28 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em]"
-                >
-                  O verdadeiro molho de tomate caseiro
-                </m.span>
+              <div className="relative flex-1">
+                <div className="absolute bottom-[40px] left-1/2 w-[min(92vw,760px)] -translate-x-1/2 rounded-[24px] border border-white/24 bg-black/34 p-4 text-white shadow-[0_24px_64px_rgba(0,0,0,0.28)] backdrop-blur-[4.6px] sm:p-6">
+                  <m.h1
+                    initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
+                    animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                    transition={shouldReduceMotion ? undefined : { duration: 0.5, delay: 0.16 }}
+                    className="mt-1 text-center font-display text-[clamp(2rem,5.2vw,3.5rem)] leading-[0.94] text-white"
+                  >
+                    O sabor de verdade começa aqui.
+                  </m.h1>
 
-                <m.h1
-                  initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
-                  animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-                  transition={shouldReduceMotion ? undefined : { duration: 0.5, delay: 0.16 }}
-                  className="mx-auto mt-5 max-w-3xl text-balance font-display text-4xl leading-[0.95] text-white sm:text-5xl lg:text-[4.2rem]"
-                >
-                  Leve o sabor artesanal autêntico de Jundiaí para sua prateleira
-                </m.h1>
+                  <m.p
+                    initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
+                    animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                    transition={shouldReduceMotion ? undefined : { duration: 0.45, delay: 0.24 }}
+                    className="mx-auto mt-4 max-w-3xl text-center text-base leading-relaxed text-white/92 sm:text-lg"
+                  >
+                    O molho que nasce do ingrediente, não do discurso. Receitas caseiras com
+                    textura natural, aroma fresco e paladar equilibrado para transformar pratos
+                    cotidianos em momentos especiais.
+                  </m.p>
 
-                <m.p
-                  initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
-                  animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-                  transition={shouldReduceMotion ? undefined : { duration: 0.45, delay: 0.24 }}
-                  className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-white/90 sm:text-lg"
-                >
-                  Molhos 100% naturais, 16 sabores, margem premium e giro garantido. Não ter
-                  Caseirices na prateleira = cliente insatisfeito e venda perdida.
-                </m.p>
+                  <div className="mt-5 flex flex-wrap justify-center gap-2">
+                    {['Ingredientes naturais', '16 sabores', 'Feito em Jundiaí'].map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-[999px] border border-white/25 bg-white/12 px-3 py-1.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-white/90"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+
+                  <MotionDiv
+                    initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
+                    animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                    transition={shouldReduceMotion ? undefined : { duration: 0.45, delay: 0.3 }}
+                    className="mt-6 flex flex-wrap justify-center gap-3"
+                  >
+                    <PrimaryButton href={WHATSAPP_DISCOVERY_LINK} className="w-full sm:w-auto">
+                      Conhecer os sabores
+                      <ArrowRight className="h-4 w-4" />
+                    </PrimaryButton>
+                  </MotionDiv>
+                </div>
 
                 <m.div
-                  initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
-                  animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-                  transition={shouldReduceMotion ? undefined : { duration: 0.45, delay: 0.3 }}
-                  className="mt-7 flex flex-wrap justify-center gap-3"
+                  animate={{ y: [0, 10, 0], opacity: [0.75, 1, 0.75] }}
+                  transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+                  className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 text-white/90"
+                  aria-hidden="true"
                 >
-                  <PrimaryButton href={WHATSAPP_LINK} className="w-full sm:w-auto">
-                    Quero tabela de atacado e condições
-                    <ArrowRight className="h-4 w-4" />
-                  </PrimaryButton>
-                  <SecondaryButton href={INSTAGRAM_LINK} dark className="w-full sm:w-auto">
-                    <Instagram className="h-4 w-4 text-brand-green" />
-                    Ver Instagram da Marca
-                  </SecondaryButton>
+                  <ChevronDown className="h-7 w-7 drop-shadow-[0_4px_10px_rgba(0,0,0,0.35)]" />
                 </m.div>
 
               </div>
@@ -373,48 +378,104 @@ function App() {
             </div>
           </SectionReveal>
 
-          <SectionReveal id="quem-somos" className="mx-auto max-w-7xl px-4 pb-14 pt-16 sm:px-6 lg:px-10 lg:pb-20">
-            <div className="grid gap-5 rounded-[24px] border border-brand-earth/16 bg-white/88 p-5 shadow-[0_18px_38px_rgba(55,27,16,0.10)] md:grid-cols-[0.95fr_1.05fr] sm:p-7">
-              <div className="overflow-hidden rounded-[18px] border border-brand-earth/14">
-                <img
-                  src="/assets/hero/fundador-dono.png"
-                  alt="Fundador da Caseirices ao lado da linha de molhos"
-                  className="h-full w-full object-cover"
-                />
-              </div>
+          <SequenceScroll />
 
-              <div className="flex flex-col justify-center">
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-green">Quem Somos Nós</p>
-                <h2 className="mt-3 font-display text-3xl leading-tight text-brand-wine sm:text-4xl">
-                  Produção própria em Jundiaí com sabor caseiro de verdade
-                </h2>
-                <p className="mt-4 text-sm leading-relaxed text-brand-ink/85 sm:text-base">
-                  A Caseirices nasceu da amizade de dois apaixonados por gastronomia artesanal. Desde
-                  2017, nossa missão é levar para mercados, empórios e restaurantes um molho com sabor
-                  autêntico, qualidade constante e proposta comercial que gira rápido na prateleira.
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-brand-ink/85 sm:text-base">
-                  Hoje operamos com loja de fábrica em Jundiaí, produção própria sem conservantes e
-                  suporte ativo para revendedores que querem margem alta com produto premium local.
-                </p>
+          <SectionReveal
+            id="quem-somos"
+            className="relative overflow-hidden border-y border-brand-earth/14"
+          >
+            <div className="absolute inset-0 bg-[url('/assets/hero/fundador-caseirices.jpg')] bg-cover bg-center" aria-hidden="true" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(34,139,34,0.12),transparent_30%),radial-gradient(circle_at_80%_18%,rgba(200,16,46,0.14),transparent_28%),linear-gradient(110deg,rgba(12,8,6,0.84)_0%,rgba(12,8,6,0.68)_42%,rgba(12,8,6,0.8)_100%)]" />
+            <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10 lg:py-24">
+              <div className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
+                <m.div
+                  initial={shouldReduceMotion ? false : { opacity: 0, y: 28 }}
+                  whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.25 }}
+                  transition={shouldReduceMotion ? undefined : { duration: 0.65, ease: 'easeOut' }}
+                  className="max-w-3xl rounded-[24px] border border-white/16 bg-black/34 p-5 text-white shadow-[0_20px_44px_rgba(0,0,0,0.3)] backdrop-blur-sm sm:p-7"
+                >
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8FE08F]">
+                    Sobre a marca
+                  </p>
+                  <h2 className="mt-3 font-display text-4xl leading-[0.95] text-white sm:text-5xl lg:text-[4.3rem]">
+                    Uma estética premium construída na cozinha real.
+                  </h2>
+                  <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/88 sm:text-lg">
+                    Caseirices combina memória afetiva, ingredientes selecionados e produção autoral
+                    para criar um molho gastronômico, mas fiel à cozinha caseira: com respeito aos
+                    ingredientes, ao tempo e ao calor da cozinha de casa.
+                  </p>
+                  <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/76 sm:text-base">
+                    Criado pelas mãos de um publicitário apaixonado por comida e por cozinhar, o
+                    molho resgata a lembrança da panela de tomate da avó e leva essa história para
+                    uma cozinha de produção artesanal em Jundiaí.
+                  </p>
 
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {['Desde 2017', 'Produção própria', 'Sem conservantes', 'Parceria B2B local'].map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-[10px] border border-brand-earth/18 bg-brand-cream px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.08em] text-brand-earth"
+                  <div className="mt-7 flex flex-wrap gap-3">
+                    {['Produção autoral', 'Agricultura familiar', 'Showroom aberto', 'Jundiaí - SP'].map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-[999px] border border-white/20 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-white/92 backdrop-blur"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </m.div>
+
+                <m.div
+                  initial={shouldReduceMotion ? false : { opacity: 0, x: 24 }}
+                  whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.25 }}
+                  transition={shouldReduceMotion ? undefined : { duration: 0.6, delay: 0.12, ease: 'easeOut' }}
+                  className="grid gap-3"
+                >
+                  {[
+                    {
+                      title: 'Da origem ao prato',
+                      text: 'Um molho que nasce do ingrediente real e chega à mesa com textura natural, aroma fresco e assinatura artesanal.',
+                    },
+                    {
+                      title: 'Aroma, fogo e tempo',
+                      text: 'Cada receita carrega a presença da cozinha viva, com camadas de sabor construídas devagar e com cuidado.',
+                    },
+                    {
+                      title: 'Presença de marca',
+                      text: 'Menos bloco claro e mais impacto visual para sustentar o discurso premium logo no início da navegação.',
+                    },
+                  ].map((item) => (
+                    <m.article
+                      key={item.title}
+                      initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+                      whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.4 }}
+                      transition={shouldReduceMotion ? undefined : { duration: 0.5, ease: 'easeOut' }}
+                      className="rounded-[24px] border border-white/22 bg-[linear-gradient(180deg,rgba(0,0,0,0.44)_0%,rgba(0,0,0,0.34)_100%)] p-5 text-white shadow-[0_20px_40px_rgba(0,0,0,0.3)] backdrop-blur-md"
                     >
-                      {item}
-                    </span>
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#B7F0BF]">
+                        Essência da marca
+                      </p>
+                      <h3 className="mt-2 font-display text-2xl leading-tight text-white">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-white/80">{item.text}</p>
+                    </m.article>
                   ))}
-                </div>
+                </m.div>
               </div>
             </div>
           </SectionReveal>
 
           <SectionReveal className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10">
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {benefits.map((item) => {
+            <div className="mb-7 max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-green">Assinatura Caseirices</p>
+              <h2 className="mt-3 font-display text-3xl leading-tight text-brand-wine sm:text-4xl">
+                Receitas caseiras, que respeitam o tempo e o sabor.
+              </h2>
+            </div>
+            <div className="grid gap-4 lg:grid-cols-3">
+              {brandPillars.map((item) => {
                 const Icon = item.icon
                 return (
                   <article
@@ -423,26 +484,120 @@ function App() {
                   >
                     <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-brand-green/10 blur-2xl transition group-hover:bg-brand-red/10" />
                     <Icon className="relative h-6 w-6 text-brand-green" />
-                    <h3 className="relative mt-4 font-display text-2xl leading-tight text-brand-wine">{item.title}</h3>
-                    <p className="relative mt-2 text-sm leading-relaxed text-brand-ink/82">{item.text}</p>
+                    <p className="relative mt-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-earth/70">
+                      {item.eyebrow}
+                    </p>
+                    <h3 className="relative mt-2 font-display text-2xl leading-tight text-brand-wine">
+                      {item.title}
+                    </h3>
+                    <p className="relative mt-3 text-sm leading-relaxed text-brand-ink/82">{item.text}</p>
                   </article>
                 )
               })}
             </div>
           </SectionReveal>
 
-          <SectionReveal className="border-y border-brand-earth/14 bg-white/62 py-16 lg:py-20">
+          <SectionReveal className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
+            <div className="relative overflow-hidden rounded-[32px] border border-[#2f7d46]/35 bg-[radial-gradient(circle_at_18%_18%,rgba(143,224,143,0.18),transparent_26%),radial-gradient(circle_at_82%_12%,rgba(200,16,46,0.16),transparent_28%),linear-gradient(135deg,#143B29_0%,#1B5637_50%,#10281D_100%)] p-6 text-brand-cream shadow-[0_26px_64px_rgba(16,40,29,0.34)] sm:p-8 lg:p-10">
+              <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.02)_0%,rgba(255,255,255,0)_35%,rgba(255,255,255,0.04)_100%)]" />
+              <div className="relative grid gap-8 lg:grid-cols-[1.04fr_0.96fr] lg:items-center">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#9BE3A8]">
+                    Verde de verdade
+                  </p>
+                  <h2 className="mt-3 max-w-2xl font-display text-3xl leading-tight text-brand-cream sm:text-4xl lg:text-[3.1rem]">
+                    Do campo para a cozinha real.
+                  </h2>
+                  <p className="mt-4 max-w-2xl text-sm leading-relaxed text-brand-cream/84 sm:text-base">
+                    A identidade de Caseirices nasce de ingredientes naturais, tempo de preparo e
+                    uma cozinha que respeita o alimento antes de pensar no discurso. Aqui, o verde
+                    não entra como detalhe decorativo. Ele representa frescor, origem e verdade.
+                  </p>
+
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <span className="rounded-[999px] border border-white/18 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#E9F7E9]">
+                      Agricultura familiar
+                    </span>
+                    <span className="rounded-[999px] border border-white/18 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#E9F7E9]">
+                      Frescor e pureza
+                    </span>
+                    <span className="rounded-[999px] border border-white/18 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#E9F7E9]">
+                      Cozinha artesanal
+                    </span>
+                  </div>
+                </div>
+
+                <div className="grid gap-3">
+                  {greenSectionPoints.map((item) => {
+                    const Icon = item.icon
+                    return (
+                      <article
+                        key={item.title}
+                        className="rounded-[22px] border border-white/14 bg-[linear-gradient(180deg,rgba(255,248,240,0.13)_0%,rgba(255,248,240,0.07)_100%)] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur"
+                      >
+                        <Icon className="h-5 w-5 text-[#8FE08F]" />
+                        <h3 className="mt-3 font-display text-2xl leading-tight text-brand-cream">
+                          {item.title}
+                        </h3>
+                        <p className="mt-2 text-sm leading-relaxed text-brand-cream/82">{item.text}</p>
+                      </article>
+                    )
+                  })}
+                </div>
+              </div>
+            </div>
+          </SectionReveal>
+
+          <SectionReveal className="border-y border-[#2a5c3f]/20 bg-[radial-gradient(circle_at_20%_0%,rgba(96,171,109,0.2),transparent_22%),linear-gradient(180deg,#0E2A1D_0%,#123323_100%)] py-16 lg:py-20">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+              <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+                <div className="max-w-3xl">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#8FE08F]">Só o Essencial</p>
+                  <h2 className="mt-3 font-display text-3xl text-[#F8F1E7] sm:text-4xl">
+                    Porque só o essencial tem o sabor que faz a diferença.
+                  </h2>
+                  <p className="mt-3 text-sm leading-relaxed text-[#F0E9DE] sm:text-base">
+                    Uma receita que respeita o ingrediente, evita excessos e entrega leveza, pureza e
+                    memória afetiva em cada colher.
+                  </p>
+                </div>
+                <span className="rounded-[999px] border border-white/18 bg-white/12 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#FFF8F0] shadow-[0_10px_24px_rgba(5,16,11,0.18)]">
+                  Sem corantes. Sem conservantes. Sem gordura.
+                </span>
+              </div>
+
+              <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+                {essentialItems.map((item) => (
+                  <article
+                    key={item.title}
+                    className="rounded-[24px] border border-[#F4EBDD]/70 bg-[linear-gradient(180deg,#FFF8F0_0%,#F6EEDF_100%)] p-5 shadow-[0_22px_42px_rgba(7,20,14,0.24)]"
+                  >
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#2F7D46]">
+                      {item.eyebrow}
+                    </p>
+                    <h3 className="mt-3 font-display text-2xl leading-tight text-brand-wine">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-brand-ink/85">{item.text}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </SectionReveal>
+
+          <SectionReveal className="border-y border-brand-earth/14 bg-white/70 py-16 lg:py-20">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
               <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
                 <div>
-                  <h2 className="font-display text-3xl text-brand-wine sm:text-4xl">Vitrine de Produtos</h2>
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-green">Sabores Caseirices</p>
+                  <h2 className="mt-3 font-display text-3xl text-brand-wine sm:text-4xl">16 sabores, dos clássicos aos criativos</h2>
                   <p className="mt-2 max-w-2xl text-sm text-brand-ink/82 sm:text-base">
-                    Não é catálogo comum: é uma linha pensada para girar rápido e valorizar sua
-                    gôndola com linguagem visual premium.
+                    Um produto diferente de qualquer outro tipo de molho de tomate, criado para
+                    impressionar no prato e também na prateleira.
                   </p>
                 </div>
                 <span className="rounded-[10px] border border-brand-earth/20 bg-brand-cream px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-brand-earth">
-                  Mix estratégico para revenda
+                  Vitrine premium de sabores
                 </span>
               </div>
 
@@ -496,7 +651,7 @@ function App() {
                       />
                       <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/55 to-transparent" />
                       <p className="absolute bottom-3 left-3 right-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/90">
-                        Giro e margem premium
+                        Sabor artesanal de verdade
                       </p>
                     </div>
                     <div className="p-3">
@@ -514,40 +669,35 @@ function App() {
                     onClick={() => setShowAllFlavors((current) => !current)}
                     className="rounded-[12px] border border-brand-earth/18 bg-white px-4 py-2 text-sm font-semibold text-brand-wine transition hover:bg-brand-cream"
                   >
-                    {showAllFlavors ? 'Mostrar menos' : `Ver mais ${filteredFlavors.length - 8} sabores`}
+                    {showAllFlavors ? 'Mostrar menos' : 'Ver mais sabores'}
                   </button>
                 </div>
               ) : null}
             </div>
           </SectionReveal>
 
-          <SectionReveal className="mx-auto grid max-w-7xl gap-6 px-4 py-16 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-10 lg:py-20">
+          <SectionReveal className="mx-auto grid max-w-7xl gap-6 px-4 py-16 sm:px-6 lg:grid-cols-[0.98fr_1.02fr] lg:px-10 lg:py-20">
             <article className="rounded-[26px] border border-brand-earth/16 bg-white/88 p-7 shadow-[0_16px_38px_rgba(55,27,16,0.1)] lg:p-9">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-green">Por que Caseirices?</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-green">O prazer de receber e cozinhar</p>
               <h2 className="mt-3 font-display text-3xl leading-tight text-brand-wine sm:text-4xl">
-                Confiabilidade de fábrica local com padrão premium
+                A cozinha de casa com toques de restaurante.
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-brand-ink/85 sm:text-base">
-                Desde 2017, dois amigos transformaram receitas autorais em uma operação sólida com
-                loja-fábrica própria em Jundiaí.
+                Produtos artesanais, inspirados na cozinha tradicional, prontos para acompanhar a
+                mesa de todas as famílias. Um molho pronto que transforma receitas simples em pratos
+                com presença de restaurante.
               </p>
 
-              <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                {[
-                  { icon: Factory, title: 'Loja-fábrica', text: 'Produção própria e rastreável' },
-                  { icon: Boxes, title: 'Logística ágil', text: 'Reposição com previsibilidade' },
-                  { icon: Handshake, title: 'Suporte ativo', text: 'Apoio real ao sell-out' },
-                  { icon: BadgePercent, title: 'Margem premium', text: 'Posicionamento de valor' },
-                ].map((item) => {
-                  const Icon = item.icon
-                  return (
-                    <div key={item.title} className="rounded-[14px] border border-brand-earth/14 bg-brand-cream/75 p-3">
-                      <Icon className="h-4 w-4 text-brand-green" />
-                      <p className="mt-2 text-sm font-bold text-brand-wine">{item.title}</p>
-                      <p className="mt-1 text-xs text-brand-ink/80">{item.text}</p>
-                    </div>
-                  )
-                })}
+              <div className="mt-6 space-y-3">
+                {experienceMoments.map((item) => (
+                  <div
+                    key={item.title}
+                    className="rounded-[16px] border border-brand-earth/14 bg-brand-cream/70 p-4"
+                  >
+                    <p className="text-sm font-bold text-brand-wine">{item.title}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-brand-ink/80">{item.text}</p>
+                  </div>
+                ))}
               </div>
             </article>
 
@@ -555,92 +705,42 @@ function App() {
               <div className="absolute -right-14 -top-14 h-44 w-44 rounded-full bg-brand-red/35 blur-2xl" />
               <div className="absolute -bottom-16 -left-12 h-44 w-44 rounded-full bg-brand-green/22 blur-2xl" />
               <div className="relative">
-                <h2 className="font-display text-3xl sm:text-4xl">Simulador de Retorno</h2>
-                <p className="mt-2 text-sm text-brand-cream/88 sm:text-base">
-                  Estime lucro mensal, payback e ROI com base no seu volume de compra.
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#FFD9AA]">Argumentos comerciais</p>
+                <h2 className="mt-3 font-display text-3xl sm:text-4xl">O produto que faz a diferença na prateleira.</h2>
+                <p className="mt-3 text-sm text-brand-cream/88 sm:text-base">
+                  Caseirices conversa com o consumidor exigente que valoriza qualidade, procedência e
+                  a história de um produto artesanal feito com verdade.
                 </p>
 
-                <div className="mt-7 space-y-5">
-                  <RangeControl
-                    label="Caixas por semana"
-                    min={4}
-                    max={60}
-                    step={1}
-                    value={boxesPerWeek}
-                    onChange={setBoxesPerWeek}
-                  />
-                  <RangeControl
-                    label="Margem unitária média"
-                    min={4}
-                    max={20}
-                    step={1}
-                    value={unitMargin}
-                    onChange={setUnitMargin}
-                    suffix=" R$"
-                  />
-                  <RangeControl
-                    label="Valor do 1º pedido"
-                    min={1200}
-                    max={14000}
-                    step={200}
-                    value={firstOrder}
-                    onChange={setFirstOrder}
-                    suffix=" R$"
-                  />
+                <div className="mt-7 space-y-3">
+                  {commercialArguments.map((item) => (
+                    <div
+                      key={item}
+                      className="rounded-[16px] border border-brand-cream/26 bg-[#2d0808]/55 px-4 py-3 text-sm text-brand-cream/92 backdrop-blur"
+                    >
+                      {item}
+                    </div>
+                  ))}
                 </div>
 
-                <div className="mt-8 grid gap-3 sm:grid-cols-3">
-                  <div className="rounded-[14px] border border-brand-cream/38 bg-[#2d0808]/70 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur">
-                    <p className="text-[11px] uppercase tracking-[0.12em] text-brand-cream/85">Lucro mensal</p>
-                    <p className="mt-1 font-display text-2xl text-brand-cream">{formatMoney(metrics.monthlyProfit)}</p>
-                    <div className="mt-2 h-[2px] w-10 rounded-full bg-brand-green/80" />
-                  </div>
-                  <div className="rounded-[14px] border border-brand-cream/38 bg-[#2d0808]/70 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur">
-                    <p className="text-[11px] uppercase tracking-[0.12em] text-brand-cream/85">Payback</p>
-                    <p className="mt-1 font-display text-2xl text-brand-cream">{metrics.paybackMonths.toFixed(1)} meses</p>
-                    <div className="mt-2 h-[2px] w-10 rounded-full bg-brand-green/80" />
-                  </div>
-                  <div className="rounded-[14px] border border-brand-cream/38 bg-[#2d0808]/70 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur">
-                    <p className="text-[11px] uppercase tracking-[0.12em] text-brand-cream/85">ROI anual</p>
-                    <p className="mt-1 font-display text-2xl text-brand-cream">{metrics.annualRoi.toFixed(0)}%</p>
-                    <div className="mt-2 h-[2px] w-10 rounded-full bg-brand-green/80" />
-                  </div>
-                </div>
+                <PrimaryButton
+                  href={WHATSAPP_RESELLER_LINK}
+                  className="mt-7 w-full rounded-[14px] border-white/28 bg-brand-red-dark hover:bg-[#6c1010] focus-visible:ring-offset-brand-red"
+                >
+                  Quero vender Caseirices
+                  <ArrowRight className="h-4 w-4" />
+                </PrimaryButton>
               </div>
             </article>
           </SectionReveal>
 
-          <SectionReveal className="border-y border-brand-earth/14 bg-white/65 py-16 lg:py-20">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
-              <h2 className="font-display text-3xl text-brand-wine sm:text-4xl">Materiais de Apoio para Revendedores</h2>
-              <p className="mt-2 max-w-3xl text-sm text-brand-ink/82 sm:text-base">
-                Você recebe estrutura comercial para vender mais desde a primeira semana.
-              </p>
-              <div className="mt-7 grid gap-4 md:grid-cols-3">
-                {supportItems.map((item) => {
-                  const Icon = item.icon
-                  return (
-                    <article
-                      key={item.title}
-                      className="rounded-[22px] border border-brand-earth/16 bg-white p-5 shadow-[0_12px_28px_rgba(55,27,16,0.08)]"
-                    >
-                      <Icon className="h-6 w-6 text-brand-green" />
-                      <h3 className="mt-4 font-display text-2xl leading-tight text-brand-wine">{item.title}</h3>
-                      <p className="mt-2 text-sm text-brand-ink/85">{item.text}</p>
-                    </article>
-                  )
-                })}
-              </div>
-            </div>
-          </SectionReveal>
-
           <SectionReveal className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
-            <div className="rounded-[24px] border border-brand-red-dark/60 bg-[linear-gradient(160deg,#8B0000_0%,#A30F21_48%,#6A0914_100%)] p-5 text-white shadow-[0_20px_44px_rgba(72,7,10,0.35)] sm:p-7">
+            <div className="rounded-[28px] border border-brand-red-dark/60 bg-[linear-gradient(160deg,#8B0000_0%,#A30F21_48%,#6A0914_100%)] p-5 text-white shadow-[0_20px_44px_rgba(72,7,10,0.35)] sm:p-7">
               <div className="mb-4 inline-flex items-center gap-3 rounded-[12px] border border-white/25 bg-white/10 px-3 py-2">
                 <span className="text-xl font-bold leading-none text-[#FFD76A]">4,9</span>
                 <span className="flex items-center gap-1" aria-label="Nota média 4,9 de 5 estrelas">
                   {[...Array(5)].map((_, index) => (
-                    <Star key={index} className="h-4 w-4 fill-[#FFD76A] text-[#FFD76A]" />
+                    <Star key={`hero-rating-${index}`} className="h-4 w-4 fill-[#FFD76A] text-[#FFD76A]" />
                   ))}
                 </span>
                 <span className="text-xs font-semibold uppercase tracking-[0.11em] text-white/85">
@@ -648,21 +748,25 @@ function App() {
                 </span>
               </div>
               <h2 className="font-display text-3xl text-white sm:text-4xl">
-                Clientes que compraram e amaram
+                Quem experimenta sente a diferença.
               </h2>
-              <p className="mt-2 text-sm text-white/88 sm:text-base">
-                Prova social real de quem já levou Caseirices para casa e virou cliente recorrente.
+              <p className="mt-2 max-w-3xl text-sm text-white/88 sm:text-base">
+                O sabor de Caseirices aparece no aroma, na textura, na memória de cozinha de casa e
+                na facilidade de transformar o prato do dia a dia.
               </p>
 
               <div className="mt-6 grid gap-4 md:grid-cols-3">
-                {placeholderTestimonials.map((item) => (
+                {customerTestimonials.map((item) => (
                   <article
                     key={item.business}
                     className="rounded-[18px] border border-white/24 bg-white/10 p-4 backdrop-blur-sm"
                   >
                     <div className="mb-3 flex items-center gap-1">
                       {[...Array(item.rating ?? 5)].map((_, index) => (
-                        <Star key={`${item.business}-${index}`} className="h-4 w-4 fill-[#FFD76A] text-[#FFD76A]" />
+                        <Star
+                          key={`${item.business}-rating-${index}`}
+                          className="h-4 w-4 fill-[#FFD76A] text-[#FFD76A]"
+                        />
                       ))}
                     </div>
                     <p className="text-sm leading-relaxed text-white/92">"{item.quote}"</p>
@@ -677,28 +781,49 @@ function App() {
           </SectionReveal>
 
           <SectionReveal className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-10 lg:pb-20">
-            <div className="rounded-[24px] border border-brand-earth/16 bg-white p-5 shadow-[0_16px_34px_rgba(55,27,16,0.09)] sm:p-7">
-              <h2 className="font-display text-3xl text-brand-wine sm:text-4xl">
-                Depoimentos de Lojistas Parceiros
-              </h2>
-              <p className="mt-2 text-sm text-brand-ink/82 sm:text-base">
-                Resultados de quem revende Caseirices no dia a dia: margem, giro e fidelização.
-              </p>
+            <div className="rounded-[26px] border border-brand-earth/16 bg-[linear-gradient(145deg,#fff8f0_0%,#fff0e4_100%)] p-5 shadow-[0_16px_34px_rgba(55,27,16,0.09)] sm:p-7">
+              <div className="grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-center">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-green">Molho de Origem</p>
+                  <h2 className="mt-3 font-display text-3xl text-brand-wine sm:text-4xl">
+                    Sabor de verdade, com procedência e segurança alimentar.
+                  </h2>
+                  <p className="mt-3 text-sm leading-relaxed text-brand-ink/82 sm:text-base">
+                    Fornecedores exclusivos, cozinha real, showroom aberto e um espaço que segue
+                    todas as normas e processos exigidos pela vigilância sanitária para entregar um
+                    produto de máxima excelência.
+                  </p>
+                </div>
 
-              <div className="mt-6 grid gap-4 md:grid-cols-3">
-                {retailerTestimonials.map((item) => (
-                  <article
-                    key={item.business}
-                    className="rounded-[18px] border border-brand-earth/14 bg-brand-cream/45 p-4"
-                  >
-                    <p className="text-sm leading-relaxed text-brand-ink/88">"{item.quote}"</p>
-                    <p className="mt-4 text-xs font-semibold uppercase tracking-[0.1em] text-brand-wine">
-                      {item.person}
-                    </p>
-                    <p className="mt-1 text-xs text-brand-ink/70">{item.role}</p>
-                    <p className="mt-2 text-sm font-semibold text-brand-earth">{item.business}</p>
-                  </article>
-                ))}
+                <div className="grid gap-3">
+                  {originFacts.map((item, index) => {
+                    const Icon = index === originFacts.length - 1 ? ShieldCheck : Store
+                    return (
+                      <div
+                        key={item}
+                        className="flex items-start gap-3 rounded-[16px] border border-brand-earth/14 bg-white/78 p-4"
+                      >
+                        {index === 1 ? (
+                          <>
+                            <img
+                              src="/assets/hero/fundador-caseirices.jpg"
+                              alt="Dono da Caseirices com os molhos da marca"
+                              className="h-44 w-full rounded-[12px] object-cover object-top lg:hidden"
+                              loading="lazy"
+                            />
+                            <Icon className="mt-0.5 hidden h-5 w-5 shrink-0 text-brand-green lg:block" />
+                            <p className="hidden text-sm leading-relaxed text-brand-ink/84 lg:block">{item}</p>
+                          </>
+                        ) : (
+                          <>
+                            <Icon className="mt-0.5 h-5 w-5 shrink-0 text-brand-green" />
+                            <p className="text-sm leading-relaxed text-brand-ink/84">{item}</p>
+                          </>
+                        )}
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
             </div>
           </SectionReveal>
@@ -706,72 +831,134 @@ function App() {
           <SectionReveal className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
             <div className="max-h-[800px] overflow-hidden rounded-[24px] border border-brand-earth/14 bg-white/55 p-4 sm:p-5">
               <div className="flex flex-wrap items-end justify-between gap-3">
-              <div>
-                <h2 className="font-display text-3xl text-brand-wine sm:text-4xl">Instagram da Marca</h2>
-                <p className="mt-2 text-sm text-brand-ink/80 sm:text-base">
-                  Conteúdo real da marca @caseiricesjundiai para fortalecer prova social no PDV.
-                </p>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-green">Instagram da marca</p>
+                  <h2 className="mt-3 font-display text-3xl text-brand-wine sm:text-4xl">@caseiricesjundiai</h2>
+                  <p className="mt-2 text-sm text-brand-ink/80 sm:text-base">
+                    A cozinha real, os produtos e os bastidores da marca em um feed que reforça a
+                    assinatura artesanal de Caseirices.
+                  </p>
+                </div>
+                <SecondaryButton href={INSTAGRAM_LINK}>
+                  <Instagram className="h-4 w-4 text-brand-green" />
+                  Ver Instagram
+                </SecondaryButton>
               </div>
-              <SecondaryButton href={INSTAGRAM_LINK}>
-                <Instagram className="h-4 w-4 text-brand-green" />
-                @caseiricesjundiai
-              </SecondaryButton>
-              </div>
 
-            <div className="mt-4 max-h-[680px] overflow-hidden rounded-[22px] border border-brand-earth/16 bg-white/90 p-2.5 shadow-[0_16px_38px_rgba(55,27,16,0.09)] sm:p-3">
-              <div className="md:hidden">
-                <div className="mx-auto max-w-md overflow-hidden rounded-[24px] border border-brand-earth/16 bg-white shadow-[0_16px_36px_rgba(44,21,13,0.14)]">
-                  <div className="flex items-center justify-between border-b border-brand-earth/12 px-3 py-2.5">
-                    <span className="text-sm font-semibold text-brand-ink">Instagram</span>
-                    <span className="text-xs font-semibold uppercase tracking-[0.12em] text-brand-green">
-                      {instagramStatus === 'live' ? 'Ao vivo' : instagramStatus === 'loading' ? 'Carregando' : 'Feed local'}
-                    </span>
-                  </div>
+              <div className="mt-4 max-h-[680px] overflow-hidden rounded-[22px] border border-brand-earth/16 bg-white/90 p-2.5 shadow-[0_16px_38px_rgba(55,27,16,0.09)] sm:p-3">
+                <div className="md:hidden">
+                  <div className="mx-auto max-w-md overflow-hidden rounded-[24px] border border-brand-earth/16 bg-white shadow-[0_16px_36px_rgba(44,21,13,0.14)]">
+                    <div className="flex items-center justify-between border-b border-brand-earth/12 px-3 py-2.5">
+                      <span className="text-sm font-semibold text-brand-ink">Instagram</span>
+                      <span className="text-xs font-semibold uppercase tracking-[0.12em] text-brand-green">
+                        {instagramStatus === 'live' ? 'Ao vivo' : instagramStatus === 'loading' ? 'Carregando' : 'Feed local'}
+                      </span>
+                    </div>
 
-                  <div className="flex gap-2 overflow-x-auto border-b border-brand-earth/12 px-3 py-2.5">
-                    {instagramFeed.slice(0, 8).map((item, index) => (
-                      <a
-                        key={`story-${item.id}`}
-                        href={item.permalink}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="shrink-0"
-                        aria-label={`Story ${index + 1}`}
-                      >
-                        <span className="block rounded-full bg-[linear-gradient(160deg,#C8102E,#E35F3C,#228B22)] p-[2px]">
-                          <img
-                            src={item.image}
-                            alt=""
-                            className="h-11 w-11 rounded-full border border-white object-cover"
-                            onError={(event) => {
-                              const fallbackImage = instagramImages[index % instagramImages.length]
-                              if (!event.currentTarget.src.endsWith(fallbackImage)) {
-                                event.currentTarget.src = fallbackImage
-                              }
-                            }}
-                          />
-                        </span>
-                      </a>
-                    ))}
-                  </div>
-
-                  <div className="max-h-[500px] overflow-y-auto p-2.5">
-                    <div className="grid grid-cols-2 gap-2">
-                      {instagramFeed.map((item, index) => (
-                        <m.a
-                          key={`mobile-${item.id}`}
+                    <div className="flex gap-2 overflow-x-auto border-b border-brand-earth/12 px-3 py-2.5">
+                      {instagramFeed.slice(0, 8).map((item, index) => (
+                        <a
+                          key={`story-${item.id}`}
                           href={item.permalink}
                           target="_blank"
                           rel="noreferrer"
-                          initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+                          className="shrink-0"
+                          aria-label={`Story ${index + 1}`}
+                        >
+                          <span className="block rounded-full bg-[linear-gradient(160deg,#C8102E,#E35F3C,#228B22)] p-[2px]">
+                            <img
+                              src={item.image}
+                              alt=""
+                              className="h-11 w-11 rounded-full border border-white object-cover"
+                              onError={(event) => {
+                                const fallbackImage = instagramImages[index % instagramImages.length]
+                                if (!event.currentTarget.src.endsWith(fallbackImage)) {
+                                  event.currentTarget.src = fallbackImage
+                                }
+                              }}
+                            />
+                          </span>
+                        </a>
+                      ))}
+                    </div>
+
+                    <div className="max-h-[500px] overflow-y-auto p-2.5">
+                      <div className="grid grid-cols-2 gap-2">
+                        {instagramFeed.map((item, index) => (
+                          <MotionLink
+                            key={`mobile-${item.id}`}
+                            href={item.permalink}
+                            target="_blank"
+                            rel="noreferrer"
+                            initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+                            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.2 }}
+                            transition={shouldReduceMotion ? undefined : { duration: 0.3, delay: index * 0.03 }}
+                            className="group relative aspect-square overflow-hidden rounded-[12px] border border-brand-earth/14 bg-brand-cream"
+                          >
+                            <img
+                              src={item.image}
+                              alt={`Publicação ${index + 1} do Instagram da Caseirices`}
+                              className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                              onError={(event) => {
+                                const fallbackImage = instagramImages[index % instagramImages.length]
+                                if (!event.currentTarget.src.endsWith(fallbackImage)) {
+                                  event.currentTarget.src = fallbackImage
+                                }
+                              }}
+                            />
+                            {item.isVideo ? (
+                              <span className="absolute right-2 top-2 inline-flex items-center gap-1 rounded-[8px] border border-white/40 bg-black/55 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-white">
+                                <Video className="h-3 w-3" /> Vídeo
+                              </span>
+                            ) : null}
+                          </MotionLink>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="hidden gap-3 md:grid md:grid-cols-[230px_1fr]">
+                  <aside className="rounded-[18px] border border-brand-earth/14 bg-brand-cream/70 p-3">
+                    <div className="flex items-center gap-3">
+                      <span className="rounded-[12px] border border-brand-earth/20 bg-white px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.11em] text-brand-earth">
+                        @caseiricesjundiai
+                      </span>
+                    </div>
+                    <p className="mt-3 text-sm leading-relaxed text-brand-ink/80">
+                      {instagramStatus === 'live'
+                        ? 'Feed sincronizado com as últimas publicações da marca.'
+                        : 'Alguns conteúdos podem não carregar automaticamente. Acesse o perfil oficial para ver mais.'}
+                    </p>
+                    <a
+                      href={INSTAGRAM_LINK}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-4 inline-flex items-center gap-2 rounded-[10px] border border-brand-earth/18 bg-white px-3 py-2 text-sm font-semibold text-brand-wine transition hover:bg-brand-cream"
+                    >
+                      Abrir perfil oficial
+                      <ArrowRight className="h-4 w-4" />
+                    </a>
+                  </aside>
+
+                  <div className="max-h-[610px] overflow-y-auto pr-1">
+                    <div className="grid grid-cols-3 gap-2 lg:grid-cols-4">
+                      {instagramFeed.map((item, index) => (
+                        <MotionLink
+                          key={item.id}
+                          href={item.permalink}
+                          target="_blank"
+                          rel="noreferrer"
+                          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
                           whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
                           viewport={{ once: true, amount: 0.2 }}
-                          transition={shouldReduceMotion ? undefined : { duration: 0.3, delay: index * 0.03 }}
-                          className="group relative aspect-square overflow-hidden rounded-[12px] border border-brand-earth/14 bg-brand-cream"
+                          transition={shouldReduceMotion ? undefined : { duration: 0.35, delay: index * 0.04 }}
+                          className="group relative aspect-square overflow-hidden rounded-[12px] border border-brand-earth/14 bg-white"
                         >
                           <img
                             src={item.image}
-                            alt={`Publicacao ${index + 1} do Instagram da Caseirices`}
+                            alt={`Publicação ${index + 1} do Instagram da Caseirices`}
                             className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                             onError={(event) => {
                               const fallbackImage = instagramImages[index % instagramImages.length]
@@ -782,75 +969,15 @@ function App() {
                           />
                           {item.isVideo ? (
                             <span className="absolute right-2 top-2 inline-flex items-center gap-1 rounded-[8px] border border-white/40 bg-black/55 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-white">
-                              <Video className="h-3 w-3" /> Video
+                              <Video className="h-3 w-3" /> Vídeo
                             </span>
                           ) : null}
-                        </m.a>
+                        </MotionLink>
                       ))}
                     </div>
                   </div>
                 </div>
               </div>
-
-              <div className="hidden gap-3 md:grid md:grid-cols-[230px_1fr]">
-                <aside className="rounded-[18px] border border-brand-earth/14 bg-brand-cream/70 p-3">
-                  <div className="flex items-center gap-3">
-                    <span className="rounded-[12px] border border-brand-earth/20 bg-white px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.11em] text-brand-earth">
-                      @caseiricesjundiai
-                    </span>
-                  </div>
-                  <p className="mt-3 text-sm leading-relaxed text-brand-ink/80">
-                    {instagramStatus === 'live'
-                      ? 'Feed sincronizado com as últimas publicações da marca.'
-                      : 'Instagram bloqueou a leitura pública; exibindo galeria local oficial para manter prova social ativa.'}
-                  </p>
-                  <a
-                    href={INSTAGRAM_LINK}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-4 inline-flex items-center gap-2 rounded-[10px] border border-brand-earth/18 bg-white px-3 py-2 text-sm font-semibold text-brand-wine transition hover:bg-brand-cream"
-                  >
-                    Abrir perfil oficial
-                    <ArrowRight className="h-4 w-4" />
-                  </a>
-                </aside>
-
-                <div className="max-h-[610px] overflow-y-auto pr-1">
-                  <div className="grid grid-cols-3 gap-2 lg:grid-cols-4">
-                    {instagramFeed.map((item, index) => (
-                      <m.a
-                        key={item.id}
-                        href={item.permalink}
-                        target="_blank"
-                        rel="noreferrer"
-                        initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-                        whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.2 }}
-                        transition={shouldReduceMotion ? undefined : { duration: 0.35, delay: index * 0.04 }}
-                        className="group relative aspect-square overflow-hidden rounded-[12px] border border-brand-earth/14 bg-white"
-                      >
-                        <img
-                          src={item.image}
-                          alt={`Publicacao ${index + 1} do Instagram da Caseirices`}
-                          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                          onError={(event) => {
-                            const fallbackImage = instagramImages[index % instagramImages.length]
-                            if (!event.currentTarget.src.endsWith(fallbackImage)) {
-                              event.currentTarget.src = fallbackImage
-                            }
-                          }}
-                        />
-                        {item.isVideo ? (
-                          <span className="absolute right-2 top-2 inline-flex items-center gap-1 rounded-[8px] border border-white/40 bg-black/55 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-white">
-                            <Video className="h-3 w-3" /> Video
-                          </span>
-                        ) : null}
-                      </m.a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
             </div>
           </SectionReveal>
         </main>
@@ -858,13 +985,16 @@ function App() {
         <footer className="border-t border-brand-earth/20 bg-brand-wine px-4 py-8 text-brand-cream sm:px-6 lg:px-10">
           <div className="mx-auto max-w-7xl">
             <div className="rounded-[22px] border border-white/20 bg-[#5a0a0a]/55 p-5 shadow-[0_18px_40px_rgba(0,0,0,0.22)] sm:p-7">
-              <div className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+              <div className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
                 <div>
                   <BrandLockup />
                   <h3 className="mt-3 font-display text-3xl leading-tight text-white sm:text-4xl">
-                    Caseirices Molhos Artesanais - Loja de Fábrica e Empório Artesanal
+                    Experimente Caseirices. O molho que faz a diferença.
                   </h3>
-                  <p className="mt-2 text-sm text-brand-cream/88 sm:text-base">Jundiaí - SP</p>
+                  <p className="mt-3 max-w-2xl text-sm leading-relaxed text-brand-cream/88 sm:text-base">
+                    Sabor de verdade, memória de cozinha de casa e uma assinatura artesanal que
+                    transforma qualquer receita.
+                  </p>
 
                   <div className="mt-4 inline-flex items-center gap-2 rounded-[12px] border border-white/25 bg-white/10 px-3 py-2">
                     <span className="inline-flex items-center gap-1 text-[#F8D66D]">
@@ -875,12 +1005,12 @@ function App() {
                       <Star className="h-4 w-4 fill-current" />
                     </span>
                     <span className="text-sm font-semibold text-white">5,0</span>
-                    <span className="text-sm text-brand-cream/90">4 avaliações no Google</span>
+                    <span className="text-sm text-brand-cream/90">Sabor caseiro que fideliza</span>
                   </div>
 
-                  <div className="mt-4 flex flex-wrap gap-2">
+                  <div className="mt-5 flex flex-wrap gap-2">
                     <a
-                      href="https://caseirices.com.br"
+                      href={SITE_LINK}
                       target="_blank"
                       rel="noreferrer"
                       className="inline-flex items-center gap-2 rounded-[12px] border border-white/24 bg-white/10 px-3 py-2 text-sm font-medium transition hover:bg-white/18"
@@ -898,14 +1028,7 @@ function App() {
                       Rotas
                     </a>
                     <a
-                      href="tel:+5511974884319"
-                      className="inline-flex items-center gap-2 rounded-[12px] border border-white/24 bg-white/10 px-3 py-2 text-sm font-medium transition hover:bg-white/18"
-                    >
-                      <PhoneCall className="h-4 w-4" />
-                      Ligar
-                    </a>
-                    <a
-                      href={WHATSAPP_LINK}
+                      href={WHATSAPP_DISCOVERY_LINK}
                       target="_blank"
                       rel="noreferrer"
                       className="inline-flex items-center gap-2 rounded-[12px] border border-white/24 bg-white/10 px-3 py-2 text-sm font-medium transition hover:bg-white/18"
@@ -927,16 +1050,12 @@ function App() {
                       <span>(11) 97488-4319</span>
                     </li>
                     <li className="inline-flex w-full items-start gap-2">
-                      <Clock3 className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
-                      <span>Horário de funcionamento: Aberto - Fecha 16:45</span>
+                      <Store className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
+                      <span>Cozinha de produção e showroom abertos para visitas</span>
                     </li>
                     <li className="inline-flex w-full items-start gap-2">
-                      <BusFront className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
-                      <span>Chegue em: 34 min (ônibus)</span>
-                    </li>
-                    <li className="inline-flex w-full items-start gap-2">
-                      <Car className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
-                      <span>Chegue em: 18 min (carro)</span>
+                      <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
+                      <span>Segurança alimentar e processos conforme as exigências sanitárias</span>
                     </li>
                     <li className="inline-flex w-full items-start gap-2">
                       <ExternalLink className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
@@ -954,12 +1073,12 @@ function App() {
                       <Instagram className="h-4 w-4" /> Instagram oficial
                     </a>
                     <a
-                      href={WHATSAPP_LINK}
+                      href={WHATSAPP_RESELLER_LINK}
                       target="_blank"
                       rel="noreferrer"
                       className="inline-flex items-center gap-2 transition hover:text-brand-green"
                     >
-                      <PhoneCall className="h-4 w-4" /> WhatsApp comercial
+                      <PhoneCall className="h-4 w-4" /> Canal comercial
                     </a>
                   </div>
                 </div>
@@ -968,38 +1087,17 @@ function App() {
           </div>
         </footer>
 
-        <div className="pointer-events-none fixed inset-x-0 bottom-0 z-50 hidden px-4 pb-4 sm:px-6 lg:block lg:px-10">
-          <div className="mx-auto max-w-7xl">
-            <div className="pointer-events-auto mx-auto w-full rounded-[16px] border border-brand-red-dark bg-brand-red px-3 py-3 shadow-[0_18px_40px_rgba(139,0,0,0.38)] lg:ml-auto lg:mr-0 lg:max-w-md">
-              <p className="text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-white/85">
-                Parceria comercial premium
-              </p>
-              <PrimaryButton href={WHATSAPP_LINK} className="mt-2 w-full rounded-[12px] border-white/35 bg-brand-red-dark hover:bg-[#6c1010] focus-visible:ring-offset-brand-red">
-                Quero tabela e condições
-                <ArrowRight className="h-4 w-4" />
-              </PrimaryButton>
-            </div>
-          </div>
-        </div>
-
         <a
-          href={WHATSAPP_LINK}
-          target="_blank"
-          rel="noreferrer"
-          className="fixed bottom-4 right-4 z-50 inline-flex items-center gap-2 rounded-full border border-white/35 bg-brand-red px-4 py-2.5 text-xs font-bold uppercase tracking-[0.08em] text-white shadow-[0_14px_32px_rgba(139,0,0,0.32)] transition hover:bg-brand-red-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/90 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-red lg:hidden"
-        >
-          Revender
-          <ArrowRight className="h-3.5 w-3.5" />
-        </a>
-
-        <a
-          href={WHATSAPP_FLOAT_LINK}
+          href={WHATSAPP_DISCOVERY_LINK}
           target="_blank"
           rel="noreferrer"
           aria-label="WhatsApp fixo Caseirices"
-          className="fixed bottom-5 left-4 z-50 rounded-full border border-white/40 bg-[#25D366] p-3 text-white shadow-[0_16px_34px_rgba(12,74,36,0.38)] transition hover:scale-[1.05] hover:bg-[#1eb95a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#25D366] sm:bottom-6 sm:left-5"
+          className="group fixed bottom-4 left-4 z-50 inline-flex items-center gap-2 rounded-full border border-white/55 bg-[linear-gradient(135deg,#2fe678,#18b457)] px-3.5 py-2.5 text-white shadow-[0_16px_34px_rgba(12,74,36,0.46)] transition hover:scale-[1.05] hover:shadow-[0_20px_44px_rgba(12,74,36,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#25D366] sm:bottom-6 sm:left-5 sm:gap-3 sm:px-5 sm:py-3.5 sm:shadow-[0_24px_52px_rgba(12,74,36,0.55)]"
         >
-          <PhoneCall className="h-5 w-5" />
+          <span className="absolute -inset-2 -z-10 rounded-full bg-[#25D366]/45 blur-lg transition group-hover:bg-[#25D366]/60" />
+          <span className="absolute -inset-3 -z-20 hidden rounded-full border border-[#8ef6b8]/40 animate-pulse sm:block" />
+          <PhoneCall className="h-5 w-5 sm:h-7 sm:w-7" />
+          <span className="hidden text-sm font-bold uppercase tracking-[0.08em] sm:inline">WhatsApp</span>
         </a>
       </div>
     </LazyMotion>
