@@ -18,7 +18,7 @@ export const flavors = [
   {
     name: 'Molho de Tomate com Alho 350 g',
     profile: 'Aroma intenso de alho com base de tomate artesanal',
-    group: 'classicos',
+    group: 'criativos',
     image: '/assets/products/real/molho-tomate-alho-350g.jpeg',
     fallbackImage: '/assets/products/sabor-03.svg',
     isReal: true,
@@ -26,7 +26,7 @@ export const flavors = [
   {
     name: 'Molho de Tomate com Azeitona 350 g',
     profile: 'Sabor marcante e mediterrâneo com azeitonas selecionadas',
-    group: 'classicos',
+    group: 'criativos',
     image: '/assets/products/real/molho-tomate-azeitona-350g.jpeg',
     fallbackImage: '/assets/products/sabor-04.svg',
     isReal: true,
@@ -34,7 +34,7 @@ export const flavors = [
   {
     name: 'Molho de Tomate Defumado 350 g',
     profile: 'Toque defumado elegante para dar profundidade aos pratos',
-    group: 'classicos',
+    group: 'defumados',
     image: '/assets/products/real/molho-tomate-defumado-350g.jpeg',
     fallbackImage: '/assets/products/sabor-05.svg',
     isReal: true,
@@ -42,7 +42,7 @@ export const flavors = [
   {
     name: 'Arrabiata 350 g',
     profile: 'Picância equilibrada e acabamento vibrante',
-    group: 'picantes',
+    group: 'apimentados',
     image: '/assets/products/real/arrabiata-350g.jpeg',
     fallbackImage: '/assets/products/sabor-06.svg',
     isReal: true,
@@ -66,7 +66,7 @@ export const flavors = [
   {
     name: 'Mostarda Artesanal',
     profile: 'Equilíbrio entre cremosidade, acidez e personalidade',
-    group: 'classicos',
+    group: 'criativos',
     image: '/assets/products/real/mostarda-artesanal.jpg',
     fallbackImage: '/assets/products/sabor-09.svg',
     isReal: false,
@@ -74,7 +74,7 @@ export const flavors = [
   {
     name: 'Barbecue Caseiro',
     profile: 'Defumado e adocicado na medida para churrasco e grelha',
-    group: 'premium',
+    group: 'defumados',
     image: '/assets/products/real/barbecue-caseiro.jpg',
     fallbackImage: '/assets/products/sabor-10.svg',
     isReal: false,
@@ -82,7 +82,7 @@ export const flavors = [
   {
     name: 'Chimichurri',
     profile: 'Herbal, vivo e cheio de frescor para carnes e legumes',
-    group: 'premium',
+    group: 'criativos',
     image: '/assets/products/real/chimichurri.jpg',
     fallbackImage: '/assets/products/sabor-11.svg',
     isReal: false,
@@ -90,7 +90,7 @@ export const flavors = [
   {
     name: 'Cebola Caramelizada',
     profile: 'Doce, intensa e reconfortante para hambúrgueres e assados',
-    group: 'classicos',
+    group: 'criativos',
     image: '/assets/products/real/cebola-caramelizada.jpg',
     fallbackImage: '/assets/products/sabor-12.svg',
     isReal: false,
@@ -98,7 +98,7 @@ export const flavors = [
   {
     name: 'Jalapeño',
     profile: 'Picante, verde e expressivo para quem gosta de intensidade',
-    group: 'picantes',
+    group: 'apimentados',
     image: '/assets/products/real/defumado.jpg',
     fallbackImage: '/assets/products/sabor-13.svg',
     isReal: false,
@@ -106,7 +106,7 @@ export const flavors = [
   {
     name: 'Pesto da Casa',
     profile: 'Manjericão em destaque para massas, pães e entradas',
-    group: 'premium',
+    group: 'criativos',
     image: '/assets/products/real/assado.jpg',
     fallbackImage: '/assets/products/sabor-14.svg',
     isReal: false,
@@ -122,7 +122,7 @@ export const flavors = [
   {
     name: 'Defumado Premium',
     profile: 'Toque profundo e memorável para receitas com personalidade',
-    group: 'classicos',
+    group: 'defumados',
     image: '/assets/products/real/azeitona.jpg',
     fallbackImage: '/assets/products/sabor-16.svg',
     isReal: false,

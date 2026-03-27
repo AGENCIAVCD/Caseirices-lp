@@ -149,8 +149,10 @@ const originFacts = [
 const flavorFilters = [
   { id: 'all', label: 'Todos' },
   { id: 'classicos', label: 'Clássicos' },
-  { id: 'premium', label: 'Criativos' },
-  { id: 'picantes', label: 'Intensos' },
+  { id: 'criativos', label: 'Criativos' },
+  { id: 'premium', label: 'Premium' },
+  { id: 'defumados', label: 'Defumados' },
+  { id: 'apimentados', label: 'Apimentados' },
 ]
 
 function BrandLockup() {
@@ -596,9 +598,6 @@ function App() {
                     impressionar no prato e também na prateleira.
                   </p>
                 </div>
-                <span className="rounded-[10px] border border-brand-earth/20 bg-brand-cream px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-brand-earth">
-                  Vitrine premium de sabores
-                </span>
               </div>
 
               <div className="mb-5 flex flex-wrap gap-2">

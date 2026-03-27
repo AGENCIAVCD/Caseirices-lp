@@ -34,7 +34,44 @@ export default async function handler(req, res) {
     return items
   }
 
-  try {
+  async function fetchFromWebProfileInfo() {
+    const response = await fetch(
+      `https://www.instagram.com/api/v1/users/web_profile_info/?username=${encodeURIComponent(username)}`,
+      {
+        headers: {
+          'user-agent':
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+          accept: '*/*',
+          'x-ig-app-id': '936619743392459',
+          referer: `https://www.instagram.com/${encodeURIComponent(username)}/`,
+        },
+      },
+    )
+
+    if (!response.ok) {
+      throw new Error(`web_profile_info status ${response.status}`)
+    }
+
+    const payload = await response.json()
+    const edges = payload?.data?.user?.edge_owner_to_timeline_media?.edges
+
+    if (!Array.isArray(edges) || edges.length === 0) {
+      throw new Error('web_profile_info sem edges')
+    }
+
+    return edges.slice(0, limit).map((edge) => {
+      const node = edge?.node ?? {}
+      const shortcode = node.shortcode
+      return {
+        id: node.id ?? shortcode,
+        image: node.display_url,
+        permalink: `https://www.instagram.com/p/${shortcode}/`,
+        isVideo: Boolean(node.is_video),
+      }
+    })
+  }
+
+  async function fetchFromEmbedFallback() {
     const response = await fetch(`https://www.instagram.com/${encodeURIComponent(username)}/embed`, {
       headers: {
         'user-agent':
@@ -44,28 +81,24 @@ export default async function handler(req, res) {
     })
 
     if (!response.ok) {
-      return res.status(response.status).json({
-        ok: false,
-        message: `Instagram embed retornou status ${response.status}`,
-      })
+      throw new Error(`embed status ${response.status}`)
     }
 
     const html = await response.text()
     const items = parseEmbedFeed(html, limit)
+    if (!items.length) throw new Error('embed sem posts')
+    return items
+  }
 
-    if (!items.length) {
-      return res.status(502).json({
-        ok: false,
-        message: 'Nao foi possivel extrair posts do embed do Instagram',
-      })
+  try {
+    let items = []
+    try {
+      items = await fetchFromWebProfileInfo()
+    } catch {
+      items = await fetchFromEmbedFallback()
     }
 
-    return res.status(200).json({
-      ok: true,
-      username,
-      items,
-      fetchedAt: new Date().toISOString(),
-    })
+    return res.status(200).json({ ok: true, username, items, fetchedAt: new Date().toISOString() })
   } catch (error) {
     return res.status(500).json({
       ok: false,
