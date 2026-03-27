@@ -155,13 +155,13 @@ const flavorFilters = [
   { id: 'apimentados', label: 'Apimentados' },
 ]
 
-function BrandLockup() {
+function BrandLockup({ logoClassName = 'w-[82%] scale-110' }) {
   return (
     <div className="relative inline-flex h-[114px] w-[114px] items-center justify-center rounded-full border border-[#eacfb0] bg-[#fdedd3] p-4 shadow-[0_18px_36px_rgba(24,13,9,0.24)] sm:h-[130px] sm:w-[130px]">
       <img
         src="/assets/brand/caseirices-logo-hero.png"
         alt="Logo da marca Caseirices"
-        className="h-auto w-[82%] scale-110 drop-shadow-[0_6px_14px_rgba(60,26,18,0.22)]"
+        className={`h-auto ${logoClassName} drop-shadow-[0_6px_14px_rgba(60,26,18,0.22)]`}
       />
     </div>
   )
@@ -314,7 +314,7 @@ function App() {
 
             <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col px-4 py-6 sm:px-6 lg:px-10 lg:py-8">
               <div className="mb-4 flex flex-col items-center gap-3 lg:mb-5">
-                <BrandLockup />
+                <BrandLockup logoClassName="w-[98%] scale-110" />
                 <span className="inline-flex items-center rounded-[14px] border border-[#ffd9a0]/55 bg-[linear-gradient(135deg,rgba(180,19,34,0.9),rgba(110,13,24,0.9))] px-5 py-2.5 text-[12px] font-extrabold uppercase tracking-[0.16em] text-[#fff5e7] shadow-[0_14px_28px_rgba(85,7,15,0.36)]">
                   Molhos de Tomate Caseirices
                 </span>
