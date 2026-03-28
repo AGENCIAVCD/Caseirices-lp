@@ -155,13 +155,13 @@ const flavorFilters = [
   { id: 'apimentados', label: 'Apimentados' },
 ]
 
-function BrandLockup({ logoClassName = 'w-[82%] scale-110' }) {
+function BrandLockup({ frameClassName = 'h-[82%] w-[82%]' }) {
   return (
-    <div className="relative inline-flex h-[114px] w-[114px] items-center justify-center rounded-full border border-[#eacfb0] bg-[#fdedd3] p-4 shadow-[0_18px_36px_rgba(24,13,9,0.24)] sm:h-[130px] sm:w-[130px]">
+    <div className={`relative inline-flex items-center justify-center ${frameClassName}`}>
       <img
-        src="/assets/brand/caseirices-logo-hero.png"
+        src="/assets/brand/caseirices-logo-hero.webp"
         alt="Logo da marca Caseirices"
-        className={`h-auto ${logoClassName} drop-shadow-[0_6px_14px_rgba(60,26,18,0.22)]`}
+        className="h-full w-full object-contain drop-shadow-[0_18px_36px_rgba(24,13,9,0.24)]"
       />
     </div>
   )
@@ -314,7 +314,7 @@ function App() {
 
             <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col px-4 py-6 sm:px-6 lg:px-10 lg:py-8">
               <div className="mb-4 flex flex-col items-center gap-3 lg:mb-5">
-                <BrandLockup logoClassName="w-[98%] scale-110" />
+                <BrandLockup frameClassName="h-[114px] w-[114px] sm:h-[130px] sm:w-[130px]" />
                 <span className="inline-flex items-center rounded-[14px] border border-[#ffd9a0]/55 bg-[linear-gradient(135deg,rgba(180,19,34,0.9),rgba(110,13,24,0.9))] px-5 py-2.5 text-[12px] font-extrabold uppercase tracking-[0.16em] text-[#fff5e7] shadow-[0_14px_28px_rgba(85,7,15,0.36)]">
                   Molhos de Tomate Caseirices
                 </span>
