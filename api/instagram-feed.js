@@ -1,5 +1,6 @@
 const DEFAULT_USERNAME = 'caseiricesjundiai'
 const DEFAULT_LIMIT = 9
+const CACHE_CONTROL = 's-maxage=900, stale-while-revalidate=43200'
 
 function toPositiveInt(value, fallback) {
   const parsed = Number.parseInt(value, 10)
@@ -7,6 +8,8 @@ function toPositiveInt(value, fallback) {
 }
 
 export default async function handler(req, res) {
+  res.setHeader('Cache-Control', CACHE_CONTROL)
+
   const username = (req.query.username || DEFAULT_USERNAME).toString().trim()
   const limit = Math.min(toPositiveInt(req.query.limit, DEFAULT_LIMIT), 12)
 
@@ -92,18 +95,47 @@ export default async function handler(req, res) {
 
   try {
     let items = []
+    let source = 'web_profile_info'
+    let degraded = false
+    let warning = null
+
     try {
       items = await fetchFromWebProfileInfo()
-    } catch {
-      items = await fetchFromEmbedFallback()
+    } catch (webProfileError) {
+      source = 'embed'
+      try {
+        items = await fetchFromEmbedFallback()
+      } catch (embedError) {
+        source = 'none'
+        degraded = true
+        warning =
+          embedError instanceof Error
+            ? embedError.message
+            : webProfileError instanceof Error
+              ? webProfileError.message
+              : 'instagram-unavailable'
+        items = []
+      }
     }
 
-    return res.status(200).json({ ok: true, username, items, fetchedAt: new Date().toISOString() })
+    return res.status(200).json({
+      ok: true,
+      username,
+      items,
+      source,
+      degraded,
+      warning,
+      fetchedAt: new Date().toISOString(),
+    })
   } catch (error) {
-    return res.status(500).json({
-      ok: false,
-      message: 'Falha ao buscar feed do Instagram',
-      error: error instanceof Error ? error.message : 'Erro desconhecido',
+    return res.status(200).json({
+      ok: true,
+      username,
+      items: [],
+      source: 'none',
+      degraded: true,
+      warning: error instanceof Error ? error.message : 'Erro desconhecido',
+      fetchedAt: new Date().toISOString(),
     })
   }
 }
