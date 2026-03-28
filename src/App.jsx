@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { LazyMotion, domAnimation, m, useReducedMotion } from 'framer-motion'
 import {
   ArrowRight,
@@ -16,11 +16,10 @@ import {
   Sparkles,
   Star,
   Store,
-  Video,
 } from 'lucide-react'
 import { SectionReveal } from './components/SectionReveal'
 import { SequenceScroll } from './components/SequenceScroll'
-import { flavors, instagramImages } from './data/flavors'
+import { flavors } from './data/flavors'
 
 const SITE_LINK = 'https://caseirices.com.br'
 const WHATSAPP_RESELLER_LINK =
@@ -29,6 +28,22 @@ const WHATSAPP_DISCOVERY_LINK =
   'https://api.whatsapp.com/send?phone=5511974884319&text=Eu%20gostaria%20de%20conhecer%20os%20produtos%20Caseirices'
 const INSTAGRAM_LINK = 'https://www.instagram.com/caseiricesjundiai/'
 const HERO_VIDEO_SRC = '/assets/hero/caseirices-hero-complete.mp4'
+const MEDIA_FEATURES = [
+  {
+    eyebrow: 'YouTube',
+    title: 'Rádio Bandeirantes',
+    text: 'Participação no programa "Unidos pelo Pequeno, com Dennys Motta", exibido em 20 de dezembro de 2025.',
+    href: 'https://www.youtube.com/live/2DBA4n1vT00?si=vxUbVqKhP_Wx9M-2',
+    cta: 'Assistir participação',
+  },
+  {
+    eyebrow: 'Instagram',
+    title: 'Publicação especial da marca',
+    text: 'Conteúdo no Instagram mostrando a presença da Caseirices, seus produtos e o universo artesanal da marca.',
+    href: 'https://www.instagram.com/p/DPhl_mviWTy/?igsh=MTJpY204YzBtZjE3aw==',
+    cta: 'Ver publicação',
+  },
+]
 
 const brandPillars = [
   {
@@ -209,78 +224,23 @@ function App() {
   const MotionImage = m.img
   const MotionDiv = m.div
   const MotionArticle = m.article
-  const MotionLink = m.a
   const [activeFlavorFilter, setActiveFlavorFilter] = useState('all')
   const [showAllFlavors, setShowAllFlavors] = useState(false)
-  const [instagramFeed, setInstagramFeed] = useState(() =>
-    instagramImages.map((image, index) => ({
-      id: `fallback-${index}`,
-      image,
-      permalink: INSTAGRAM_LINK,
-      isVideo: false,
-      source: 'fallback',
-    })),
-  )
-  const [instagramStatus, setInstagramStatus] = useState('loading')
   const [heroVideoFailed, setHeroVideoFailed] = useState(false)
-
-  useEffect(() => {
-    let active = true
-
-    async function loadFeed() {
-      const controller = new AbortController()
-      const timeoutId = setTimeout(() => controller.abort(), 4800)
-
-      try {
-        const response = await fetch('/api/instagram-feed?username=caseiricesjundiai&limit=12', {
-          signal: controller.signal,
-        })
-        if (!response.ok) throw new Error('feed-offline')
-        const data = await response.json()
-        if (!active || !data?.ok || !Array.isArray(data.items) || data.items.length === 0) {
-          throw new Error('empty-feed')
-        }
-        setInstagramFeed(
-          data.items.map((item, index) => ({
-            ...item,
-            id: item.id ?? `live-${index}`,
-            source: 'live',
-          })),
-        )
-        setInstagramStatus('live')
-      } catch {
-        if (!active) return
-        setInstagramStatus('fallback')
-        setInstagramFeed(
-          instagramImages.map((image, index) => ({
-            id: `fallback-${index}`,
-            image,
-            permalink: INSTAGRAM_LINK,
-            isVideo: false,
-            source: 'fallback',
-          })),
-        )
-      } finally {
-        clearTimeout(timeoutId)
-      }
-    }
-
-    loadFeed()
-    return () => {
-      active = false
-    }
-  }, [])
 
   const filteredFlavors = useMemo(() => {
     if (activeFlavorFilter === 'all') return flavors
     return flavors.filter((item) => item.group === activeFlavorFilter)
   }, [activeFlavorFilter])
 
+  const defaultVisibleCount = activeFlavorFilter === 'all' ? 4 : 4
+
   const visibleFlavors = useMemo(() => {
     if (showAllFlavors) return filteredFlavors
-    if (activeFlavorFilter === 'all') return filteredFlavors.filter((item) => item.isReal)
-    return filteredFlavors.slice(0, 8)
-  }, [filteredFlavors, showAllFlavors])
+    const baseFlavors =
+      activeFlavorFilter === 'all' ? filteredFlavors.filter((item) => item.isReal) : filteredFlavors
+    return baseFlavors.slice(0, defaultVisibleCount)
+  }, [activeFlavorFilter, defaultVisibleCount, filteredFlavors, showAllFlavors])
 
   return (
     <LazyMotion features={domAnimation}>
@@ -661,7 +621,9 @@ function App() {
                 ))}
               </div>
 
-              {filteredFlavors.length > 8 ? (
+              {(activeFlavorFilter === 'all'
+                ? filteredFlavors.filter((item) => item.isReal).length
+                : filteredFlavors.length) > defaultVisibleCount ? (
                 <div className="mt-5 flex justify-center">
                   <button
                     type="button"
@@ -828,155 +790,60 @@ function App() {
           </SectionReveal>
 
           <SectionReveal className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
-            <div className="max-h-[800px] overflow-hidden rounded-[24px] border border-brand-earth/14 bg-white/55 p-4 sm:p-5">
-              <div className="flex flex-wrap items-end justify-between gap-3">
-                <div>
+            <div className="rounded-[26px] border border-brand-earth/16 bg-[linear-gradient(145deg,#fff8f0_0%,#fff0e4_100%)] p-6 shadow-[0_16px_34px_rgba(55,27,16,0.09)] sm:p-8">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                <div className="max-w-3xl">
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-green">Instagram da marca</p>
-                  <h2 className="mt-3 font-display text-3xl text-brand-wine sm:text-4xl">@caseiricesjundiai</h2>
-                  <p className="mt-2 text-sm text-brand-ink/80 sm:text-base">
-                    A cozinha real, os produtos e os bastidores da marca em um feed que reforça a
-                    assinatura artesanal de Caseirices.
+                  <h2 className="mt-3 font-display text-3xl text-brand-wine sm:text-4xl">Siga nosso Instagram</h2>
+                  <p className="mt-2 text-sm leading-relaxed text-brand-ink/80 sm:text-base">
+                    Acompanhe os bastidores da cozinha, lançamentos, receitas e novidades da Caseirices no perfil oficial.
                   </p>
                 </div>
                 <SecondaryButton href={INSTAGRAM_LINK}>
                   <Instagram className="h-4 w-4 text-brand-green" />
-                  Ver Instagram
+                  Seguir @caseiricesjundiai
                 </SecondaryButton>
               </div>
+            </div>
+          </SectionReveal>
 
-              <div className="mt-4 max-h-[680px] overflow-hidden rounded-[22px] border border-brand-earth/16 bg-white/90 p-2.5 shadow-[0_16px_38px_rgba(55,27,16,0.09)] sm:p-3">
-                <div className="md:hidden">
-                  <div className="mx-auto max-w-md overflow-hidden rounded-[24px] border border-brand-earth/16 bg-white shadow-[0_16px_36px_rgba(44,21,13,0.14)]">
-                    <div className="flex items-center justify-between border-b border-brand-earth/12 px-3 py-2.5">
-                      <span className="text-sm font-semibold text-brand-ink">Instagram</span>
-                      <span className="text-xs font-semibold uppercase tracking-[0.12em] text-brand-green">
-                        {instagramStatus === 'live' ? 'Ao vivo' : instagramStatus === 'loading' ? 'Carregando' : 'Feed local'}
-                      </span>
-                    </div>
+          <SectionReveal className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-10 lg:pb-20">
+            <div className="mb-8 max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-green">Caseirices na mídia</p>
+              <h2 className="mt-3 font-display text-3xl text-brand-wine sm:text-4xl">
+                Presença da marca em canais que valorizam pequenos negócios e produtos autorais.
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-brand-ink/80 sm:text-base">
+                Conteúdos e aparições que ajudam a contar a história da Caseirices para novos públicos.
+              </p>
+            </div>
 
-                    <div className="flex gap-2 overflow-x-auto border-b border-brand-earth/12 px-3 py-2.5">
-                      {instagramFeed.slice(0, 8).map((item, index) => (
-                        <a
-                          key={`story-${item.id}`}
-                          href={item.permalink}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="shrink-0"
-                          aria-label={`Story ${index + 1}`}
-                        >
-                          <span className="block rounded-full bg-[linear-gradient(160deg,#C8102E,#E35F3C,#228B22)] p-[2px]">
-                            <img
-                              src={item.image}
-                              alt=""
-                              className="h-11 w-11 rounded-full border border-white object-cover"
-                              onError={(event) => {
-                                const fallbackImage = instagramImages[index % instagramImages.length]
-                                if (!event.currentTarget.src.endsWith(fallbackImage)) {
-                                  event.currentTarget.src = fallbackImage
-                                }
-                              }}
-                            />
-                          </span>
-                        </a>
-                      ))}
-                    </div>
-
-                    <div className="max-h-[500px] overflow-y-auto p-2.5">
-                      <div className="grid grid-cols-2 gap-2">
-                        {instagramFeed.map((item, index) => (
-                          <MotionLink
-                            key={`mobile-${item.id}`}
-                            href={item.permalink}
-                            target="_blank"
-                            rel="noreferrer"
-                            initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
-                            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-                            viewport={{ once: true, amount: 0.2 }}
-                            transition={shouldReduceMotion ? undefined : { duration: 0.3, delay: index * 0.03 }}
-                            className="group relative aspect-square overflow-hidden rounded-[12px] border border-brand-earth/14 bg-brand-cream"
-                          >
-                            <img
-                              src={item.image}
-                              alt={`Publicação ${index + 1} do Instagram da Caseirices`}
-                              className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                              onError={(event) => {
-                                const fallbackImage = instagramImages[index % instagramImages.length]
-                                if (!event.currentTarget.src.endsWith(fallbackImage)) {
-                                  event.currentTarget.src = fallbackImage
-                                }
-                              }}
-                            />
-                            {item.isVideo ? (
-                              <span className="absolute right-2 top-2 inline-flex items-center gap-1 rounded-[8px] border border-white/40 bg-black/55 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-white">
-                                <Video className="h-3 w-3" /> Vídeo
-                              </span>
-                            ) : null}
-                          </MotionLink>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="hidden gap-3 md:grid md:grid-cols-[230px_1fr]">
-                  <aside className="rounded-[18px] border border-brand-earth/14 bg-brand-cream/70 p-3">
-                    <div className="flex items-center gap-3">
-                      <span className="rounded-[12px] border border-brand-earth/20 bg-white px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.11em] text-brand-earth">
-                        @caseiricesjundiai
-                      </span>
-                    </div>
-                    <p className="mt-3 text-sm leading-relaxed text-brand-ink/80">
-                      {instagramStatus === 'live'
-                        ? 'Feed sincronizado com as últimas publicações da marca.'
-                        : 'Alguns conteúdos podem não carregar automaticamente. Acesse o perfil oficial para ver mais.'}
-                    </p>
-                    <a
-                      href={INSTAGRAM_LINK}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="mt-4 inline-flex items-center gap-2 rounded-[10px] border border-brand-earth/18 bg-white px-3 py-2 text-sm font-semibold text-brand-wine transition hover:bg-brand-cream"
-                    >
-                      Abrir perfil oficial
-                      <ArrowRight className="h-4 w-4" />
-                    </a>
-                  </aside>
-
-                  <div className="max-h-[610px] overflow-y-auto pr-1">
-                    <div className="grid grid-cols-3 gap-2 lg:grid-cols-4">
-                      {instagramFeed.map((item, index) => (
-                        <MotionLink
-                          key={item.id}
-                          href={item.permalink}
-                          target="_blank"
-                          rel="noreferrer"
-                          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-                          whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-                          viewport={{ once: true, amount: 0.2 }}
-                          transition={shouldReduceMotion ? undefined : { duration: 0.35, delay: index * 0.04 }}
-                          className="group relative aspect-square overflow-hidden rounded-[12px] border border-brand-earth/14 bg-white"
-                        >
-                          <img
-                            src={item.image}
-                            alt={`Publicação ${index + 1} do Instagram da Caseirices`}
-                            className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                            onError={(event) => {
-                              const fallbackImage = instagramImages[index % instagramImages.length]
-                              if (!event.currentTarget.src.endsWith(fallbackImage)) {
-                                event.currentTarget.src = fallbackImage
-                              }
-                            }}
-                          />
-                          {item.isVideo ? (
-                            <span className="absolute right-2 top-2 inline-flex items-center gap-1 rounded-[8px] border border-white/40 bg-black/55 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-white">
-                              <Video className="h-3 w-3" /> Vídeo
-                            </span>
-                          ) : null}
-                        </MotionLink>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className="grid gap-4 lg:grid-cols-2">
+              {MEDIA_FEATURES.map((item) => (
+                <article
+                  key={item.href}
+                  className="rounded-[24px] border border-brand-earth/16 bg-white/88 p-6 shadow-[0_14px_36px_rgba(55,27,16,0.08)]"
+                >
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-green">
+                    {item.eyebrow}
+                  </p>
+                  <h3 className="mt-3 font-display text-2xl leading-tight text-brand-wine">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-brand-ink/82 sm:text-base">
+                    {item.text}
+                  </p>
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-5 inline-flex items-center gap-2 rounded-[12px] border border-brand-earth/18 bg-brand-cream px-4 py-2.5 text-sm font-semibold text-brand-wine transition hover:bg-white"
+                  >
+                    {item.cta}
+                    <ExternalLink className="h-4 w-4" />
+                  </a>
+                </article>
+              ))}
             </div>
           </SectionReveal>
         </main>
@@ -986,7 +853,7 @@ function App() {
             <div className="rounded-[22px] border border-white/20 bg-[#5a0a0a]/55 p-5 shadow-[0_18px_40px_rgba(0,0,0,0.22)] sm:p-7">
               <div className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
                 <div>
-                  <BrandLockup />
+                  <BrandLockup frameClassName="h-[128px] w-[128px] sm:h-[150px] sm:w-[150px]" />
                   <h3 className="mt-3 font-display text-3xl leading-tight text-white sm:text-4xl">
                     Experimente Caseirices. O molho que faz a diferença.
                   </h3>
