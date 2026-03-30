@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { LazyMotion, domAnimation, m, useReducedMotion } from 'framer-motion'
 import {
   ArrowRight,
@@ -28,22 +28,8 @@ const WHATSAPP_DISCOVERY_LINK =
   'https://api.whatsapp.com/send?phone=5511974884319&text=Eu%20gostaria%20de%20conhecer%20os%20produtos%20Caseirices'
 const INSTAGRAM_LINK = 'https://www.instagram.com/caseiricesjundiai/'
 const HERO_VIDEO_SRC = '/assets/hero/caseirices-hero-complete.mp4'
-const MEDIA_FEATURES = [
-  {
-    eyebrow: 'YouTube',
-    title: 'Rádio Bandeirantes',
-    text: 'Participação no programa "Unidos pelo Pequeno, com Dennys Motta", exibido em 20 de dezembro de 2025.',
-    href: 'https://www.youtube.com/live/2DBA4n1vT00?si=vxUbVqKhP_Wx9M-2',
-    cta: 'Assistir participação',
-  },
-  {
-    eyebrow: 'Instagram',
-    title: 'Publicação especial da marca',
-    text: 'Conteúdo no Instagram mostrando a presença da Caseirices, seus produtos e o universo artesanal da marca.',
-    href: 'https://www.instagram.com/p/DPhl_mviWTy/?igsh=MTJpY204YzBtZjE3aw==',
-    cta: 'Ver publicação',
-  },
-]
+const ELFSIGHT_SCRIPT_SRC = 'https://elfsightcdn.com/platform.js'
+const ELFSIGHT_APP_CLASS = 'elfsight-app-3310dd00-0ae8-46b5-8738-849863f78bd5'
 
 const brandPillars = [
   {
@@ -227,6 +213,15 @@ function App() {
   const [activeFlavorFilter, setActiveFlavorFilter] = useState('all')
   const [showAllFlavors, setShowAllFlavors] = useState(false)
   const [heroVideoFailed, setHeroVideoFailed] = useState(false)
+
+  useEffect(() => {
+    if (document.querySelector(`script[src="${ELFSIGHT_SCRIPT_SRC}"]`)) return
+
+    const script = document.createElement('script')
+    script.src = ELFSIGHT_SCRIPT_SRC
+    script.async = true
+    document.body.appendChild(script)
+  }, [])
 
   const filteredFlavors = useMemo(() => {
     if (activeFlavorFilter === 'all') return flavors
@@ -433,52 +428,21 @@ function App() {
             <div className="relative overflow-hidden rounded-[30px] border border-[#2f7d46]/35 bg-[radial-gradient(circle_at_16%_14%,rgba(143,224,143,0.18),transparent_24%),radial-gradient(circle_at_84%_18%,rgba(200,16,46,0.14),transparent_26%),linear-gradient(135deg,#143B29_0%,#1B5637_52%,#10281D_100%)] p-6 text-brand-cream shadow-[0_28px_64px_rgba(16,40,29,0.28)] sm:p-8 lg:p-10">
               <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.03)_0%,rgba(255,255,255,0)_36%,rgba(255,255,255,0.05)_100%)]" />
               <div className="relative">
-                <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-                  <div className="max-w-3xl">
-                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#9BE3A8]">Caseirices na mídia</p>
-                    <h2 className="mt-3 font-display text-3xl leading-tight text-brand-cream sm:text-4xl lg:text-[3.15rem]">
-                      A marca aparecendo em canais que valorizam pequenos negócios e produtos autorais.
-                    </h2>
-                    <p className="mt-3 max-w-2xl text-sm leading-relaxed text-brand-cream/84 sm:text-base">
-                      Conteúdos e aparições que ampliam a presença da Caseirices e ajudam a contar a força de uma marca artesanal feita com verdade.
-                    </p>
-                  </div>
-                  <SecondaryButton
-                    href={INSTAGRAM_LINK}
-                    dark
-                    className="border-white/20 bg-white/10 text-white hover:bg-white/18"
-                  >
-                    <Instagram className="h-4 w-4" />
-                    Seguir @caseiricesjundiai
-                  </SecondaryButton>
+                <div className="mb-8 max-w-3xl">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#9BE3A8]">Caseirices na mídia</p>
+                  <h2 className="mt-3 font-display text-3xl leading-tight text-brand-cream sm:text-4xl lg:text-[3.15rem]">
+                    Acompanhe os últimos conteúdos da Caseirices no Instagram.
+                  </h2>
+                  <p className="mt-3 max-w-2xl text-sm leading-relaxed text-brand-cream/84 sm:text-base">
+                    Feed oficial integrado com a Elfsight para manter a vitrine social da marca sempre atualizada.
+                  </p>
                 </div>
 
-                <div className="grid gap-4 lg:grid-cols-2">
-                  {MEDIA_FEATURES.map((item) => (
-                    <article
-                      key={item.href}
-                      className="rounded-[24px] border border-white/14 bg-[linear-gradient(180deg,rgba(255,248,240,0.13)_0%,rgba(255,248,240,0.07)_100%)] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur"
-                    >
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#A7E8B3]">
-                        {item.eyebrow}
-                      </p>
-                      <h3 className="mt-3 font-display text-2xl leading-tight text-brand-cream">
-                        {item.title}
-                      </h3>
-                      <p className="mt-3 text-sm leading-relaxed text-brand-cream/82 sm:text-base">
-                        {item.text}
-                      </p>
-                      <a
-                        href={item.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="mt-5 inline-flex items-center gap-2 rounded-[12px] border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/18"
-                      >
-                        {item.cta}
-                        <ExternalLink className="h-4 w-4" />
-                      </a>
-                    </article>
-                  ))}
+                <div className="overflow-hidden rounded-[24px] border border-white/14 bg-[linear-gradient(180deg,rgba(255,248,240,0.13)_0%,rgba(255,248,240,0.07)_100%)] p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur sm:p-4">
+                  <div
+                    className={ELFSIGHT_APP_CLASS}
+                    data-elfsight-app-lazy=""
+                  />
                 </div>
               </div>
             </div>
