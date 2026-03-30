@@ -526,6 +526,60 @@ function App() {
             </div>
           </SectionReveal>
 
+          <SectionReveal className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-10 lg:py-12">
+            <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
+              <article className="rounded-[26px] border border-brand-earth/16 bg-white/88 p-7 shadow-[0_16px_38px_rgba(55,27,16,0.1)] lg:p-9">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-green">Caseirices na mídia</p>
+                <h2 className="mt-3 font-display text-3xl leading-tight text-brand-wine sm:text-4xl">
+                  Acompanhe os últimos conteúdos da Caseirices no Instagram.
+                </h2>
+                <p className="mt-4 text-sm leading-relaxed text-brand-ink/85 sm:text-base">
+                  Um espaço para acompanhar bastidores, lançamentos, presença em eventos e tudo que reforça a força da marca fora da prateleira.
+                </p>
+
+                <div className="mt-6 space-y-3">
+                  {[
+                    'Bastidores da produção artesanal e rotina da marca.',
+                    'Novidades, lançamentos e conteúdos publicados no perfil oficial.',
+                    'Uma vitrine social viva para reforçar confiança e presença da Caseirices.',
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="rounded-[16px] border border-brand-earth/14 bg-brand-cream/70 p-4 text-sm leading-relaxed text-brand-ink/82"
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
+
+                <SecondaryButton href={INSTAGRAM_LINK} className="mt-6">
+                  <Instagram className="h-4 w-4 text-brand-green" />
+                  Seguir @caseiricesjundiai
+                </SecondaryButton>
+              </article>
+
+              <article className="relative overflow-hidden rounded-[26px] border border-brand-earth/20 bg-brand-wine p-5 text-brand-cream shadow-[0_20px_46px_rgba(55,27,16,0.3)] lg:max-h-[800px] lg:p-7">
+                <div className="absolute -right-14 -top-14 h-44 w-44 rounded-full bg-brand-red/35 blur-2xl" />
+                <div className="absolute -bottom-16 -left-12 h-44 w-44 rounded-full bg-brand-green/22 blur-2xl" />
+                <div className="relative">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#FFD9AA]">Instagram oficial</p>
+                  <h3 className="mt-3 font-display text-3xl leading-tight text-white sm:text-4xl">
+                    A presença da marca em tempo real.
+                  </h3>
+
+                  <div className="mt-6 rounded-[22px] border border-white/16 bg-[#f6efe5] p-3 shadow-[0_18px_36px_rgba(7,24,16,0.22)] sm:p-4">
+                    <div className="media-widget-shell rounded-[18px] bg-[#f6efe5]">
+                      <div
+                        className={ELFSIGHT_APP_CLASS}
+                        data-elfsight-app-lazy=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </SectionReveal>
+
           <SectionReveal className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
             <div className="relative overflow-hidden rounded-[32px] border border-[#2f7d46]/35 bg-[radial-gradient(circle_at_18%_18%,rgba(143,224,143,0.18),transparent_26%),radial-gradient(circle_at_82%_12%,rgba(200,16,46,0.16),transparent_28%),linear-gradient(135deg,#143B29_0%,#1B5637_50%,#10281D_100%)] p-6 text-brand-cream shadow-[0_26px_64px_rgba(16,40,29,0.34)] sm:p-8 lg:p-10">
               <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.02)_0%,rgba(255,255,255,0)_35%,rgba(255,255,255,0.04)_100%)]" />
