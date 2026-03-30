@@ -10,12 +10,14 @@ import {
   Leaf,
   MapPin,
   Navigation,
+  Play,
   PhoneCall,
   Share2,
   ShieldCheck,
   Sparkles,
   Star,
   Store,
+  X,
 } from 'lucide-react'
 import { SectionReveal } from './components/SectionReveal'
 import { SequenceScroll } from './components/SequenceScroll'
@@ -231,6 +233,7 @@ function App() {
   const [activeFlavorFilter, setActiveFlavorFilter] = useState('all')
   const [showAllFlavors, setShowAllFlavors] = useState(false)
   const [heroVideoFailed, setHeroVideoFailed] = useState(false)
+  const [activeTestimonial, setActiveTestimonial] = useState(null)
 
   useEffect(() => {
     if (document.querySelector(`script[src="${ELFSIGHT_SCRIPT_SRC}"]`)) return
@@ -240,6 +243,26 @@ function App() {
     script.async = true
     document.body.appendChild(script)
   }, [])
+
+  useEffect(() => {
+    if (!activeTestimonial) return undefined
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setActiveTestimonial(null)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [activeTestimonial])
 
   const filteredFlavors = useMemo(() => {
     if (activeFlavorFilter === 'all') return flavors
@@ -853,48 +876,116 @@ function App() {
                   </p>
                 </div>
 
-                <div className="mt-6 grid justify-center gap-4 md:grid-cols-2">
+                <div className="mt-8 grid gap-4 sm:grid-cols-2">
                   {videoTestimonials.map((item) => (
-                    <article
+                    <button
                       key={item.videoSrc}
-                      className="mx-auto w-full max-w-[320px] overflow-hidden rounded-[20px] border border-white/16 bg-[linear-gradient(180deg,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0.08)_100%)] shadow-[0_18px_40px_rgba(44,5,9,0.24)] backdrop-blur"
+                      type="button"
+                      onClick={() => setActiveTestimonial(item)}
+                      className="group relative mx-auto w-full max-w-[290px] overflow-hidden rounded-[22px] border border-white/16 bg-[linear-gradient(180deg,rgba(255,255,255,0.15)_0%,rgba(255,255,255,0.08)_100%)] text-left shadow-[0_18px_40px_rgba(44,5,9,0.24)] transition duration-300 hover:-translate-y-1 hover:border-white/28 hover:shadow-[0_22px_48px_rgba(44,5,9,0.3)]"
                     >
-                      <div className="relative aspect-[9/16] overflow-hidden bg-black">
-                        <video
-                          className="h-full w-full object-cover"
-                          controls
-                          preload="metadata"
-                          playsInline
-                          poster={item.poster}
-                        >
-                          <source src={item.videoSrc} type="video/mp4" />
-                          Seu navegador nao suporta video HTML5.
-                        </video>
-                        <div className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between p-2.5">
-                          <span className="rounded-full border border-white/22 bg-black/38 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white/88 backdrop-blur-sm">
+                      <div className="relative aspect-square overflow-hidden bg-black">
+                        <img
+                          src={item.poster}
+                          alt={item.title}
+                          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,7,6,0.1)_0%,rgba(18,7,6,0.18)_38%,rgba(18,7,6,0.78)_100%)]" />
+                        <div className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between p-3">
+                          <span className="rounded-full border border-white/22 bg-white/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white/88 backdrop-blur-sm">
                             Video real
                           </span>
-                          <span className="rounded-full border border-white/22 bg-black/38 px-2.5 py-1 text-[10px] font-semibold text-white/88 backdrop-blur-sm">
+                          <span className="rounded-full border border-white/22 bg-white/10 px-2.5 py-1 text-[10px] font-semibold text-white/88 backdrop-blur-sm">
                             {item.duration}
                           </span>
                         </div>
+                        <div className="absolute inset-x-0 bottom-0 p-4">
+                          <div className="flex items-end justify-between gap-3">
+                            <div>
+                              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#FFD1D9]">
+                                {item.location}
+                              </p>
+                              <h3 className="mt-2 font-display text-[1.8rem] leading-[0.95] text-white">
+                                {item.title}
+                              </h3>
+                            </div>
+                            <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/22 bg-white/12 text-white backdrop-blur-md transition duration-300 group-hover:scale-105 group-hover:bg-white/18">
+                              <Play className="h-5 w-5 fill-current" />
+                            </span>
+                          </div>
+                        </div>
                       </div>
-
-                      <div className="p-3.5">
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#FFD1D9]">
-                          {item.location}
-                        </p>
-                        <h3 className="mt-1.5 font-display text-[1.55rem] leading-[0.96] text-white">
-                          {item.title}
-                        </h3>
-                        <p className="mt-1.5 text-sm leading-snug text-white/82">{item.summary}</p>
+                      <div className="p-4">
+                        <p className="text-sm leading-relaxed text-white/82">{item.summary}</p>
+                        <span className="mt-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#FFD9AA]">
+                          Assistir depoimento
+                          <Play className="h-3.5 w-3.5 fill-current" />
+                        </span>
                       </div>
-                    </article>
+                    </button>
                   ))}
                 </div>
               </div>
             </div>
           </SectionReveal>
+
+          {activeTestimonial ? (
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(16,8,7,0.82)] px-4 py-6 backdrop-blur-md"
+              onClick={() => setActiveTestimonial(null)}
+            >
+              <div
+                className="relative w-full max-w-4xl overflow-hidden rounded-[28px] border border-white/14 bg-[#160706] shadow-[0_28px_80px_rgba(0,0,0,0.45)]"
+                onClick={(event) => event.stopPropagation()}
+              >
+                <button
+                  type="button"
+                  onClick={() => setActiveTestimonial(null)}
+                  className="absolute right-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/16 bg-black/30 text-white/88 backdrop-blur transition hover:bg-black/45"
+                  aria-label="Fechar depoimento"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+
+                <div className="grid bg-[linear-gradient(135deg,rgba(139,0,0,0.28),rgba(17,7,6,0.12))] lg:grid-cols-[minmax(0,0.72fr)_minmax(0,0.28fr)]">
+                  <div className="bg-black">
+                    <video
+                      key={activeTestimonial.videoSrc}
+                      className="max-h-[78vh] w-full bg-black object-contain"
+                      controls
+                      autoPlay
+                      preload="metadata"
+                      playsInline
+                      poster={activeTestimonial.poster}
+                    >
+                      <source src={activeTestimonial.videoSrc} type="video/mp4" />
+                      Seu navegador nao suporta video HTML5.
+                    </video>
+                  </div>
+
+                  <div className="flex flex-col justify-between p-5 text-white lg:p-6">
+                    <div>
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#FFD1D9]">
+                        {activeTestimonial.location}
+                      </p>
+                      <h3 className="mt-2 font-display text-3xl leading-[0.94] text-white">
+                        {activeTestimonial.title}
+                      </h3>
+                      <p className="mt-3 text-sm leading-relaxed text-white/78">
+                        {activeTestimonial.summary}
+                      </p>
+                    </div>
+
+                    <div className="mt-6 rounded-[18px] border border-white/14 bg-white/6 p-4 text-sm leading-relaxed text-white/74">
+                      Depoimento em tela cheia para manter a seção mais leve e deixar o video ganhar
+                      destaque so quando a pessoa quiser assistir.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : null}
 
           <SectionReveal className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-10 lg:pb-20">
             <div className="rounded-[26px] border border-brand-earth/16 bg-[linear-gradient(145deg,#fff8f0_0%,#fff0e4_100%)] p-5 shadow-[0_16px_34px_rgba(55,27,16,0.09)] sm:p-7">
