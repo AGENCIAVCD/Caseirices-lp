@@ -795,7 +795,7 @@ function App() {
           </SectionReveal>
 
           <SectionReveal className="mx-auto grid max-w-7xl gap-6 px-4 py-16 sm:px-6 lg:grid-cols-[0.98fr_1.02fr] lg:px-10 lg:py-20">
-            <article className="rounded-[26px] border border-brand-earth/16 bg-white/88 p-7 shadow-[0_16px_38px_rgba(55,27,16,0.1)] lg:p-9">
+            <article className="rounded-[26px] border border-[#d8c3a3] bg-[linear-gradient(145deg,#f4e5cf_0%,#ecd7ba_100%)] p-7 shadow-[0_16px_38px_rgba(55,27,16,0.12)] lg:p-9">
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-green">O prazer de receber e cozinhar</p>
               <h2 className="mt-3 font-display text-3xl leading-tight text-brand-wine sm:text-4xl">
                 A cozinha de casa com toques de restaurante.
@@ -810,7 +810,7 @@ function App() {
                 {experienceMoments.map((item) => (
                   <div
                     key={item.title}
-                    className="rounded-[16px] border border-brand-earth/14 bg-brand-cream/70 p-4"
+                    className="rounded-[16px] border border-[#d9c7ac] bg-[rgba(255,248,240,0.54)] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.35)]"
                   >
                     <p className="text-sm font-bold text-brand-wine">{item.title}</p>
                     <p className="mt-1 text-sm leading-relaxed text-brand-ink/80">{item.text}</p>
