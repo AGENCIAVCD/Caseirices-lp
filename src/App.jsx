@@ -27,7 +27,7 @@ const WHATSAPP_RESELLER_LINK =
 const WHATSAPP_DISCOVERY_LINK =
   'https://api.whatsapp.com/send?phone=5511974884319&text=Eu%20gostaria%20de%20conhecer%20os%20produtos%20Caseirices'
 const INSTAGRAM_LINK = 'https://www.instagram.com/caseiricesjundiai/'
-const HERO_VIDEO_SRC = '/assets/hero/caseirices-hero-complete.mp4'
+const HERO_VIDEO_SRC = '/assets/hero/caseirices-hero-mar30.mp4'
 const ELFSIGHT_SCRIPT_SRC = 'https://elfsightcdn.com/platform.js'
 const ELFSIGHT_APP_CLASS = 'elfsight-app-3310dd00-0ae8-46b5-8738-849863f78bd5'
 
