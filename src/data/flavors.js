@@ -14,7 +14,6 @@ export const flavors = [
     image: '/assets/products/real/sugo-basilico-500g.png',
     fallbackImage: '/assets/products/sabor-02.svg',
     isReal: true,
-    imageClassName: 'object-contain scale-[0.88]',
   },
   {
     name: 'Tomate com alho',
@@ -39,7 +38,6 @@ export const flavors = [
     image: '/assets/products/real/sweet-grape-500g.png',
     fallbackImage: '/assets/products/sabor-05.svg',
     isReal: true,
-    imageClassName: 'object-contain scale-[0.88]',
   },
   {
     name: 'Azeitona verde',

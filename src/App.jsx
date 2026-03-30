@@ -755,9 +755,7 @@ function App() {
                       <img
                         src={item.image}
                         alt={`Frasco do sabor ${item.name}`}
-                        className={`h-full w-full transition duration-500 group-hover:scale-105 ${
-                          item.imageClassName ?? 'object-cover'
-                        }`}
+                        className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                         onError={(event) => {
                           if (item.fallbackImage) {
                             event.currentTarget.onerror = null
