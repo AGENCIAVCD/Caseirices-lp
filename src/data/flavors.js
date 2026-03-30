@@ -9,9 +9,9 @@ export const flavors = [
   },
   {
     name: 'Sugo Basilico',
-    profile: 'Receita clássica com manjericão fresco e final mais aromático',
+    profile: 'Receita clássica com manjericão fresco na versao 500g, mais aromática e encorpada',
     group: 'classicos',
-    image: '/assets/products/real/sugo-basilico-350g.jpeg',
+    image: '/assets/products/real/sugo-basilico-500g.png',
     fallbackImage: '/assets/products/sabor-02.svg',
     isReal: true,
   },
