@@ -797,12 +797,14 @@ function App() {
           </SectionReveal>
 
           <SectionReveal className="mx-auto grid max-w-7xl gap-6 px-4 py-16 sm:px-6 lg:grid-cols-[0.98fr_1.02fr] lg:px-10 lg:py-20">
-            <article className="rounded-[26px] border border-[#d8c3a3] bg-[linear-gradient(145deg,#f4e5cf_0%,#ecd7ba_100%)] p-7 shadow-[0_16px_38px_rgba(55,27,16,0.12)] lg:p-9">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-green">O prazer de receber e cozinhar</p>
-              <h2 className="mt-3 font-display text-3xl leading-tight text-brand-wine sm:text-4xl">
+            <article className="relative overflow-hidden rounded-[26px] border border-[#2f7d46]/30 bg-[radial-gradient(circle_at_18%_18%,rgba(143,224,143,0.16),transparent_26%),radial-gradient(circle_at_82%_12%,rgba(200,16,46,0.12),transparent_28%),linear-gradient(135deg,#143B29_0%,#1B5637_50%,#10281D_100%)] p-7 text-brand-cream shadow-[0_20px_46px_rgba(16,40,29,0.28)] lg:p-9">
+              <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.03)_0%,rgba(255,255,255,0)_36%,rgba(255,255,255,0.04)_100%)]" />
+              <div className="relative">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#9BE3A8]">O prazer de receber e cozinhar</p>
+              <h2 className="mt-3 font-display text-3xl leading-tight text-[#FFF4E6] sm:text-4xl">
                 A cozinha de casa com toques de restaurante.
               </h2>
-              <p className="mt-4 text-sm leading-relaxed text-brand-ink/85 sm:text-base">
+              <p className="mt-4 text-sm leading-relaxed text-[#F4EBDD]/88 sm:text-base">
                 Produtos artesanais, inspirados na cozinha tradicional, prontos para acompanhar a
                 mesa de todas as famílias. Um molho pronto que transforma receitas simples em pratos
                 com presença de restaurante.
@@ -812,12 +814,13 @@ function App() {
                 {experienceMoments.map((item) => (
                   <div
                     key={item.title}
-                    className="rounded-[16px] border border-[#d9c7ac] bg-[rgba(255,248,240,0.54)] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.35)]"
+                    className="rounded-[16px] border border-white/14 bg-[linear-gradient(180deg,rgba(255,248,240,0.14)_0%,rgba(255,248,240,0.08)_100%)] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur"
                   >
-                    <p className="text-sm font-bold text-brand-wine">{item.title}</p>
-                    <p className="mt-1 text-sm leading-relaxed text-brand-ink/80">{item.text}</p>
+                    <p className="text-sm font-bold text-[#FFF4E6]">{item.title}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-[#F4EBDD]/80">{item.text}</p>
                   </div>
                 ))}
+              </div>
               </div>
             </article>
 
