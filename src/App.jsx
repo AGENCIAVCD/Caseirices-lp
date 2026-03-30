@@ -424,31 +424,28 @@ function App() {
             </div>
           </SectionReveal>
 
-          <SectionReveal className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-10 lg:py-16">
-            <div className="relative overflow-hidden rounded-[30px] border border-[#2f7d46]/35 bg-[radial-gradient(circle_at_16%_14%,rgba(143,224,143,0.18),transparent_24%),radial-gradient(circle_at_84%_18%,rgba(200,16,46,0.14),transparent_26%),linear-gradient(135deg,#143B29_0%,#1B5637_52%,#10281D_100%)] p-6 text-brand-cream shadow-[0_28px_64px_rgba(16,40,29,0.28)] sm:p-8 lg:p-10">
+          <SectionReveal className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-10 lg:py-12">
+            <div className="relative overflow-hidden rounded-[30px] border border-[#2f7d46]/35 bg-[radial-gradient(circle_at_16%_14%,rgba(143,224,143,0.18),transparent_24%),radial-gradient(circle_at_84%_18%,rgba(200,16,46,0.14),transparent_26%),linear-gradient(135deg,#143B29_0%,#1B5637_52%,#10281D_100%)] p-6 text-brand-cream shadow-[0_28px_64px_rgba(16,40,29,0.28)] sm:p-8 lg:max-h-[800px] lg:p-8">
               <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.03)_0%,rgba(255,255,255,0)_36%,rgba(255,255,255,0.05)_100%)]" />
               <div className="relative mx-auto max-w-5xl">
                 <div className="mx-auto max-w-3xl text-center">
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#9BE3A8]">Caseirices na mídia</p>
-                  <h2 className="mt-3 font-display text-3xl leading-tight text-brand-cream sm:text-4xl lg:text-[3.1rem]">
+                  <h2 className="mt-3 font-display text-3xl leading-tight text-brand-cream sm:text-4xl lg:text-[2.85rem]">
                     Acompanhe os últimos conteúdos da Caseirices no Instagram.
                   </h2>
-                  <p className="mt-3 text-sm leading-relaxed text-brand-cream/84 sm:text-base">
-                    Um espaço vivo para mostrar bastidores, novidades, lançamentos e a presença da marca fora da prateleira.
-                  </p>
 
                   <SecondaryButton
                     href={INSTAGRAM_LINK}
                     dark
-                    className="mt-6 border-white/20 bg-white/10 text-white hover:bg-white/18"
+                    className="mt-5 border-white/20 bg-white/10 text-white hover:bg-white/18"
                   >
                     <Instagram className="h-4 w-4" />
                     Seguir @caseiricesjundiai
                   </SecondaryButton>
                 </div>
 
-                <div className="mx-auto mt-8 max-w-[470px] rounded-[28px] border border-white/16 bg-[linear-gradient(180deg,rgba(255,248,240,0.15)_0%,rgba(255,248,240,0.08)_100%)] p-4 shadow-[0_24px_48px_rgba(7,24,16,0.24)] backdrop-blur sm:p-5">
-                  <div className="rounded-[22px] border border-white/10 bg-[#f6efe5] p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] sm:p-4">
+                <div className="mx-auto mt-6 max-w-[430px] rounded-[28px] border border-white/16 bg-[linear-gradient(180deg,rgba(255,248,240,0.15)_0%,rgba(255,248,240,0.08)_100%)] p-4 shadow-[0_24px_48px_rgba(7,24,16,0.24)] backdrop-blur sm:p-4">
+                  <div className="rounded-[22px] border border-white/10 bg-[#f6efe5] p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] sm:p-3">
                     <div className="media-widget-shell rounded-[18px] bg-[#f6efe5]">
                       <div
                         className={ELFSIGHT_APP_CLASS}
@@ -921,6 +918,26 @@ function App() {
                     >
                       <PhoneCall className="h-4 w-4" /> Canal comercial
                     </a>
+                  </div>
+
+                  <div className="mt-5 rounded-[14px] border border-white/16 bg-white/8 p-3.5">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#FFD9AA]">
+                      Atendimento
+                    </p>
+                    <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand-cream/70">
+                          Comercial
+                        </p>
+                        <p className="mt-1 text-sm text-white">Seg a Sex, das 9h às 18h</p>
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand-cream/70">
+                          Visitas
+                        </p>
+                        <p className="mt-1 text-sm text-white">Agendamento via WhatsApp</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
