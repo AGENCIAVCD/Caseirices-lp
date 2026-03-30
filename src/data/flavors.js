@@ -1,6 +1,6 @@
 export const flavors = [
   {
-    name: 'Molho Sugo 350 g',
+    name: 'Molho Sugo',
     profile: 'Base clássica, encorpada e versátil para o dia a dia',
     group: 'classicos',
     image: '/assets/products/real/sugo-350g-new.png',
@@ -8,7 +8,7 @@ export const flavors = [
     isReal: true,
   },
   {
-    name: 'Molho de Tomate com Alho 350 g',
+    name: 'Molho de Tomate com Alho',
     profile: 'Aroma marcante de alho e sabor caseiro bem definido',
     group: 'classicos',
     image: '/assets/products/real/alho-350g.png',
@@ -16,7 +16,7 @@ export const flavors = [
     isReal: true,
   },
   {
-    name: 'Molho de Tomate com Azeitona 350 g',
+    name: 'Molho de Tomate com Azeitona',
     profile: 'Toque mediterrâneo com azeitonas verdes e final equilibrado',
     group: 'criativos',
     image: '/assets/products/real/azeitona-350g.png',
@@ -24,7 +24,7 @@ export const flavors = [
     isReal: true,
   },
   {
-    name: 'Molho de Tomate com Alcaparras 350 g',
+    name: 'Molho de Tomate com Alcaparras',
     profile: 'Acidez elegante e personalidade para massas e antepastos',
     group: 'criativos',
     image: '/assets/products/real/alcaparra-350g.png',
@@ -32,7 +32,7 @@ export const flavors = [
     isReal: true,
   },
   {
-    name: 'Molho de Tomate com Azeitona Preta 350 g',
+    name: 'Molho de Tomate com Azeitona Preta',
     profile: 'Mais intenso, profundo e cheio de presença na finalização',
     group: 'premium',
     image: '/assets/products/real/azeitona-preta-350g.png',
@@ -40,7 +40,7 @@ export const flavors = [
     isReal: true,
   },
   {
-    name: 'Molho de Tomate com Tomate Seco 350 g',
+    name: 'Molho de Tomate com Tomate Seco',
     profile: 'Sabor concentrado, levemente adocicado e sofisticado',
     group: 'premium',
     image: '/assets/products/real/tomate-seco-350g.png',
@@ -48,7 +48,7 @@ export const flavors = [
     isReal: true,
   },
   {
-    name: 'Molho de Tomate com Funghi Secchi 350 g',
+    name: 'Molho de Tomate com Funghi Secchi',
     profile: 'Notas terrosas e assinatura gastronômica para receitas especiais',
     group: 'premium',
     image: '/assets/products/real/funghi-secchi-350g.png',
@@ -56,7 +56,7 @@ export const flavors = [
     isReal: true,
   },
   {
-    name: 'Molho Pedaçudo Assado 350 g',
+    name: 'Molho Pedaçudo Assado',
     profile: 'Tomate assado com textura mais rústica e sabor envolvente',
     group: 'criativos',
     image: '/assets/products/real/assado-350g.png',
@@ -64,7 +64,7 @@ export const flavors = [
     isReal: true,
   },
   {
-    name: 'Arrabiata 350 g',
+    name: 'Arrabiata',
     profile: 'Picância direta, vibrante e equilibrada na medida certa',
     group: 'apimentados',
     image: '/assets/products/real/arrabiata-350g-new.png',
@@ -72,7 +72,7 @@ export const flavors = [
     isReal: true,
   },
   {
-    name: 'Dolcebbiata 350 g',
+    name: 'Dolcebbiata',
     profile: 'Levemente apimentado, com sabor redondo e mais acessível',
     group: 'apimentados',
     image: '/assets/products/real/dolcebbiata-350g.png',
@@ -80,7 +80,7 @@ export const flavors = [
     isReal: true,
   },
   {
-    name: 'Defumado 350 g',
+    name: 'Defumado',
     profile: 'Perfil intenso e memorável com toque defumado protagonista',
     group: 'defumados',
     image: '/assets/products/real/defumado-350g.png',
@@ -88,7 +88,7 @@ export const flavors = [
     isReal: true,
   },
   {
-    name: 'Defumado com Alho 350 g',
+    name: 'Defumado com Alho',
     profile: 'Defumação marcante com alho para receitas de personalidade',
     group: 'defumados',
     image: '/assets/products/real/defumado-alho-350g.png',
@@ -96,7 +96,7 @@ export const flavors = [
     isReal: true,
   },
   {
-    name: 'Defumado com Manjericão 350 g',
+    name: 'Defumado com Manjericão',
     profile: 'Defumado aromático com frescor herbal no acabamento',
     group: 'defumados',
     image: '/assets/products/real/defumado-manjericao-350g.png',
