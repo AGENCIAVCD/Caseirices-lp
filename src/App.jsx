@@ -686,7 +686,7 @@ function App() {
               <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-green">Sabores Caseirices</p>
-                  <h2 className="mt-3 font-display text-3xl text-brand-wine sm:text-4xl">16 sabores, dos clássicos aos criativos</h2>
+                  <h2 className="mt-3 font-display text-3xl text-brand-wine sm:text-4xl">15 sabores, dos clássicos aos criativos</h2>
                   <p className="mt-2 max-w-2xl text-sm text-brand-ink/82 sm:text-base">
                     Um produto diferente de qualquer outro tipo de molho de tomate, criado para
                     impressionar no prato e também na prateleira.
@@ -831,8 +831,8 @@ function App() {
 
           <SectionReveal className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
             <div className="rounded-[28px] border border-brand-red-dark/60 bg-[linear-gradient(160deg,#8B0000_0%,#A30F21_48%,#6A0914_100%)] p-5 text-white shadow-[0_20px_44px_rgba(72,7,10,0.35)] sm:p-7">
-              <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-                <div>
+              <div className="mx-auto max-w-5xl">
+                <div className="text-center">
                   <div className="inline-flex items-center gap-3 rounded-[12px] border border-white/25 bg-white/10 px-3 py-2">
                     <span className="text-xl font-bold leading-none text-[#FFD76A]">4,9</span>
                     <span className="flex items-center gap-1" aria-label="Nota média 4,9 de 5 estrelas">
@@ -844,10 +844,10 @@ function App() {
                       Avaliação dos clientes
                     </span>
                   </div>
-                  <h2 className="mt-5 font-display text-3xl text-white sm:text-4xl lg:text-[3.1rem]">
+                  <h2 className="mx-auto mt-5 max-w-4xl font-display text-3xl text-white sm:text-4xl lg:text-[3.1rem]">
                     Depoimentos reais em video de quem provou e aprovou.
                   </h2>
-                  <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/88 sm:text-base">
+                  <p className="mx-auto mt-3 max-w-3xl text-sm leading-relaxed text-white/88 sm:text-base">
                     Quando o cliente grava e envia o próprio relato, a qualidade deixa de ser só
                     promessa. Vira prova social viva, espontânea e impossível de fabricar.
                   </p>
@@ -868,7 +868,7 @@ function App() {
                   </div>
                 </div>
 
-                <div className="grid gap-4 md:grid-cols-2">
+                <div className="mt-8 grid gap-4 md:grid-cols-2">
                   {videoTestimonials.map((item) => (
                     <article
                       key={item.videoSrc}
