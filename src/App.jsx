@@ -28,6 +28,7 @@ const WHATSAPP_DISCOVERY_LINK =
   'https://api.whatsapp.com/send?phone=5511974884319&text=Eu%20gostaria%20de%20conhecer%20os%20produtos%20Caseirices'
 const INSTAGRAM_LINK = 'https://www.instagram.com/caseiricesjundiai/'
 const HERO_VIDEO_SRC = '/assets/hero/caseirices-hero-mar30.mp4'
+const HERO_VIDEO_POSTER = '/assets/hero/caseirices-hero-mar30-poster.jpg'
 const ELFSIGHT_SCRIPT_SRC = 'https://elfsightcdn.com/platform.js'
 const ELFSIGHT_APP_CLASS = 'elfsight-app-3310dd00-0ae8-46b5-8738-849863f78bd5'
 
@@ -244,7 +245,7 @@ function App() {
           <SectionReveal className="relative h-[100dvh] min-h-[100dvh] overflow-hidden border-b border-brand-earth/14 bg-black">
             <div className="absolute inset-0 bg-black">
               <img
-                src="/assets/hero/fundador-caseirices.jpg"
+                src={HERO_VIDEO_POSTER}
                 alt=""
                 aria-hidden="true"
                 className="absolute inset-0 h-full w-full scale-[1.22] object-cover object-center sm:scale-100"
@@ -258,7 +259,7 @@ function App() {
                 loop
                 playsInline
                 preload="auto"
-                poster="/assets/hero/fundador-caseirices.jpg"
+                poster={HERO_VIDEO_POSTER}
                 onError={() => setHeroVideoFailed(true)}
                 aria-hidden="true"
               >
