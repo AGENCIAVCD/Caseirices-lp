@@ -830,8 +830,8 @@ function App() {
           </SectionReveal>
 
           <SectionReveal className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
-            <div className="rounded-[28px] border border-brand-red-dark/60 bg-[linear-gradient(160deg,#8B0000_0%,#A30F21_48%,#6A0914_100%)] p-4 text-white shadow-[0_20px_44px_rgba(72,7,10,0.35)] sm:p-5 lg:max-h-[600px] lg:overflow-hidden">
-              <div className="mx-auto max-w-5xl">
+            <div className="rounded-[28px] border border-brand-red-dark/60 bg-[linear-gradient(160deg,#8B0000_0%,#A30F21_48%,#6A0914_100%)] p-5 text-white shadow-[0_20px_44px_rgba(72,7,10,0.35)] sm:p-6 lg:p-7">
+              <div className="mx-auto max-w-4xl">
                 <div className="text-center">
                   <div className="inline-flex items-center gap-2 rounded-[12px] border border-white/25 bg-white/10 px-3 py-1.5">
                     <span className="text-lg font-bold leading-none text-[#FFD76A]">4,9</span>
@@ -844,22 +844,22 @@ function App() {
                       Avaliação dos clientes
                     </span>
                   </div>
-                  <h2 className="mx-auto mt-4 max-w-4xl font-display text-[2.1rem] leading-[0.94] text-white sm:text-[2.6rem] lg:text-[3rem]">
+                  <h2 className="mx-auto mt-4 max-w-3xl font-display text-[2.1rem] leading-[0.94] text-white sm:text-[2.6rem] lg:text-[3rem]">
                     Depoimentos reais em video de quem provou e aprovou.
                   </h2>
-                  <p className="mx-auto mt-2 max-w-3xl text-sm leading-snug text-white/88 sm:text-[15px]">
+                  <p className="mx-auto mt-2 max-w-2xl text-sm leading-snug text-white/88 sm:text-[15px]">
                     Quando o cliente grava e envia o próprio relato, a qualidade deixa de ser só
                     promessa. Vira prova social viva, espontânea e impossível de fabricar.
                   </p>
                 </div>
 
-                <div className="mt-5 grid gap-3 md:grid-cols-2">
+                <div className="mt-6 grid justify-center gap-4 md:grid-cols-2">
                   {videoTestimonials.map((item) => (
                     <article
                       key={item.videoSrc}
-                      className="overflow-hidden rounded-[20px] border border-white/16 bg-[linear-gradient(180deg,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0.08)_100%)] shadow-[0_18px_40px_rgba(44,5,9,0.24)] backdrop-blur"
+                      className="mx-auto w-full max-w-[320px] overflow-hidden rounded-[20px] border border-white/16 bg-[linear-gradient(180deg,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0.08)_100%)] shadow-[0_18px_40px_rgba(44,5,9,0.24)] backdrop-blur"
                     >
-                      <div className="relative h-[260px] overflow-hidden bg-black sm:h-[300px] lg:h-[320px]">
+                      <div className="relative aspect-[9/16] overflow-hidden bg-black">
                         <video
                           className="h-full w-full object-cover"
                           controls
@@ -884,7 +884,7 @@ function App() {
                         <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#FFD1D9]">
                           {item.location}
                         </p>
-                        <h3 className="mt-1.5 font-display text-[1.75rem] leading-[0.96] text-white">
+                        <h3 className="mt-1.5 font-display text-[1.55rem] leading-[0.96] text-white">
                           {item.title}
                         </h3>
                         <p className="mt-1.5 text-sm leading-snug text-white/82">{item.summary}</p>
