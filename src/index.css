@@ -42,10 +42,32 @@ a {
 .media-widget-shell {
   display: flex;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .media-widget-shell > div {
   width: 100%;
+}
+
+.media-widget-shell::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 64px;
+  background: linear-gradient(180deg, rgba(246, 239, 229, 0) 0%, #f6efe5 38%, #f6efe5 100%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.media-widget-shell a[href*='elfsight.com'],
+.media-widget-shell [class*='Badge'],
+.media-widget-shell [class*='badge'],
+.media-widget-shell [title*='Elfsight'],
+.media-widget-shell [aria-label*='Elfsight'] {
+  display: none !important;
 }
 
 .liquid-glass {
