@@ -39,6 +39,15 @@ a {
   text-decoration: none;
 }
 
+.media-widget-shell {
+  display: flex;
+  justify-content: center;
+}
+
+.media-widget-shell > div {
+  width: 100%;
+}
+
 .liquid-glass {
   position: relative;
   overflow: hidden;
