@@ -38,6 +38,9 @@ const MEDIA_FEATURES = [
     text: 'Participação no programa "Unidos pelo Pequeno, com Dennys Motta", exibido em 20 de dezembro de 2025.',
     href: 'https://www.youtube.com/live/2DBA4n1vT00?si=vxUbVqKhP_Wx9M-2',
     cta: 'Assistir participação',
+    imageSrc: '/assets/media/radio-bandeirantes.png',
+    imageAlt: 'Participação da Caseirices no programa Unidos pelo Pequeno, da Rádio Bandeirantes.',
+    imageClassName: 'object-cover object-center',
   },
   {
     eyebrow: 'Instagram',
@@ -45,6 +48,9 @@ const MEDIA_FEATURES = [
     text: 'Conteúdo no Instagram mostrando a presença da Caseirices, seus produtos e o universo artesanal da marca.',
     href: 'https://www.instagram.com/p/DPhl_mviWTy/?igsh=MTJpY204YzBtZjE3aw==',
     cta: 'Ver publicação',
+    imageSrc: '/assets/media/folha-jundiaiense.jpeg',
+    imageAlt: 'Imagem da Folha Jundiaiense com Fabio Kuhlmann e os molhos Caseirices.',
+    imageClassName: 'object-cover object-top',
   },
 ]
 
@@ -133,27 +139,22 @@ const commercialArguments = [
   '16 sabores, dos clássicos aos criativos.',
 ]
 
-const customerTestimonials = [
+const videoTestimonials = [
   {
-    business: 'Mariana T. - Jundiaí/SP',
-    quote:
-      'Comprei para testar e virou o molho oficial aqui de casa. Sabor muito caseiro, encorpado e sem aquele gosto artificial.',
-    person: 'Cliente verificada',
-    rating: 5,
+    title: 'Depoimento real de cliente',
+    location: 'Jundiaí/SP',
+    summary: 'Um relato espontâneo sobre sabor, textura e a diferença do molho na rotina.',
+    videoSrc: '/assets/testimonials/depoimento-01.mp4',
+    poster: '/assets/testimonials/depoimento-01-poster.jpg',
+    duration: '0:50',
   },
   {
-    business: 'Carlos M. - Itupeva/SP',
-    quote:
-      'O de alho virou coringa na minha cozinha. Traz aquele sabor de molho bem feito, com cara de receita de família.',
-    person: 'Cliente recorrente',
-    rating: 5,
-  },
-  {
-    business: 'Patrícia R. - Louveira/SP',
-    quote:
-      'Dá para sentir que é artesanal mesmo. Tem aroma fresco, textura natural e muda completamente a experiência do prato.',
-    person: 'Cliente da marca',
-    rating: 5,
+    title: 'Mais um depoimento em vídeo',
+    location: 'São Paulo/SP',
+    summary: 'Percepções reais de quem provou e quis registrar a experiência com a Caseirices.',
+    videoSrc: '/assets/testimonials/depoimento-02.mp4',
+    poster: '/assets/testimonials/depoimento-02-poster.jpg',
+    duration: '1:20',
   },
 ]
 
@@ -499,26 +500,38 @@ function App() {
                   {MEDIA_FEATURES.map((item) => (
                     <article
                       key={item.href}
-                      className="rounded-[24px] border border-white/14 bg-[linear-gradient(180deg,rgba(255,248,240,0.13)_0%,rgba(255,248,240,0.07)_100%)] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur"
+                      className="overflow-hidden rounded-[24px] border border-white/14 bg-[linear-gradient(180deg,rgba(255,248,240,0.13)_0%,rgba(255,248,240,0.07)_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur"
                     >
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#A7E8B3]">
-                        {item.eyebrow}
-                      </p>
-                      <h3 className="mt-3 font-display text-2xl leading-tight text-brand-cream">
-                        {item.title}
-                      </h3>
-                      <p className="mt-3 text-sm leading-relaxed text-brand-cream/82 sm:text-base">
-                        {item.text}
-                      </p>
-                      <a
-                        href={item.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="mt-5 inline-flex items-center gap-2 rounded-[12px] border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/18"
-                      >
-                        {item.cta}
-                        <ExternalLink className="h-4 w-4" />
-                      </a>
+                      <div className="relative aspect-[16/10] overflow-hidden bg-black/20">
+                        <img
+                          src={item.imageSrc}
+                          alt={item.imageAlt}
+                          className={`h-full w-full ${item.imageClassName}`}
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(7,23,15,0.28),rgba(7,23,15,0.04)_48%,transparent)]" />
+                      </div>
+
+                      <div className="p-6">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#A7E8B3]">
+                          {item.eyebrow}
+                        </p>
+                        <h3 className="mt-3 font-display text-2xl leading-tight text-brand-cream">
+                          {item.title}
+                        </h3>
+                        <p className="mt-3 text-sm leading-relaxed text-brand-cream/82 sm:text-base">
+                          {item.text}
+                        </p>
+                        <a
+                          href={item.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="mt-5 inline-flex items-center gap-2 rounded-[12px] border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/18"
+                        >
+                          {item.cta}
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </div>
                     </article>
                   ))}
                 </div>
@@ -818,46 +831,82 @@ function App() {
 
           <SectionReveal className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
             <div className="rounded-[28px] border border-brand-red-dark/60 bg-[linear-gradient(160deg,#8B0000_0%,#A30F21_48%,#6A0914_100%)] p-5 text-white shadow-[0_20px_44px_rgba(72,7,10,0.35)] sm:p-7">
-              <div className="mb-4 inline-flex items-center gap-3 rounded-[12px] border border-white/25 bg-white/10 px-3 py-2">
-                <span className="text-xl font-bold leading-none text-[#FFD76A]">4,9</span>
-                <span className="flex items-center gap-1" aria-label="Nota média 4,9 de 5 estrelas">
-                  {[...Array(5)].map((_, index) => (
-                    <Star key={`hero-rating-${index}`} className="h-4 w-4 fill-[#FFD76A] text-[#FFD76A]" />
-                  ))}
-                </span>
-                <span className="text-xs font-semibold uppercase tracking-[0.11em] text-white/85">
-                  Avaliação dos clientes
-                </span>
-              </div>
-              <h2 className="font-display text-3xl text-white sm:text-4xl">
-                Quem experimenta sente a diferença.
-              </h2>
-              <p className="mt-2 max-w-3xl text-sm text-white/88 sm:text-base">
-                O sabor de Caseirices aparece no aroma, na textura, na memória de cozinha de casa e
-                na facilidade de transformar o prato do dia a dia.
-              </p>
-
-              <div className="mt-6 grid gap-4 md:grid-cols-3">
-                {customerTestimonials.map((item) => (
-                  <article
-                    key={item.business}
-                    className="rounded-[18px] border border-white/24 bg-white/10 p-4 backdrop-blur-sm"
-                  >
-                    <div className="mb-3 flex items-center gap-1">
-                      {[...Array(item.rating ?? 5)].map((_, index) => (
-                        <Star
-                          key={`${item.business}-rating-${index}`}
-                          className="h-4 w-4 fill-[#FFD76A] text-[#FFD76A]"
-                        />
+              <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+                <div>
+                  <div className="inline-flex items-center gap-3 rounded-[12px] border border-white/25 bg-white/10 px-3 py-2">
+                    <span className="text-xl font-bold leading-none text-[#FFD76A]">4,9</span>
+                    <span className="flex items-center gap-1" aria-label="Nota média 4,9 de 5 estrelas">
+                      {[...Array(5)].map((_, index) => (
+                        <Star key={`hero-rating-${index}`} className="h-4 w-4 fill-[#FFD76A] text-[#FFD76A]" />
                       ))}
-                    </div>
-                    <p className="text-sm leading-relaxed text-white/92">"{item.quote}"</p>
-                    <p className="mt-4 text-xs font-semibold uppercase tracking-[0.1em] text-[#FFD1D9]">
-                      {item.person}
-                    </p>
-                    <p className="mt-1 text-sm font-semibold text-white">{item.business}</p>
-                  </article>
-                ))}
+                    </span>
+                    <span className="text-xs font-semibold uppercase tracking-[0.11em] text-white/85">
+                      Avaliação dos clientes
+                    </span>
+                  </div>
+                  <h2 className="mt-5 font-display text-3xl text-white sm:text-4xl lg:text-[3.1rem]">
+                    Depoimentos reais em video de quem provou e aprovou.
+                  </h2>
+                  <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/88 sm:text-base">
+                    Quando o cliente grava e envia o próprio relato, a qualidade deixa de ser só
+                    promessa. Vira prova social viva, espontânea e impossível de fabricar.
+                  </p>
+
+                  <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                    {[
+                      'Relatos espontaneos de clientes',
+                      'Videos verticais prontos para assistir no celular',
+                      'Prova social forte para reforcar confiança',
+                    ].map((item) => (
+                      <div
+                        key={item}
+                        className="rounded-[16px] border border-white/16 bg-black/14 px-4 py-4 text-sm leading-relaxed text-white/88 backdrop-blur-sm"
+                      >
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="grid gap-4 md:grid-cols-2">
+                  {videoTestimonials.map((item) => (
+                    <article
+                      key={item.videoSrc}
+                      className="overflow-hidden rounded-[22px] border border-white/16 bg-[linear-gradient(180deg,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0.08)_100%)] shadow-[0_22px_48px_rgba(44,5,9,0.28)] backdrop-blur"
+                    >
+                      <div className="relative aspect-[9/16] overflow-hidden bg-black">
+                        <video
+                          className="h-full w-full object-cover"
+                          controls
+                          preload="metadata"
+                          playsInline
+                          poster={item.poster}
+                        >
+                          <source src={item.videoSrc} type="video/mp4" />
+                          Seu navegador nao suporta video HTML5.
+                        </video>
+                        <div className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between p-3">
+                          <span className="rounded-full border border-white/22 bg-black/38 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/88 backdrop-blur-sm">
+                            Video real
+                          </span>
+                          <span className="rounded-full border border-white/22 bg-black/38 px-3 py-1 text-[11px] font-semibold text-white/88 backdrop-blur-sm">
+                            {item.duration}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="p-4">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#FFD1D9]">
+                          {item.location}
+                        </p>
+                        <h3 className="mt-2 font-display text-2xl leading-tight text-white">
+                          {item.title}
+                        </h3>
+                        <p className="mt-2 text-sm leading-relaxed text-white/82">{item.summary}</p>
+                      </div>
+                    </article>
+                  ))}
+                </div>
               </div>
             </div>
           </SectionReveal>
