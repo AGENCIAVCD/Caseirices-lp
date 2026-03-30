@@ -33,9 +33,9 @@ export const flavors = [
   },
   {
     name: 'Sweet grape',
-    profile: 'Versão criativa com perfil mais adocicado e proposta autoral',
+    profile: 'Molho com tomatinhos inteiros confitados na versao 500g, mais intenso e autoral',
     group: 'criativos',
-    image: '/assets/products/real/linha-completa.jpg',
+    image: '/assets/products/real/sweet-grape-500g.png',
     fallbackImage: '/assets/products/sabor-05.svg',
     isReal: true,
   },
