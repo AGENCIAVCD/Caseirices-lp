@@ -830,51 +830,36 @@ function App() {
           </SectionReveal>
 
           <SectionReveal className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
-            <div className="rounded-[28px] border border-brand-red-dark/60 bg-[linear-gradient(160deg,#8B0000_0%,#A30F21_48%,#6A0914_100%)] p-5 text-white shadow-[0_20px_44px_rgba(72,7,10,0.35)] sm:p-7">
+            <div className="rounded-[28px] border border-brand-red-dark/60 bg-[linear-gradient(160deg,#8B0000_0%,#A30F21_48%,#6A0914_100%)] p-4 text-white shadow-[0_20px_44px_rgba(72,7,10,0.35)] sm:p-5 lg:max-h-[600px] lg:overflow-hidden">
               <div className="mx-auto max-w-5xl">
                 <div className="text-center">
-                  <div className="inline-flex items-center gap-3 rounded-[12px] border border-white/25 bg-white/10 px-3 py-2">
-                    <span className="text-xl font-bold leading-none text-[#FFD76A]">4,9</span>
+                  <div className="inline-flex items-center gap-2 rounded-[12px] border border-white/25 bg-white/10 px-3 py-1.5">
+                    <span className="text-lg font-bold leading-none text-[#FFD76A]">4,9</span>
                     <span className="flex items-center gap-1" aria-label="Nota média 4,9 de 5 estrelas">
                       {[...Array(5)].map((_, index) => (
-                        <Star key={`hero-rating-${index}`} className="h-4 w-4 fill-[#FFD76A] text-[#FFD76A]" />
+                        <Star key={`hero-rating-${index}`} className="h-3.5 w-3.5 fill-[#FFD76A] text-[#FFD76A]" />
                       ))}
                     </span>
-                    <span className="text-xs font-semibold uppercase tracking-[0.11em] text-white/85">
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.11em] text-white/85 sm:text-xs">
                       Avaliação dos clientes
                     </span>
                   </div>
-                  <h2 className="mx-auto mt-5 max-w-4xl font-display text-3xl text-white sm:text-4xl lg:text-[3.1rem]">
+                  <h2 className="mx-auto mt-4 max-w-4xl font-display text-[2.1rem] leading-[0.94] text-white sm:text-[2.6rem] lg:text-[3rem]">
                     Depoimentos reais em video de quem provou e aprovou.
                   </h2>
-                  <p className="mx-auto mt-3 max-w-3xl text-sm leading-relaxed text-white/88 sm:text-base">
+                  <p className="mx-auto mt-2 max-w-3xl text-sm leading-snug text-white/88 sm:text-[15px]">
                     Quando o cliente grava e envia o próprio relato, a qualidade deixa de ser só
                     promessa. Vira prova social viva, espontânea e impossível de fabricar.
                   </p>
-
-                  <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                    {[
-                      'Relatos espontaneos de clientes',
-                      'Videos verticais prontos para assistir no celular',
-                      'Prova social forte para reforcar confiança',
-                    ].map((item) => (
-                      <div
-                        key={item}
-                        className="rounded-[16px] border border-white/16 bg-black/14 px-4 py-4 text-sm leading-relaxed text-white/88 backdrop-blur-sm"
-                      >
-                        {item}
-                      </div>
-                    ))}
-                  </div>
                 </div>
 
-                <div className="mt-8 grid gap-4 md:grid-cols-2">
+                <div className="mt-5 grid gap-3 md:grid-cols-2">
                   {videoTestimonials.map((item) => (
                     <article
                       key={item.videoSrc}
-                      className="overflow-hidden rounded-[22px] border border-white/16 bg-[linear-gradient(180deg,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0.08)_100%)] shadow-[0_22px_48px_rgba(44,5,9,0.28)] backdrop-blur"
+                      className="overflow-hidden rounded-[20px] border border-white/16 bg-[linear-gradient(180deg,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0.08)_100%)] shadow-[0_18px_40px_rgba(44,5,9,0.24)] backdrop-blur"
                     >
-                      <div className="relative aspect-[9/16] overflow-hidden bg-black">
+                      <div className="relative h-[260px] overflow-hidden bg-black sm:h-[300px] lg:h-[320px]">
                         <video
                           className="h-full w-full object-cover"
                           controls
@@ -885,24 +870,24 @@ function App() {
                           <source src={item.videoSrc} type="video/mp4" />
                           Seu navegador nao suporta video HTML5.
                         </video>
-                        <div className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between p-3">
-                          <span className="rounded-full border border-white/22 bg-black/38 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/88 backdrop-blur-sm">
+                        <div className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between p-2.5">
+                          <span className="rounded-full border border-white/22 bg-black/38 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white/88 backdrop-blur-sm">
                             Video real
                           </span>
-                          <span className="rounded-full border border-white/22 bg-black/38 px-3 py-1 text-[11px] font-semibold text-white/88 backdrop-blur-sm">
+                          <span className="rounded-full border border-white/22 bg-black/38 px-2.5 py-1 text-[10px] font-semibold text-white/88 backdrop-blur-sm">
                             {item.duration}
                           </span>
                         </div>
                       </div>
 
-                      <div className="p-4">
+                      <div className="p-3.5">
                         <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#FFD1D9]">
                           {item.location}
                         </p>
-                        <h3 className="mt-2 font-display text-2xl leading-tight text-white">
+                        <h3 className="mt-1.5 font-display text-[1.75rem] leading-[0.96] text-white">
                           {item.title}
                         </h3>
-                        <p className="mt-2 text-sm leading-relaxed text-white/82">{item.summary}</p>
+                        <p className="mt-1.5 text-sm leading-snug text-white/82">{item.summary}</p>
                       </div>
                     </article>
                   ))}
