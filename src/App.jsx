@@ -138,7 +138,7 @@ const commercialArguments = [
   'Diferente de qualquer outro tipo de molho de tomate.',
   'O produto que realmente faz a diferença para o consumidor exigente.',
   'Molho artesanal com história, qualidade e verdade.',
-  '16 sabores, dos clássicos aos criativos.',
+  '15 sabores, dos clássicos aos criativos.',
 ]
 
 const videoTestimonials = [
@@ -339,7 +339,7 @@ function App() {
                   </m.p>
 
                   <div className="mt-5 flex flex-wrap justify-center gap-2">
-                    {['Ingredientes naturais', '16 sabores', 'Feito em Jundiaí'].map((item) => (
+                    {['Ingredientes naturais', '15 sabores', 'Feito em Jundiaí'].map((item) => (
                       <span
                         key={item}
                         className="rounded-[999px] border border-white/25 bg-white/12 px-3 py-1.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-white/90"
