@@ -17,6 +17,7 @@ const narrativeBlocks = [
     subtitle: 'Nosso molho de tomate caseiro.',
     align: 'left' as const,
     top: '14%',
+    desktopClassName: 'lg:left-10',
     start: 0,
     peakStart: 0.02,
     peakEnd: 0.09,
@@ -27,7 +28,8 @@ const narrativeBlocks = [
     title: 'Nascido na Tradição.',
     subtitle: 'Ingredientes frescos e selecionados.',
     align: 'right' as const,
-    top: '30%',
+    top: '34%',
+    desktopClassName: 'lg:right-24 xl:right-28',
     start: 0.1,
     peakStart: 0.16,
     peakEnd: 0.37,
@@ -39,6 +41,7 @@ const narrativeBlocks = [
     subtitle: 'Uma jornada sensorial do campo para sua mesa.',
     align: 'left' as const,
     top: '44%',
+    desktopClassName: 'lg:left-10',
     start: 0.4,
     peakStart: 0.47,
     peakEnd: 0.67,
@@ -92,7 +95,7 @@ function NarrativeBlock({
       className={`pointer-events-none absolute ${
         isMobile
           ? 'left-4 right-4 w-auto max-w-none translate-x-0 items-center text-center'
-          : `w-[calc(100%-2rem)] max-w-[34rem] sm:w-[32rem] ${cardPlacement(block.align)} ${textAlignment(block.align)}`
+          : `w-[calc(100%-2rem)] max-w-[34rem] sm:w-[32rem] ${cardPlacement(block.align)} ${block.desktopClassName ?? ''} ${textAlignment(block.align)}`
       }`}
       aria-hidden="true"
     >
