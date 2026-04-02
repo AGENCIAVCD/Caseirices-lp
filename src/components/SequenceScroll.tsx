@@ -7,6 +7,8 @@ const SECTION_HEIGHT_DESKTOP = '420vh'
 const SECTION_HEIGHT_MOBILE = '320vh'
 const FRAME_SCROLL_GAIN = 1
 const MIN_READY_FRAMES = 12
+const WHATSAPP_CTA_LINK =
+  'https://api.whatsapp.com/send?phone=5511974884319&text=Eu%20gostaria%20de%20conhecer%20os%20produtos%20Caseirices'
 
 const narrativeBlocks = [
   {
@@ -427,15 +429,17 @@ export function SequenceScroll() {
                 CONHEÇA O SABOR CASEIRICES.
               </h3>
               <div className="mt-3 flex w-full justify-center sm:mt-4">
-                <m.button
-                  type="button"
+                <m.a
+                  href={WHATSAPP_CTA_LINK}
+                  target="_blank"
+                  rel="noreferrer"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ type: 'spring', stiffness: 280, damping: 20 }}
                   className="rounded-full border border-[#FFB3BC]/70 bg-[linear-gradient(180deg,#E11D40,#B80F2A)] px-7 py-2.5 text-[0.9rem] font-bold uppercase tracking-[0.14em] text-white shadow-[0_14px_30px_rgba(200,16,46,0.5)] transition sm:px-10 sm:py-3.5 sm:text-sm"
                 >
                   Comprar Agora
-                </m.button>
+                </m.a>
               </div>
             </div>
           </m.div>
