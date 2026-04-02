@@ -23,7 +23,7 @@ import { SectionReveal } from './components/SectionReveal'
 import { SequenceScroll } from './components/SequenceScroll'
 import { flavors } from './data/flavors'
 
-const SITE_LINK = 'https://caseirices.com.br'
+const SITE_LINK = 'http://caseiricesjundiai.com.br/'
 const WHATSAPP_RESELLER_LINK =
   'https://wa.me/5511974884319?text=Olá!+Vi+a+Landing+Page+da+Caseirices+e+gostaria+de+receber+a+tabela+de+preços+para+revenda.'
 const WHATSAPP_DISCOVERY_LINK =
