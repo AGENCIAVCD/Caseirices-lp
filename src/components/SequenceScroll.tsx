@@ -27,7 +27,7 @@ const narrativeBlocks = [
     title: 'Nascido na Tradição.',
     subtitle: 'Ingredientes frescos e selecionados.',
     align: 'right' as const,
-    top: '24%',
+    top: '30%',
     start: 0.1,
     peakStart: 0.16,
     peakEnd: 0.37,
