@@ -380,7 +380,7 @@ export function SequenceScroll() {
 
           <m.div
             style={{ opacity: hintOpacity, y: hintY, scale: hintScale, x: '-50%' }}
-            className={`pointer-events-none absolute left-1/2 z-30 flex flex-col items-center gap-3 ${isMobile ? 'top-[15px]' : 'top-[30px]'}`}
+            className={`pointer-events-none absolute left-1/2 z-30 flex flex-col items-center gap-3 ${isMobile ? 'top-[15px]' : 'top-[88px] lg:top-[108px]'}`}
           >
             <m.div
               animate={{ boxShadow: ['0 0 0 rgba(255,255,255,0)', '0 0 60px rgba(255,255,255,0.22)', '0 0 0 rgba(255,255,255,0)'] }}
