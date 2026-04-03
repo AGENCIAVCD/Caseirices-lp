@@ -16,7 +16,7 @@ const narrativeBlocks = [
     title: 'Caseirices: O Sabor Que Nos Une.',
     subtitle: 'Nosso molho de tomate caseiro.',
     align: 'left' as const,
-    top: '14%',
+    top: '42%',
     desktopClassName: 'lg:left-10',
     start: 0,
     peakStart: 0.02,
