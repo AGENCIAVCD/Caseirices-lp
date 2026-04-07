@@ -13,7 +13,7 @@ const WHATSAPP_CTA_LINK =
 const narrativeBlocks = [
   {
     key: 'intro',
-    title: 'Caseirices: O Sabor Que Nos Une.',
+    title: 'Caseirices: o sabor que nos une.',
     subtitle: 'Nosso molho de tomate caseiro.',
     align: 'left' as const,
     top: '42%',
@@ -25,7 +25,7 @@ const narrativeBlocks = [
   },
   {
     key: 'tradição',
-    title: 'Nascido na Tradição.',
+    title: 'Nascido na tradição.',
     subtitle: 'Ingredientes frescos e selecionados.',
     align: 'right' as const,
     top: '34%',
@@ -37,7 +37,7 @@ const narrativeBlocks = [
   },
   {
     key: 'explosão',
-    title: 'Explosão de Sabor.',
+    title: 'Explosão de sabor.',
     subtitle: 'Uma jornada sensorial do campo para sua mesa.',
     align: 'left' as const,
     top: '44%',
@@ -49,7 +49,7 @@ const narrativeBlocks = [
   },
   {
     key: 'toque',
-    title: 'O Toque que Fica.',
+    title: 'O toque que fica.',
     subtitle: 'Para todas as suas receitas especiais.',
     align: 'center' as const,
     top: '72%',
@@ -441,7 +441,7 @@ export function SequenceScroll() {
                   transition={{ type: 'spring', stiffness: 280, damping: 20 }}
                   className="rounded-full border border-[#FFB3BC]/70 bg-[linear-gradient(180deg,#E11D40,#B80F2A)] px-7 py-2.5 text-[0.9rem] font-bold uppercase tracking-[0.14em] text-white shadow-[0_14px_30px_rgba(200,16,46,0.5)] transition sm:px-10 sm:py-3.5 sm:text-sm"
                 >
-                  Comprar Agora
+                  Comprar agora
                 </m.a>
               </div>
             </div>

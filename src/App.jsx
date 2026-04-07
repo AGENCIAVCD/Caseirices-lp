@@ -79,22 +79,22 @@ const brandPillars = [
 
 const essentialItems = [
   {
-    eyebrow: 'Só o Essencial',
+    eyebrow: 'Tomate natural',
     title: 'Tomate no auge',
     text: 'Tomate 100% natural, com sabor do próprio fruto e acidez equilibrada para um molho que nasce do ingrediente real.',
   },
   {
-    eyebrow: 'Só o Essencial',
+    eyebrow: 'Aroma fresco',
     title: 'Manjericão fresco',
-    text: 'Um bouquet perfumado, verde e limpo, que levanta o molho sem roubar a cena do tomate.',
+    text: 'Um buquê perfumado, verde e limpo, que levanta o molho sem roubar a cena do tomate.',
   },
   {
-    eyebrow: 'Só o Essencial',
+    eyebrow: 'Tempo de panela',
     title: 'Amor e tempo',
     text: 'Sabores construídos devagar, com memória de receita de família e respeito ao ponto certo de cada ingrediente.',
   },
   {
-    eyebrow: 'Só o Essencial',
+    eyebrow: 'Receita leve',
     title: 'Leveza e pureza',
     text: 'Receita sem óleo, com textura natural, sabor equilibrado e ingredientes frescos para uma escolha mais saudável.',
   },
@@ -175,6 +175,14 @@ const flavorFilters = [
   { id: 'defumados', label: 'Defumados' },
   { id: 'apimentados', label: 'Apimentados' },
 ]
+
+const flavorGroupLabels = {
+  classicos: 'Clássico artesanal',
+  criativos: 'Receita criativa',
+  premium: 'Linha premium',
+  defumados: 'Toque defumado',
+  apimentados: 'Picância equilibrada',
+}
 
 function BrandLockup({ frameClassName = 'h-[82%] w-[82%]' }) {
   return (
@@ -431,14 +439,17 @@ function App() {
                 >
                   {[
                     {
+                      eyebrow: 'O produto',
                       title: 'Do Campo ao Pote',
                       text: 'Molhos produzidos com tomates selecionados, textura rústica e o frescor do manjericão colhido na hora. A verdadeira essência da cozinha artesanal de Jundiaí.',
                     },
                     {
+                      eyebrow: 'O processo',
                       title: 'Slow Food de Verdade',
                       text: 'Sem pressa e sem conservantes. Cada receita da Caseirices é apurada no fogo baixo para concentrar o sabor natural que só o tempo e o carinho entregam.',
                     },
                     {
+                      eyebrow: 'Diferencial premium',
                       title: 'Sabor que Surpreende',
                       text: 'Transforme suas massas com um molho de chef. O toque caseiro que faltava na sua mesa, entregando qualidade gourmet com a alma do interior paulista.',
                     },
@@ -452,7 +463,7 @@ function App() {
                       className="rounded-[24px] border border-white/22 bg-[linear-gradient(180deg,rgba(0,0,0,0.44)_0%,rgba(0,0,0,0.34)_100%)] p-5 text-white shadow-[0_20px_40px_rgba(0,0,0,0.3)] backdrop-blur-md"
                     >
                       <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#B7F0BF]">
-                        Essência da marca
+                        {item.eyebrow}
                       </p>
                       <h3 className="mt-2 font-display text-2xl leading-tight text-white">
                         {item.title}
@@ -565,7 +576,7 @@ function App() {
           <SectionReveal className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-10 lg:py-12">
             <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
               <article className="rounded-[26px] border border-brand-earth/16 bg-white/88 p-7 shadow-[0_16px_38px_rgba(55,27,16,0.1)] lg:p-9">
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-green">Caseirices na mídia</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-green">Instagram e bastidores</p>
                 <h2 className="mt-3 font-display text-3xl leading-tight text-brand-wine sm:text-4xl">
                   Acompanhe os últimos conteúdos da Caseirices no Instagram.
                 </h2>
@@ -671,7 +682,7 @@ function App() {
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
               <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
                 <div className="max-w-3xl">
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#8FE08F]">Só o Essencial</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#8FE08F]">Só o essencial</p>
                   <h2 className="mt-3 font-display text-3xl text-[#F8F1E7] sm:text-4xl">
                     Porque só o essencial tem o sabor que faz a diferença.
                   </h2>
@@ -767,7 +778,7 @@ function App() {
                       />
                       <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/55 to-transparent" />
                       <p className="absolute bottom-3 left-3 right-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/90">
-                        Sabor artesanal de verdade
+                        {flavorGroupLabels[item.group] ?? 'Sabor Caseirices'}
                       </p>
                     </div>
                     <div className="p-3">
@@ -871,7 +882,7 @@ function App() {
                     </span>
                   </div>
                   <h2 className="mx-auto mt-4 max-w-3xl font-display text-[2.1rem] leading-[0.94] text-white sm:text-[2.6rem] lg:text-[3rem]">
-                    Depoimentos reais em video de quem provou e aprovou.
+                    Depoimentos reais em vídeo de quem provou e aprovou.
                   </h2>
                   <p className="mx-auto mt-2 max-w-2xl text-sm leading-snug text-white/88 sm:text-[15px]">
                     Quando o cliente grava e envia o próprio relato, a qualidade deixa de ser só
@@ -897,7 +908,7 @@ function App() {
                         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,7,6,0.1)_0%,rgba(18,7,6,0.18)_38%,rgba(18,7,6,0.78)_100%)]" />
                         <div className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between p-3">
                           <span className="rounded-full border border-white/22 bg-white/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white/88 backdrop-blur-sm">
-                            Video real
+                            Vídeo real
                           </span>
                           <span className="rounded-full border border-white/22 bg-white/10 px-2.5 py-1 text-[10px] font-semibold text-white/88 backdrop-blur-sm">
                             {item.duration}
@@ -963,7 +974,7 @@ function App() {
                       poster={activeTestimonial.poster}
                     >
                       <source src={activeTestimonial.videoSrc} type="video/mp4" />
-                      Seu navegador nao suporta video HTML5.
+                      Seu navegador não suporta vídeo HTML5.
                     </video>
                   </div>
 
@@ -981,8 +992,8 @@ function App() {
                     </div>
 
                     <div className="mt-6 rounded-[18px] border border-white/14 bg-white/6 p-4 text-sm leading-relaxed text-white/74">
-                      Depoimento em tela cheia para manter a seção mais leve e deixar o video ganhar
-                      destaque so quando a pessoa quiser assistir.
+                      Depoimento em tela cheia para manter a seção mais leve e deixar o vídeo ganhar
+                      destaque só quando a pessoa quiser assistir.
                     </div>
                   </div>
                 </div>

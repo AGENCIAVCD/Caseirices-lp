@@ -9,7 +9,7 @@ export const flavors = [
   },
   {
     name: 'Sugo Basilico',
-    profile: 'Receita clássica com manjericão fresco na versao 500g, mais aromática e encorpada',
+    profile: 'Receita clássica com manjericão fresco na versão 500g, mais aromática e encorpada',
     group: 'classicos',
     image: '/assets/products/real/sugo-basilico-500g.png',
     fallbackImage: '/assets/products/sabor-02.svg',
@@ -33,7 +33,7 @@ export const flavors = [
   },
   {
     name: 'Sweet grape',
-    profile: 'Molho com tomatinhos inteiros confitados na versao 500g, mais intenso e autoral',
+    profile: 'Molho com tomatinhos inteiros confitados na versão 500g, mais intenso e autoral',
     group: 'criativos',
     image: '/assets/products/real/sweet-grape-500g.png',
     fallbackImage: '/assets/products/sabor-05.svg',
