@@ -232,6 +232,59 @@ function SecondaryButton({ href, children, dark = false, className = '' }) {
   )
 }
 
+function EcommerceSection() {
+  return (
+    <SectionReveal className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-10 lg:py-12">
+      <div className="relative overflow-hidden rounded-[28px] bg-[#160a06] text-white shadow-[0_20px_56px_rgba(55,27,16,0.22)]">
+        <img
+          src="/assets/products/real/linha-completa.jpg"
+          alt="Linha de molhos Caseirices disponível no e-commerce"
+          className="absolute inset-0 h-full w-full object-cover object-center opacity-52"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,6,4,0.92)_0%,rgba(12,6,4,0.72)_48%,rgba(12,6,4,0.26)_100%)]" />
+
+        <div className="relative grid min-h-[260px] gap-5 p-5 sm:p-6 lg:grid-cols-[1.08fr_0.92fr] lg:p-8">
+          <div className="flex max-w-2xl flex-col justify-center">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#9BE3A8]">
+              Loja online Caseirices
+            </p>
+            <h2 className="mt-3 font-display text-[2rem] leading-[0.94] text-white sm:text-4xl lg:text-[3.1rem]">
+              Seu molho favorito, direto pelo e-commerce.
+            </h2>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/84 sm:text-base">
+              Escolha os sabores, calcule o frete e compre com segurança pela loja oficial.
+            </p>
+
+            <div className="mt-5 flex flex-wrap gap-2.5">
+              {['Compra segura', 'Entrega com rastreamento', 'Atendimento via WhatsApp'].map((item) => (
+                <span
+                  key={item}
+                  className="rounded-full border border-white/18 bg-white/10 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.13em] text-white/90 backdrop-blur"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex items-end justify-start lg:justify-end">
+            <div className="flex w-full flex-wrap gap-3 lg:w-auto lg:flex-col">
+              <PrimaryButton href={SITE_LINK} className="w-full sm:w-auto">
+                Comprar na loja online
+                <ExternalLink className="h-4 w-4" />
+              </PrimaryButton>
+              <SecondaryButton href={`${SITE_LINK}produtos/`} dark className="w-full border-white/22 bg-white/10 text-white hover:bg-white/18 sm:w-auto">
+                Ver produtos
+              </SecondaryButton>
+            </div>
+          </div>
+        </div>
+      </div>
+    </SectionReveal>
+  )
+}
+
 
 function App() {
   const shouldReduceMotion = useReducedMotion()
@@ -805,6 +858,8 @@ function App() {
             </div>
           </SectionReveal>
 
+          <EcommerceSection />
+
           <SectionReveal className="mx-auto grid max-w-7xl gap-6 px-4 py-16 sm:px-6 lg:grid-cols-[0.98fr_1.02fr] lg:px-10 lg:py-20">
             <article className="relative overflow-hidden rounded-[26px] border border-[#2f7d46]/30 bg-[radial-gradient(circle_at_18%_18%,rgba(143,224,143,0.16),transparent_26%),radial-gradient(circle_at_82%_12%,rgba(200,16,46,0.12),transparent_28%),linear-gradient(135deg,#143B29_0%,#1B5637_50%,#10281D_100%)] p-7 text-brand-cream shadow-[0_20px_46px_rgba(16,40,29,0.28)] lg:p-9">
               <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.03)_0%,rgba(255,255,255,0)_36%,rgba(255,255,255,0.04)_100%)]" />
@@ -1044,76 +1099,6 @@ function App() {
                       </div>
                     )
                   })}
-                </div>
-              </div>
-            </div>
-          </SectionReveal>
-
-          <SectionReveal className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-10 lg:pb-24">
-            <div className="relative overflow-hidden rounded-[34px] bg-[#160a06] text-white shadow-[0_30px_80px_rgba(55,27,16,0.28)]">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(47,125,70,0.28),transparent_28%),radial-gradient(circle_at_86%_18%,rgba(200,16,46,0.28),transparent_26%),linear-gradient(90deg,rgba(12,6,4,0.96)_0%,rgba(12,6,4,0.78)_42%,rgba(12,6,4,0.36)_100%)]" />
-              <img
-                src="/assets/products/real/linha-completa.jpg"
-                alt="Linha de molhos Caseirices disponível no e-commerce"
-                className="absolute inset-0 h-full w-full object-cover object-center opacity-60"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,6,4,0.94)_0%,rgba(12,6,4,0.74)_44%,rgba(12,6,4,0.18)_100%)]" />
-
-              <div className="relative grid min-h-[520px] gap-8 p-6 sm:p-8 lg:grid-cols-[0.92fr_1.08fr] lg:p-12">
-                <div className="flex max-w-2xl flex-col justify-end py-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#9BE3A8]">
-                    Loja online Caseirices
-                  </p>
-                  <h2 className="mt-4 font-display text-[2.5rem] leading-[0.92] text-white sm:text-5xl lg:text-[4.4rem]">
-                    Seu molho favorito, direto pelo e-commerce.
-                  </h2>
-                  <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/84 sm:text-base">
-                    Escolha os sabores, calcule o frete e compre com segurança pela loja oficial da Caseirices.
-                  </p>
-
-                  <div className="mt-7 flex flex-wrap gap-3">
-                    {['Compra segura', 'Entrega com rastreamento', 'Atendimento via WhatsApp'].map((item) => (
-                      <span
-                        key={item}
-                        className="rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/90 backdrop-blur"
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="mt-8 flex flex-wrap gap-3">
-                    <PrimaryButton href={SITE_LINK} className="w-full sm:w-auto">
-                      Comprar na loja online
-                      <ExternalLink className="h-4 w-4" />
-                    </PrimaryButton>
-                    <SecondaryButton href={`${SITE_LINK}produtos/`} dark className="w-full sm:w-auto border-white/22 bg-white/10 text-white hover:bg-white/18">
-                      Ver produtos
-                    </SecondaryButton>
-                  </div>
-                </div>
-
-                <div className="flex items-end justify-start lg:justify-end">
-                  <div className="w-full max-w-md rounded-[26px] border border-white/18 bg-black/28 p-5 backdrop-blur-md">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#FFD9AA]">
-                      Destaques da loja
-                    </p>
-                    <div className="mt-4 grid gap-3">
-                      {[
-                        'Clássicos, criativos, premium, defumados e apimentados reunidos em um só lugar.',
-                        'Produtos com frete calculado no carrinho e acompanhamento do pedido.',
-                        'Canal direto para tirar dúvidas antes de finalizar a compra.',
-                      ].map((item) => (
-                        <div
-                          key={item}
-                          className="rounded-[16px] border border-white/14 bg-white/10 p-4 text-sm leading-relaxed text-white/82"
-                        >
-                          {item}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
