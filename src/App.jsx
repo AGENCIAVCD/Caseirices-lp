@@ -1228,6 +1228,17 @@ function App() {
                 </div>
               </div>
             </div>
+            <div className="mt-5 flex flex-wrap items-center justify-between gap-2 text-xs text-brand-cream/64">
+              <p>© Caseirices Jundiaí. Todos os direitos reservados.</p>
+              <a
+                href="https://vocedigitalpropaganda.com.br/"
+                target="_blank"
+                rel="noreferrer"
+                className="font-medium text-brand-cream/78 transition hover:text-brand-green"
+              >
+                Site desenvolvido por Você Digital Propaganda
+              </a>
+            </div>
           </div>
         </footer>
 
@@ -1236,7 +1247,7 @@ function App() {
           target="_blank"
           rel="noreferrer"
           aria-label="WhatsApp fixo Caseirices"
-          className="group fixed bottom-4 left-4 z-50 inline-flex items-center gap-2 rounded-full border border-white/55 bg-[linear-gradient(135deg,#2fe678,#18b457)] px-3.5 py-2.5 text-white shadow-[0_16px_34px_rgba(12,74,36,0.46)] transition hover:scale-[1.05] hover:shadow-[0_20px_44px_rgba(12,74,36,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#25D366] sm:bottom-6 sm:left-5 sm:gap-3 sm:px-5 sm:py-3.5 sm:shadow-[0_24px_52px_rgba(12,74,36,0.55)]"
+          className="group fixed bottom-4 right-4 z-50 inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/55 bg-[linear-gradient(135deg,#2fe678,#18b457)] text-white shadow-[0_16px_34px_rgba(12,74,36,0.46)] transition hover:scale-[1.05] hover:shadow-[0_20px_44px_rgba(12,74,36,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#25D366] sm:bottom-6 sm:right-5 sm:h-auto sm:w-auto sm:gap-3 sm:px-5 sm:py-3.5 sm:shadow-[0_24px_52px_rgba(12,74,36,0.55)]"
         >
           <span className="absolute -inset-2 -z-10 rounded-full bg-[#25D366]/45 blur-lg transition group-hover:bg-[#25D366]/60" />
           <span className="absolute -inset-3 -z-20 hidden rounded-full border border-[#8ef6b8]/40 animate-pulse sm:block" />
