@@ -431,16 +431,16 @@ function App() {
                 >
                   {[
                     {
-                      title: 'Da origem ao prato',
-                      text: 'Um molho que nasce do ingrediente real e chega à mesa com textura natural, aroma fresco e assinatura artesanal.',
+                      title: 'Do Campo ao Pote',
+                      text: 'Molhos produzidos com tomates selecionados, textura rústica e o frescor do manjericão colhido na hora. A verdadeira essência da cozinha artesanal de Jundiaí.',
                     },
                     {
-                      title: 'Aroma, fogo e tempo',
-                      text: 'Cada receita carrega a presença da cozinha viva, com camadas de sabor construídas devagar e com cuidado.',
+                      title: 'Slow Food de Verdade',
+                      text: 'Sem pressa e sem conservantes. Cada receita da Caseirices é apurada no fogo baixo para concentrar o sabor natural que só o tempo e o carinho entregam.',
                     },
                     {
-                      title: 'Presença de marca',
-                      text: 'Menos bloco claro e mais impacto visual para sustentar o discurso premium logo no início da navegação.',
+                      title: 'Sabor que Surpreende',
+                      text: 'Transforme suas massas com um molho de chef. O toque caseiro que faltava na sua mesa, entregando qualidade gourmet com a alma do interior paulista.',
                     },
                   ].map((item) => (
                     <m.article
