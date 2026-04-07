@@ -295,6 +295,7 @@ function App() {
   const [showAllFlavors, setShowAllFlavors] = useState(false)
   const [heroVideoFailed, setHeroVideoFailed] = useState(false)
   const [activeTestimonial, setActiveTestimonial] = useState(null)
+  const [isWhatsAppCompact, setIsWhatsAppCompact] = useState(false)
 
   useEffect(() => {
     if (document.querySelector(`script[src="${ELFSIGHT_SCRIPT_SRC}"]`)) return
@@ -303,6 +304,21 @@ function App() {
     script.src = ELFSIGHT_SCRIPT_SRC
     script.async = true
     document.body.appendChild(script)
+  }, [])
+
+  useEffect(() => {
+    const updateWhatsAppState = () => {
+      setIsWhatsAppCompact(window.scrollY > window.innerHeight * 0.9)
+    }
+
+    updateWhatsAppState()
+    window.addEventListener('scroll', updateWhatsAppState, { passive: true })
+    window.addEventListener('resize', updateWhatsAppState)
+
+    return () => {
+      window.removeEventListener('scroll', updateWhatsAppState)
+      window.removeEventListener('resize', updateWhatsAppState)
+    }
   }, [])
 
   useEffect(() => {
@@ -1242,18 +1258,35 @@ function App() {
           </div>
         </footer>
 
-        <a
+        <m.a
           href={WHATSAPP_DISCOVERY_LINK}
           target="_blank"
           rel="noreferrer"
           aria-label="WhatsApp fixo Caseirices"
-          className="group fixed bottom-4 right-4 z-50 inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/55 bg-[linear-gradient(135deg,#2fe678,#18b457)] text-white shadow-[0_16px_34px_rgba(12,74,36,0.46)] transition hover:scale-[1.05] hover:shadow-[0_20px_44px_rgba(12,74,36,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#25D366] sm:bottom-6 sm:right-5 sm:h-auto sm:w-auto sm:gap-3 sm:px-5 sm:py-3.5 sm:shadow-[0_24px_52px_rgba(12,74,36,0.55)]"
+          animate={
+            isWhatsAppCompact
+              ? { width: 56, paddingLeft: 0, paddingRight: 0 }
+              : { width: 178, paddingLeft: 20, paddingRight: 20 }
+          }
+          transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.32, ease: 'easeOut' }}
+          className="group fixed bottom-4 left-4 z-50 inline-flex h-12 items-center justify-center overflow-hidden rounded-full border border-white/55 bg-[linear-gradient(135deg,#2fe678,#18b457)] py-0 text-white shadow-[0_16px_34px_rgba(12,74,36,0.46)] transition hover:scale-[1.05] hover:shadow-[0_20px_44px_rgba(12,74,36,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#25D366] sm:bottom-6 sm:left-5 sm:h-14 sm:shadow-[0_24px_52px_rgba(12,74,36,0.55)]"
         >
           <span className="absolute -inset-2 -z-10 rounded-full bg-[#25D366]/45 blur-lg transition group-hover:bg-[#25D366]/60" />
           <span className="absolute -inset-3 -z-20 hidden rounded-full border border-[#8ef6b8]/40 animate-pulse sm:block" />
-          <PhoneCall className="h-5 w-5 sm:h-7 sm:w-7" />
-          <span className="hidden text-sm font-bold uppercase tracking-[0.08em] sm:inline">WhatsApp</span>
-        </a>
+          <PhoneCall className="h-5 w-5 shrink-0 sm:h-7 sm:w-7" />
+          <m.span
+            aria-hidden={isWhatsAppCompact}
+            animate={
+              isWhatsAppCompact
+                ? { opacity: 0, width: 0, marginLeft: 0 }
+                : { opacity: 1, width: 'auto', marginLeft: 12 }
+            }
+            transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.22, ease: 'easeOut' }}
+            className="whitespace-nowrap text-sm font-bold uppercase tracking-[0.08em]"
+          >
+            WhatsApp
+          </m.span>
+        </m.a>
       </div>
     </LazyMotion>
   )
